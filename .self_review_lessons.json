@@ -16,5 +16,11 @@
     "task": "改底层代码后回滚",
     "lesson": "'agent_types.py VERIFICATION prompt + tool_pipeline.py security scan集成，被要求回滚' 方法对 '改底层代码后回滚' 无效，需要找替代方案",
     "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-04-16 05:19",
+    "task": "test_task",
+    "lesson": "'test_method' 方法对 'test_task' 有效，记录备用",
+    "source": "auto_review"
   }
 ]

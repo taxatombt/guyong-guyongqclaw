@@ -2807,6 +2807,33 @@
       "last_failure": "",
       "created_at": "2026-04-15 13:31",
       "rationalizations": []
+    },
+    {
+      "id": "rule_105_1776287947",
+      "task": "test_task",
+      "method": "test_method",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "test_task"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "test_method"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-16 05:19",
+      "last_failure": "",
+      "created_at": "2026-04-16 05:19",
+      "rationalizations": []
     }
   ]
 }

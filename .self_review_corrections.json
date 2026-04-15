@@ -58,5 +58,19 @@
     "pattern": null,
     "lesson": "'agent_types.py VERIFICATION prompt + tool_pipeline.py security scan集成，被要求回滚' 方法对 '改底层代码后回滚' 无效，需要找替代方案",
     "notes": null
+  },
+  {
+    "timestamp": "2026-04-16 05:19",
+    "task": "test_task",
+    "method": "test_method",
+    "success": true,
+    "error": null,
+    "used_tools": [
+      "exec"
+    ],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'test_method' 方法对 'test_task' 有效，记录备用",
+    "notes": null
   }
 ]

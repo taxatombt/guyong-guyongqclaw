@@ -75,6 +75,35 @@
 - Push 可能需要认证（SSH key 或 token）
 - `.gitignore` 注意忽略 `node_modules/`、`__pycache__/`、`*.pyc`
 
+## workspace 模块 API 速查
+
+### evolver.py
+```python
+from evolver import EvolverEngine
+eng = EvolverEngine()
+eng.record(task, method, success, input_fields=None, error=None, notes=None, best_method=None, why_not_best=None)
+eng.best_method({"task": "xxx"})  # 返回 {"method","task","confidence","success_rate","attempts","alternatives"}
+eng.get_stats()  # 规则统计
+len(eng.rules)   # 规则数
+```
+⚠️ 没有 `recall()` 方法，用 `best_method()` 代替
+
+### self_review.py
+```python
+import self_review
+self_review.run_review(task, method, success, used_tools, error=None, notes=None)  # 返回 dict
+self_review.observe_tool(tool_name, tool_input)  # 观察工具调用
+self_review.generate_lessons()  # 生成教训
+```
+⚠️ 没有 `SelfReview` 类，直接用模块级函数
+
+### heartbeat_self_review.py
+```python
+import heartbeat_self_review
+heartbeat_self_review.check_and_remind()  # 返回提醒文本或空
+```
+⚠️ 没有 `run_self_review_check`，用 `check_and_remind()`
+
 ---
 
 _本文件记录踩过的坑和验证过的方法，不记可以从文档查到的东西。_
