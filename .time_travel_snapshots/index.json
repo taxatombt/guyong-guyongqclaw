@@ -1,0 +1,16 @@
+{
+  "00bfc017": {
+    "timestamp": 1776189960.7571096,
+    "label": "test",
+    "description": "test snapshot",
+    "file_states": {},
+    "metadata": {}
+  },
+  "8b77cbf1": {
+    "timestamp": 1776189976.2306561,
+    "label": "test",
+    "description": "test snapshot",
+    "file_states": {},
+    "metadata": {}
+  }
+}

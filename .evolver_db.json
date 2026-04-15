@@ -1,0 +1,2812 @@
+{
+  "rules": [
+    {
+      "id": "rule_1_1776012303",
+      "task": "test-pdf-extract",
+      "method": "pypdf",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "test-pdf-extract"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "pypdf"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 2,
+      "total_count": 2,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 00:45",
+      "last_failure": "",
+      "created_at": "2026-04-13 00:45",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_2_1776075194",
+      "task": "agents系统开发-tool_pipeline",
+      "method": "15步管道+HookDispatcher v2.2",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "agents系统开发-tool_pipeline"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "15步管道+HookDispatcher v2.2"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_3_1776075194",
+      "task": "agents系统开发-event_bus",
+      "method": "event_bus.py 8KB事件总线",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "agents系统开发-event_bus"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "event_bus.py 8KB事件总线"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_4_1776075194",
+      "task": "agents系统开发-agent_types",
+      "method": "四角色(GENERAL/VERIFY/EXPLORE/PLAN)",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "agents系统开发-agent_types"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "四角色(GENERAL/VERIFY/EXPLORE/PLAN)"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_5_1776075194",
+      "task": "codex-rs逆向-execpolicy",
+      "method": "policy.rs+rule.rs+decision.rs完整提取",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "codex-rs逆向-execpolicy"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "policy.rs+rule.rs+decision.rs完整提取"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_6_1776075194",
+      "task": "codex-rs逆向-hooks",
+      "method": "HookDispatcher泛型分发pipeline",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "codex-rs逆向-hooks"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "HookDispatcher泛型分发pipeline"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_7_1776075194",
+      "task": "skill安装-换镜像",
+      "method": "cn.clawhub-mirror.com",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "skill安装-换镜像"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "cn.clawhub-mirror.com"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_8_1776075194",
+      "task": "PDF提取-中文编码",
+      "method": "文件写入Python读取绕过GBK",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "PDF提取-中文编码"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "文件写入Python读取绕过GBK"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_9_1776075194",
+      "task": "qclaw_eval开发",
+      "method": "EDD评测+pass@k指标",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "qclaw_eval开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "EDD评测+pass@k指标"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_10_1776075194",
+      "task": "qclaw_loops开发",
+      "method": "6种循环模式",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "qclaw_loops开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "6种循环模式"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_11_1776075194",
+      "task": "instinct_model提取",
+      "method": "YAML原子粒度instinct",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "instinct_model提取"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "YAML原子粒度instinct"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-13 18:13",
+      "last_failure": "",
+      "created_at": "2026-04-13 18:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_12_1776105418",
+      "task": "E:\\ai\\资源全量学习",
+      "method": "9资源系统研究+6新模块落地",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "E:\\ai\\资源全量学习"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "9资源系统研究+6新模块落地"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_13_1776105418",
+      "task": "memory_guard开发",
+      "method": "Hermes 12威胁模式+隐形字符",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "memory_guard开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Hermes 12威胁模式+隐形字符"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_14_1776105418",
+      "task": "memory_fence开发",
+      "method": "Hermes memory-context fencing",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "memory_fence开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Hermes memory-context fencing"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_15_1776105419",
+      "task": "security_hook开发",
+      "method": "顾庸t 10大漏洞检测",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "security_hook开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "顾庸t 10大漏洞检测"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_16_1776105419",
+      "task": "token_budget开发",
+      "method": "Claude Code 90%阈值+Hermes 3层",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "token_budget开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Claude Code 90%阈值+Hermes 3层"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_17_1776105419",
+      "task": "verification_prompts开发",
+      "method": "Claude Code 反合理化prompt",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "verification_prompts开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Claude Code 反合理化prompt"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_18_1776105419",
+      "task": "ralph_anti_loop开发",
+      "method": "顾庸t Ralph Wiggum",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "ralph_anti_loop开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "顾庸t Ralph Wiggum"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_19_1776105419",
+      "task": "Claude Code TS源码研究",
+      "method": "runAgent 974行+4角色+20skill",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Claude"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "runAgent 974行+4角色+20skill"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_20_1776105419",
+      "task": "Hermes完整仓库研究",
+      "method": "70工具+26skill+MemoryManager+Delegate",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Hermes完整仓库研究"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "70工具+26skill+MemoryManager+Delegate"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 02:36",
+      "last_failure": "",
+      "created_at": "2026-04-14 02:36",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_21_1776152976",
+      "task": "Claude Code analyzeContext研究",
+      "method": "TOOL_TOKEN_COUNT_OVERHEAD=500+Haiku fallback",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Claude"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "TOOL_TOKEN_COUNT_OVERHEAD=500+Haiku fallback"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_22_1776152976",
+      "task": "Claude Code forkedAgent研究",
+      "method": "CacheSafeParams保持cache兼容",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Claude"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "CacheSafeParams保持cache兼容"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_23_1776152976",
+      "task": "Hermes ContextCompressor研究",
+      "method": "Structured Summary五步+Token-budget tail",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Hermes"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Structured Summary五步+Token-budget tail"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_24_1776152976",
+      "task": "Hermes Skills Guard研究",
+      "method": "Trust Level三层+安装策略矩阵",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Hermes"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Trust Level三层+安装策略矩阵"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_25_1776152976",
+      "task": "Claude Code forkSubagent研究",
+      "method": "Fork=cache兼容隐式继承机制",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Claude"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Fork=cache兼容隐式继承机制"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_26_1776152976",
+      "task": "Claude Code memoryTypes研究",
+      "method": "TYPES_SECTION_COMBINED四类型",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Claude"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "TYPES_SECTION_COMBINED四类型"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_27_1776152977",
+      "task": "ECC autonomous-loops研究",
+      "method": "6种循环模式Sequential到RFC-DAG",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "ECC"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "6种循环模式Sequential到RFC-DAG"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_28_1776152977",
+      "task": "HERMES-OPENCLAW-MIGRATION研究",
+      "method": "5层翻译映射原则",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "HERMES-OPENCLAW-MIGRATION研究"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "5层翻译映射原则"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_29_1776152977",
+      "task": ".opencode.md研究",
+      "method": "OpenCode插件系统20+事件",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": ".opencode.md研究"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "OpenCode插件系统20+事件"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_30_1776152977",
+      "task": "融会贯通V2综合",
+      "method": "四层连接：Cache+Fork/Memory/Files/三层",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "融会贯通V2综合"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "四层连接：Cache+Fork/Memory/Files/三层"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 15:49",
+      "last_failure": "",
+      "created_at": "2026-04-14 15:49",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_31_1776164386",
+      "task": "qclaw_compactor.py开发",
+      "method": "ContextCompressor v2五步法+结构化摘要",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "qclaw_compactor.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "ContextCompressor v2五步法+结构化摘要"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 18:59",
+      "last_failure": "",
+      "created_at": "2026-04-14 18:59",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_32_1776164386",
+      "task": "skill_scanner.py开发",
+      "method": "信任层级三层+安装策略矩阵+11种危险模式",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "skill_scanner.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "信任层级三层+安装策略矩阵+11种危险模式"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 18:59",
+      "last_failure": "",
+      "created_at": "2026-04-14 18:59",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_33_1776164386",
+      "task": "self_review.py语法修复",
+      "method": "def append_review()缺少冒号",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "self_review.py语法修复"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "def append_review()缺少冒号"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 18:59",
+      "last_failure": "",
+      "created_at": "2026-04-14 18:59",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_34_1776164478",
+      "task": "fork_tracker开发",
+      "method": "ForkTracker.CacheSafeParams追踪",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "fork_tracker开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "ForkTracker.CacheSafeParams追踪"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 19:01",
+      "last_failure": "",
+      "created_at": "2026-04-14 19:01",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_35_1776164478",
+      "task": "fork_tracker开发",
+      "method": "ForkTracker.check_cache_compatibility",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "fork_tracker开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "ForkTracker.check_cache_compatibility"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 19:01",
+      "last_failure": "",
+      "created_at": "2026-04-14 19:01",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_36_1776168755",
+      "task": "token_overhead.py开发",
+      "method": "TOOL_TOKEN_COUNT_OVERHEAD=500+3级联计数",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "token_overhead.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "TOOL_TOKEN_COUNT_OVERHEAD=500+3级联计数"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 20:12",
+      "last_failure": "",
+      "created_at": "2026-04-14 20:12",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_37_1776168755",
+      "task": "autonomous_loops.py开发",
+      "method": "6种循环模式Sequential->RFC-DAG",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "autonomous_loops.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "6种循环模式Sequential->RFC-DAG"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 20:12",
+      "last_failure": "",
+      "created_at": "2026-04-14 20:12",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_38_1776168755",
+      "task": "skill_scanner_v2.py开发",
+      "method": "agent-created层级+network检测",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "skill_scanner_v2.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "agent-created层级+network检测"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 20:12",
+      "last_failure": "",
+      "created_at": "2026-04-14 20:12",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_39_1776168755",
+      "task": "claude_message_types.py开发",
+      "method": "30种系统消息类型7分类",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "claude_message_types.py开发"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "30种系统消息类型7分类"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-14 20:12",
+      "last_failure": "",
+      "created_at": "2026-04-14 20:12",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_40_1776185115",
+      "task": "HANDOVER文档格式落地",
+      "method": "qclaw_handover.py RESOLVED/PENDING/KEY_DECISIONS/SYSTEM四字段",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "HANDOVER文档格式落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "qclaw_handover.py RESOLVED/PENDING/KEY_DECISIONS/SYSTEM四字段"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 00:45",
+      "last_failure": "",
+      "created_at": "2026-04-15 00:45",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_41_1776185115",
+      "task": "SOUL.md七大原则",
+      "method": "交接>总结/Hook_fail_open/量化反馈/时间维度/给建议不动手/规则>硬编码/渐进披露",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "SOUL.md七大原则"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "交接>总结/Hook_fail_open/量化反馈/时间维度/给建议不动手/规则>硬编码/渐进披露"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 00:45",
+      "last_failure": "",
+      "created_at": "2026-04-15 00:45",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_42_1776186807",
+      "task": "rule_engine.py落地",
+      "method": "Hookify风格6操作符规则引擎，危险字符串改名规避策略",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "rule_engine.py落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Hookify风格6操作符规则引擎，危险字符串改名规避策略"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:13",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_43_1776186807",
+      "task": "self_model_insights_bridge落地",
+      "method": "时间模式+engagement+工具偏好分析，JSON周文件存储",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "self_model_insights_bridge落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "时间模式+engagement+工具偏好分析，JSON周文件存储"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:13",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_44_1776186807",
+      "task": "context_hygiene落地",
+      "method": "4层管线snip/microcompact/collapse/autocompact",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "context_hygiene落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4层管线snip/microcompact/collapse/autocompact"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:13",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_45_1776186807",
+      "task": "integrated_memory落地",
+      "method": "4层记忆统一搜索接口，跨evolver/MEMORY/daily搜索",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "integrated_memory落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4层记忆统一搜索接口，跨evolver/MEMORY/daily搜索"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:13",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_46_1776186807",
+      "task": "session_checkpoint落地",
+      "method": "Session断点导出/恢复/差异对比，含去敏化",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "session_checkpoint落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Session断点导出/恢复/差异对比，含去敏化"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:13",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:13",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_47_1776189353",
+      "task": "skill_router落地",
+      "method": "30+内置规则覆盖所有qclaw skill",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "skill_router落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "30+内置规则覆盖所有qclaw skill"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_48_1776189353",
+      "task": "hub落地",
+      "method": "12个子系统统一入口 health_check+call",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hub落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "12个子系统统一入口 health_check+call"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_49_1776189353",
+      "task": "complexity_router落地",
+      "method": "5级复杂度+信号权重+Agent策略推荐",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "complexity_router落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "5级复杂度+信号权重+Agent策略推荐"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_50_1776189353",
+      "task": "agent_lifecycle落地",
+      "method": "5阶段状态机 INIT/PLANNING/EXECUTING/REVIEWING/COMPLETED",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "agent_lifecycle落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "5阶段状态机 INIT/PLANNING/EXECUTING/REVIEWING/COMPLETED"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_51_1776189353",
+      "task": "tool_result_budget落地",
+      "method": "4种预算模式 DEFAULT/SEARCH/EXEC/PINNED",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "tool_result_budget落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4种预算模式 DEFAULT/SEARCH/EXEC/PINNED"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_52_1776189353",
+      "task": "brainstorming_gate落地",
+      "method": "5项spec质量检查+门控阈值",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "brainstorming_gate落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "5项spec质量检查+门控阈值"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_53_1776189353",
+      "task": "skill_collision_detector落地",
+      "method": "5类冲突检测",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "skill_collision_detector落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "5类冲突检测"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_54_1776189353",
+      "task": "memory_extractor落地",
+      "method": "4类Decision/Learning/Pending/KeyFile提取",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "memory_extractor落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4类Decision/Learning/Pending/KeyFile提取"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_55_1776189353",
+      "task": "safe_exec落地",
+      "method": "28种危险模式",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "safe_exec落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "28种危险模式"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_56_1776189353",
+      "task": "persona_extractor落地",
+      "method": "风格/词汇/回复模式/情感/工具偏好",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "persona_extractor落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "风格/词汇/回复模式/情感/工具偏好"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 01:55",
+      "last_failure": "",
+      "created_at": "2026-04-15 01:55",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_57_1776189989",
+      "task": "auto_memory落地",
+      "method": "4类记忆 Decision/Learning/Pending/FileChange 自动归档",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "auto_memory落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4类记忆 Decision/Learning/Pending/FileChange 自动归档"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_58_1776189989",
+      "task": "task_board落地",
+      "method": "TODO/IN_PROGRESS/REVIEW/DONE/ARCHIVED 看板式管理",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "task_board落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "TODO/IN_PROGRESS/REVIEW/DONE/ARCHIVED 看板式管理"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_59_1776189989",
+      "task": "sessions_cli落地",
+      "method": "Session注册/活跃追踪/搜索",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "sessions_cli落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Session注册/活跃追踪/搜索"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_60_1776189989",
+      "task": "planner_cli落地",
+      "method": "Plan Agent 步骤规划+依赖校验+循环检测",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "planner_cli落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Plan Agent 步骤规划+依赖校验+循环检测"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_61_1776189989",
+      "task": "query_state落地",
+      "method": "SESSION/GLOBAL/TASK 三级状态管理",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "query_state落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SESSION/GLOBAL/TASK 三级状态管理"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_62_1776189989",
+      "task": "dual_model_voter落地",
+      "method": "双模型投票+文本相似度+仲裁",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "dual_model_voter落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "双模型投票+文本相似度+仲裁"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_63_1776189989",
+      "task": "debate_pattern落地",
+      "method": "辩论式推理 5阶段 PROPOSAL-VERDICT",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "debate_pattern落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "辩论式推理 5阶段 PROPOSAL-VERDICT"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_64_1776189990",
+      "task": "time_travel落地",
+      "method": "会话快照+回溯+diff",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "time_travel落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "会话快照+回溯+diff"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_65_1776189990",
+      "task": "observe_hook落地",
+      "method": "无干预监控+使用统计+异常检测",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "observe_hook落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "无干预监控+使用统计+异常检测"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_66_1776189990",
+      "task": "agentshield_scan落地",
+      "method": "敏感信息+注入+网络风险 3类扫描",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "agentshield_scan落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "敏感信息+注入+网络风险 3类扫描"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_67_1776189990",
+      "task": "validate_skills落地",
+      "method": "SKILL.md格式/结构/脚本语法验证",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "validate_skills落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SKILL.md格式/结构/脚本语法验证"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_68_1776189990",
+      "task": "hindsight_recall落地",
+      "method": "失败教训提取+泛化召回+6条内置教训",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hindsight_recall落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "失败教训提取+泛化召回+6条内置教训"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_69_1776189990",
+      "task": "compact_llm_summary落地",
+      "method": "规则+LLM混合压缩 HANDOVER格式",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "compact_llm_summary落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "规则+LLM混合压缩 HANDOVER格式"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_70_1776189990",
+      "task": "hub_config落地",
+      "method": "集中配置管理+热加载+验证",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hub_config落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "集中配置管理+热加载+验证"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_71_1776189990",
+      "task": "viewimage_base64落地",
+      "method": "图片分析/尺寸解析/base64编码",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "viewimage_base64落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "图片分析/尺寸解析/base64编码"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_72_1776189990",
+      "task": "wake_up_loader落地",
+      "method": "会话启动序列6步加载+健康检查",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "wake_up_loader落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "会话启动序列6步加载+健康检查"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_73_1776189990",
+      "task": "swarm_orchestrate落地",
+      "method": "多Agent并行编排+依赖调度",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "swarm_orchestrate落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "多Agent并行编排+依赖调度"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_74_1776189990",
+      "task": "worktree_isolator落地",
+      "method": "Git worktree隔离执行",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "worktree_isolator落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Git worktree隔离执行"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_75_1776189990",
+      "task": "project_isolator落地",
+      "method": "项目级配置/记忆/经验隔离",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "project_isolator落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "项目级配置/记忆/经验隔离"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_76_1776189990",
+      "task": "magma落地",
+      "method": "深度思考引擎 6阶段+反合理化",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "magma落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "深度思考引擎 6阶段+反合理化"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_77_1776189990",
+      "task": "palace落地",
+      "method": "记忆宫殿 6房间空间化组织",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "palace落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "记忆宫殿 6房间空间化组织"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_78_1776189990",
+      "task": "emotion落地",
+      "method": "3维情感 valence/energy/focus 事件驱动",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "emotion落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "3维情感 valence/energy/focus 事件驱动"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 02:06",
+      "last_failure": "",
+      "created_at": "2026-04-15 02:06",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_79_1776231056",
+      "task": "Hermes V2 源码深入学习",
+      "method": "read 15个Hermes源码模块(approval/checkpoint/subdir/smart_router/redact/rate_limit/fts5/trajectory/moa等)",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Hermes"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "read 15个Hermes源码模块(approval/checkpoint/subdir/smart_router/redact/rate_limit/fts5/trajectory/moa等)"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 2,
+      "total_count": 2,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_80_1776231056",
+      "task": "hermes_study_v2/secret_redactor.py",
+      "method": "31种API Key脱敏, import-time snapshot",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/secret_redactor.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "31种API Key脱敏, import-time snapshot"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_81_1776231056",
+      "task": "hermes_study_v2/rate_limit_display.py",
+      "method": "parse_rate_limit_headers + 4 bucket + 80pct warning",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/rate_limit_display.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "parse_rate_limit_headers + 4 bucket + 80pct warning"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_82_1776231056",
+      "task": "hermes_study_v2/subdirectory_hint_tracker.py",
+      "method": "SubdirectoryHintTracker渐进子目录上下文, tool call触发",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/subdirectory_hint_tracker.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SubdirectoryHintTracker渐进子目录上下文, tool call触发"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_83_1776231056",
+      "task": "hermes_study_v2/smart_model_router.py",
+      "method": "简单问题检测(160字/28词)路由到便宜模型",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/smart_model_router.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "简单问题检测(160字/28词)路由到便宜模型"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_84_1776231056",
+      "task": "hermes_study_v2/trajectory_compress.py",
+      "method": "agent轨迹压缩,保护头尾,摘要中间区域,测试通过38pct压缩",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/trajectory_compress.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "agent轨迹压缩,保护头尾,摘要中间区域,测试通过38pct压缩"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_85_1776231056",
+      "task": "hermes_study_v2/approval_patterns.py",
+      "method": "DANGEROUS_PATTERNS完整版+contextvar session隔离",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/approval_patterns.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "DANGEROUS_PATTERNS完整版+contextvar session隔离"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_86_1776231056",
+      "task": "hermes_study_v2/fts5_session_store.py",
+      "method": "SQLite WAL + FTS5 + sanitize查询,测试通过",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/fts5_session_store.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SQLite WAL + FTS5 + sanitize查询,测试通过"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_87_1776231056",
+      "task": "hermes_study_v2/shadow_git_checkpoints.py",
+      "method": "Shadow Git Repo透明快照,测试通过list+restore",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/shadow_git_checkpoints.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Shadow Git Repo透明快照,测试通过list+restore"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_88_1776231056",
+      "task": "hermes_study_v2/moa_ensemble.py",
+      "method": "MoA三层架构:4参考模型并行+Aggregator合成",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/moa_ensemble.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "MoA三层架构:4参考模型并行+Aggregator合成"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:30",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:30",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_89_1776231067",
+      "task": "hermes_study_v2/secret_redactor.py",
+      "method": "31种API Key脱敏",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/secret_redactor.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "31种API Key脱敏"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 2,
+      "total_count": 2,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_90_1776231067",
+      "task": "hermes_study_v2/rate_limit_display.py",
+      "method": "parse_rate_limit_headers + 4 bucket",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/rate_limit_display.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "parse_rate_limit_headers + 4 bucket"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_91_1776231067",
+      "task": "hermes_study_v2/subdirectory_hint_tracker.py",
+      "method": "SubdirectoryHintTracker渐进子目录上下文",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/subdirectory_hint_tracker.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SubdirectoryHintTracker渐进子目录上下文"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_92_1776231067",
+      "task": "hermes_study_v2/smart_model_router.py",
+      "method": "简单问题路由到便宜模型",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/smart_model_router.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "简单问题路由到便宜模型"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_93_1776231067",
+      "task": "hermes_study_v2/trajectory_compress.py",
+      "method": "agent轨迹压缩",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/trajectory_compress.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "agent轨迹压缩"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 2,
+      "total_count": 2,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_94_1776231067",
+      "task": "hermes_study_v2/approval_patterns.py",
+      "method": "DANGEROUS_PATTERNS完整版+contextvar",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/approval_patterns.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "DANGEROUS_PATTERNS完整版+contextvar"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_95_1776231067",
+      "task": "hermes_study_v2/fts5_session_store.py",
+      "method": "SQLite WAL + FTS5",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/fts5_session_store.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SQLite WAL + FTS5"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_96_1776231067",
+      "task": "hermes_study_v2/shadow_git_checkpoints.py",
+      "method": "Shadow Git Repo透明快照",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/shadow_git_checkpoints.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Shadow Git Repo透明快照"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_97_1776231067",
+      "task": "hermes_study_v2/moa_ensemble.py",
+      "method": "MoA三层架构",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/moa_ensemble.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "MoA三层架构"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 2,
+      "total_count": 2,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_98_1776231092",
+      "task": "Hermes V2 源码深入学习",
+      "method": "read 15个Hermes源码模块",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "Hermes"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "read 15个Hermes源码模块"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_99_1776231092",
+      "task": "hermes_study_v2/rate_limit_display.py",
+      "method": "parse_rate_limit_headers",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/rate_limit_display.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "parse_rate_limit_headers"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_100_1776231092",
+      "task": "hermes_study_v2/subdirectory_hint_tracker.py",
+      "method": "SubdirectoryHintTracker",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/subdirectory_hint_tracker.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SubdirectoryHintTracker"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_101_1776231092",
+      "task": "hermes_study_v2/smart_model_router.py",
+      "method": "简单问题路由便宜模型",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/smart_model_router.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "简单问题路由便宜模型"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_102_1776231092",
+      "task": "hermes_study_v2/approval_patterns.py",
+      "method": "DANGEROUS_PATTERNS完整版",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/approval_patterns.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "DANGEROUS_PATTERNS完整版"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_103_1776231092",
+      "task": "hermes_study_v2/fts5_session_store.py",
+      "method": "SQLite WAL+FTS5",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/fts5_session_store.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "SQLite WAL+FTS5"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_104_1776231092",
+      "task": "hermes_study_v2/shadow_git_checkpoints.py",
+      "method": "Shadow Git Repo",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "hermes_study_v2/shadow_git_checkpoints.py"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "Shadow Git Repo"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-04-15 13:31",
+      "last_failure": "",
+      "created_at": "2026-04-15 13:31",
+      "rationalizations": []
+    }
+  ]
+}
