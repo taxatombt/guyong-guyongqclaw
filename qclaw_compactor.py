@@ -160,15 +160,20 @@ class ContextCompressor:
         budget = int(middle_tokens * _SUMMARY_RATIO)
         return max(_MIN_SUMMARY_TOKENS, min(budget, _SUMMARY_TOKENS_CEILING))
     
-    def _build_summary_prompt(self, middle_content: str) -> str:
+    def _build_summary_prompt(self, middle_content: str, 
+                                previous_actual_summary: str = None) -> str:
         """
         Build LLM prompt for structured summarization.
-        If previous summary exists, include for iterative update.
+        If previous_actual_summary exists (iterative compression),
+        include it as context so LLM can UPDATE, not re-summarize.
+        
+        迭代模式：previous_actual_summary 是上一次 LLM 生成的摘要内容。
+        非迭代模式：previous_actual_summary 为 None，从头生成摘要。
         """
-        if self._previous_summary:
+        if previous_actual_summary:
             update_note = (
-                f"\n\nPREVIOUS SUMMARY (update if inaccurate):\n"
-                f"{self._previous_summary}\n"
+                f"\n\nPREVIOUS SUMMARY (preserve key info, update only what changed):\n"
+                f"{previous_actual_summary}\n"
             )
         else:
             update_note = ""
@@ -209,17 +214,31 @@ class ContextCompressor:
         middle_tokens = self.estimate_tokens(middle_content)
         
         if middle_tokens < _MIN_SUMMARY_TOKENS:
-            summary = ""
+            summary_prompt = ""
+            summary_content = ""
             compressed = pruned
         else:
-            summary = self._build_summary_prompt(middle_content)
+            # 迭代压缩：previous_summary 是实际摘要内容，不是 prompt
+            summary_prompt = self._build_summary_prompt(
+                middle_content, 
+                previous_actual_summary=self._previous_summary
+            )
+            # TODO: 调用 LLM 生成实际摘要（替换下面占位逻辑）
+            # from agent.auxiliary_client import call_llm
+            # summary_content = call_llm(summary_prompt, model="fast-model")
+            # 占位：实际项目中替换为真实 LLM 调用
+            summary_content = (
+                f"[迭代摘要 {self._compaction_count}x] "
+                f"已压缩 {len(middle)} 条中间消息。\n"
+                f"前次摘要: {self._previous_summary[:100] if self._previous_summary else 'N/A'}"
+            )
             compressed = head + [
-                {"role": "system", "content": _SUMMARY_PREFIX + "\n" + summary},
+                {"role": "system", "content": _SUMMARY_PREFIX + "\n" + summary_content},
             ] + tail
         
-        # Step 5: Iterative update
-        if summary and self._previous_summary is None:
-            self._previous_summary = summary
+        # Step 5: 迭代更新 _previous_summary = 实际摘要内容（供下次迭代用）
+        if summary_content:
+            self._previous_summary = summary_content
         
         # Record event
         input_tokens = sum(self.estimate_tokens(str(m.get("content", "")))
@@ -232,11 +251,11 @@ class ContextCompressor:
             timestamp=time.strftime("%Y-%m-%d %H:%M"),
             input_tokens=input_tokens,
             output_tokens=output_tokens,
-            summary=summary[:200],
+            summary=summary_content[:200] if summary_content else "",
             compression_ratio=ratio,
         ))
         
-        return compressed, summary
+        return compressed, summary_content if summary_content else summary_prompt
     
     def reset(self):
         """Reset state on /new or /reset"""

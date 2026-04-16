@@ -58,6 +58,20 @@ ALL_TOOLS = READ_WRITE_TOOLS | {
     "process", "canvas",
 }
 
+# 子代理禁止工具（来自 Hermes delegate_tool.py）
+# MAX_DEPTH=2，最多3并发
+DELEGATE_BLOCKED_TOOLS = frozenset([
+    "subagents",          # 禁止递归委托
+    "sessions_send",       # 禁止跨会话消息（跨平台副作用）
+    "exec",                # 子代理应推理而非写脚本
+    "edit", "write",       # 子代理不直接写文件
+    "process",             # 禁止进程管理
+    "canvas",              # 禁止canvas操作
+])
+
+MAX_DELEGATE_DEPTH = 2      # parent(0) → child(1) → 孙子拒绝(2)
+MAX_CONCURRENT_CHILDREN = 3 # 最多3个并发子代理
+
 
 @dataclass
 class AgentProfile:

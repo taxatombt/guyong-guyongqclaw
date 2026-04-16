@@ -588,4 +588,49 @@ Evolver: 23 rules (+3 today)
 ### GitHub备份
 - 仓库：taxatombt/guyong-guyong（Private）
 - 488文件已推送，git remote已配置
+- GitHub网络持续不可达（443端口），push失败暂挂
+
+### Hermes深度研究（2026-04-16）
+
+**来源**：E:\ai\资源\8hermes-agent-main/hermes-agent-main
+
+**核心发现（记忆+进化）**：
+
+1. **MemoryManager 1+1架构**（14KB）
+   - 内置provider始终存在 + 最多1个外部provider
+   - 防tool schema膨胀的设计：外部provider超限 → 打warning拒绝
+   - 8个生命周期钩子：initialize/prefetch/sync/on_turn_start/on_pre_compress/on_delegation/on_memory_write
+   - 记忆围栏 `<memory-context>` 防止模型把记忆当用户输入
+
+2. **MemoryProvider ABC**（10KB，9核心+6可选hook）
+   - is_available() 不联网只检查配置 → 快速启动判断
+   - on_pre_compress() 让provider在压缩前提取洞察
+   - on_delegation() 让父agent观察子代理工作结果
+
+3. **ContextCompressor**（34KB，778行）
+   - 5步算法：prune → protect head(3条) → protect tail(10%预算) → summarize middle → iterative update
+   - 结构化摘要：Goal/Progress/Decisions/Files/Next Steps
+   - 迭代压缩：`_previous_summary` 存储实际摘要内容（不是LLM prompt）
+   - summary token预算：min(5%context, 12K)，下限2K
+
+4. **DELEGATE_BLOCKED_TOOLS**（来自delegate_tool.py，45KB）
+   - 封锁：subagents/sessions_send/exec/edit/write/process/canvas
+   - MAX_DEPTH=2，MAX_CONCURRENT=3
+   - 父子隔离：父context只看到delegation call + summary result
+
+5. **InsightsEngine**（34KB）
+   - 用量分析 + 成本估算（CanonicalUsage + cache_read/write tokens）
+   - 无独立进化模块，进化分散在：insights + trajectory_compressor + on_delegation
+
+**qclaw落地（2026-04-16）**：
+- qclaw_compactor.py：修复迭代压缩，`_previous_summary` 存实际摘要（不是prompt）
+- agents/agent_types.py：新增 DELEGATE_BLOCKED_TOOLS + MAX_DELEGATE_DEPTH=2 + MAX_CONCURRENT_CHILDREN=3
+- hermes_deep_study_20260416.md（9.7KB落地文档）
+
+**关键认知**：Hermes没有独立进化模块，进化 = insights(用量分析) + trajectory_compressor(轨迹压缩) + on_delegation(子代理观察) 三个系统协作的结果
+
+### evolver补录（2026-04-16）
+- hermes记忆系统深度研究 → MemoryManager 1+1架构 / MemoryProvider ABC / ContextCompressor 5步算法
+- qclaw_compactor迭代压缩修复 → _previous_summary存实际摘要，_build_summary_prompt支持previous_actual_summary参数
+- agent_types DELEGATE_BLOCKED_TOOLS → 7个危险工具封锁，MAX_DEPTH=2，MAX_CONCURRENT=3
 
