@@ -665,3 +665,24 @@ Evolver: 23 rules (+3 today)
 3. **三个项目共同原则**：最小可用 > 动态图 > 降级设计 > 权重共享 > 配置热覆写
 
 **记忆原则验证**：源码学习比文档学习更高效——micrograd 200行即掌握 autograd 核心
+
+
+### 2026-04-17 MinerU 学习落地
+
+**来源**：opendatalab/MinerU（60,254 ⭐，AGPL-3.0）
+
+**落地文件**：mineru_study/SKILL.md（3KB）
+
+**核心发现**：
+- **文档解析引擎**：PDF/DOCX/图片 → Markdown/JSON
+- **三种后端**：pipeline(86分/纯CPU) / vlm-engine(90+/8G显存) / hybrid-engine(90+)
+- **双引擎**：VLM + OCR，109种语言
+- **能力**：公式→LaTeX、表格→HTML、OCR、版面分析、阅读顺序恢复
+- **集成**：MCP Server / LangChain / Dify / FastGPT / 国产算力
+
+**可移植设计**：
+- 双引擎架构 → Hook + Permission 双层验证
+- 滑动窗口 + 流式落盘 → qclaw_compactor 分片压缩
+- 线程安全并发 → MultiAgentDispatcher
+- MCP Server → OpenClaw MCP 集成
+- API/CLI/Router 编排 → tool_registry 多工具编排
