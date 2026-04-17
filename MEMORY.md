@@ -686,3 +686,28 @@ Evolver: 23 rules (+3 today)
 - 线程安全并发 → MultiAgentDispatcher
 - MCP Server → OpenClaw MCP 集成
 - API/CLI/Router 编排 → tool_registry 多工具编排
+
+
+### 2026-04-17 markitdown 学习落地
+
+**来源**：microsoft/markitdown（PyPI 0.1.5，MIT）
+
+**落地文件**：markitdown_study/SKILL.md（3.3KB）
+
+**核心定位**：通用文档格式 → Markdown 转换工具
+
+**支持格式**：PDF/DOCX/XLSX/XLS/PPTX/Outlook/音频/YouTube/Azure文档智能
+
+**核心设计**：
+- 插件化架构（add_plugin扩展）
+- Magika文件类型自动检测
+- Markdownify HTML→Markdown
+
+**与 MinerU 对比**：
+- markitdown：快速转换、格式多、纯Python、无需GPU
+- MinerU：高精度(86-90+)、需GPU、版面分析强
+
+**qclaw 可移植点**：
+- 插件架构 → tool_registry
+- 依赖分组 → skillhub_install extras
+- 结果抽象 → exec_adapter Result
