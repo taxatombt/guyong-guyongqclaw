@@ -634,3 +634,34 @@ Evolver: 23 rules (+3 today)
 - qclaw_compactor迭代压缩修复 → _previous_summary存实际摘要，_build_summary_prompt支持previous_actual_summary参数
 - agent_types DELEGATE_BLOCKED_TOOLS → 7个危险工具封锁，MAX_DEPTH=2，MAX_CONCURRENT=3
 
+
+
+### 2026-04-17 Karpathy AI 学习落地
+
+**来源**：karpathy/micrograd + karpathy/nanoGPT + karpathy/llm.c
+
+**落地文件**：karpathy_study/（14KB，3个SKILL文档）
+
+| 文件 | 大小 | 内容 |
+|------|------|------|
+| SKILL.md | 2.6KB | 总纲 + 三项目对照表 |
+| SKILL-micrograd.md | 4.6KB | autograd引擎逆向 + 4个可移植设计点 |
+| SKILL-nanoGPT.md | 7.8KB | GPT架构 + 训练循环 + 5个可移植设计点 |
+
+**核心发现**：
+
+1. **micrograd (200行) = 最小 autograd 引擎**
+   - Value 类：_prev + _backward 闭包 → 拓扑排序反向遍历
+   - 支持：+ - * ** relu 及全部 Python 运算符重载
+   - nn.py：Module → Neuron → Layer → MLP（PyTorch API 子集）
+   - 可移植：evolver 链式推理 / tool_pipeline hook 注册
+
+2. **nanoGPT (600行) = 完整 GPT-2 实现**
+   - model.py 300行：GPT → Block → CausalSelfAttention + MLP + LayerNorm
+   - train.py 300行：梯度累积 + GradScaler(float16) + Cosine LR + DDP + MFU计算
+   - 关键设计：权重共享(wte=lm_head) + Flash Attention降级 + 精细weight_decay
+   - 可移植：inference优化 / 工具fallback / prompt_cache分片
+
+3. **三个项目共同原则**：最小可用 > 动态图 > 降级设计 > 权重共享 > 配置热覆写
+
+**记忆原则验证**：源码学习比文档学习更高效——micrograd 200行即掌握 autograd 核心
