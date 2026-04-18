@@ -711,3 +711,43 @@ Evolver: 23 rules (+3 today)
 - 插件架构 → tool_registry
 - 依赖分组 → skillhub_install extras
 - 结果抽象 → exec_adapter Result
+
+### 2026-04-18 Nezha 学习落地
+
+**来源**：hanshuaikang/nezha（GitHub）— "An Agent-First Vibecoding Desktop"
+
+**落地文件**：nezha_study/（9.8KB，SKILL.md + 落地文档）
+
+**核心设计**：
+
+1. **PTY 虚拟终端**：Claude Code / Codex 直接跑在 PTY 里，Nezha 只做编排层
+   - `pty.rs`（24KB）：权限模式三档（ask/auto_edit/full_access）
+   - 有界 Channel 背压（32容量），内核级流控
+   - `send_input()` 支持向 PTY 发送按键
+
+2. **Session 自动发现**（`session.rs`，53KB）
+   - Codex：监听 `rollout-*.jsonl` 文件变化（notify crate 事件驱动）
+   - Claude：轮询 `~/.claude/projects/*/sessions/*.jsonl`
+   - 零 API 依赖，纯文件系统操作
+
+3. **TaskManager 全局单例**（Rust）
+   - `pty_masters` / `pty_writers` / `child_handles` 三个 HashMap
+   - `codex_sessions` / `claude_sessions` 会话追踪
+   - `claimed_session_paths` 防重复 claim
+
+4. **前端 RAF 协作调度**（`useTerminalManager.ts`）
+   - `isInputPending()` 检测用户输入，让出主线程
+   - `DRAIN_FRAME_BUDGET` 128KB/帧，防止 UI 卡顿
+   - `MAX_BUFFER_SIZE` 10MB 单任务内存上限
+
+5. **图片粘贴桥接**
+   - Claude Code 不支持图片 → 桥接到 `.nezha/attachments/{task_id}/`
+   - 解析 `data:image/png;base64,<data>` 格式保存为文件
+
+**核心技术栈**：Tauri（Rust后端） + React + TypeScript，**安装包仅 7MB**
+
+**qclaw 可移植点**：
+- isInputPending 协作调度 → terminal 输出流控
+- notify 文件监听 → session_checkpoint 事件驱动改造
+- TaskManager 单例模式 → agents 共享状态管理
+- 权限三档 → tool_pipeline 权限分级
