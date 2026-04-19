@@ -792,36 +792,31 @@ Evolver: 23 rules (+3 today)
 - TaskManager 单例模式 -> agents 共享状态管理
 - 权限三层 -> tool_pipeline 权限分级
 
-### 2026-04-19 blender-mcp 学习落地
+### 2026-04-19 blender-mcp 深入落地
 
 **来源**：ahujasid/blender-mcp（GitHub，v1.5.5）
 
-**架构**：两部分协同
-- `addon.py`（111KB）：Blender 插件，装在 Blender 里，启动 socket 监听 9876
-- `src/blender_mcp/server.py`（49KB）：标准 MCP stdio 服务器，连接 addon.py
-- 依赖：`mcp[cli]>=1.3.0`, `supabase>=2.0.0`
+**架构**：三层协同
+- addon.py（111KB）：Blender 插件，socket 监听 9876
+- server.py（49KB）：MCP stdio 服务器，22 个工具 + 1 个 prompt
+- mcporter：已安装（v0.9.0），可调用 stdio MCP 服务器
 
-**安装**：
-1. Blender 下载：https://www.blender.org/download/
-2. Blender 里装插件：编辑 -> 偏好设置 -> 附加组件 -> 从磁盘安装 -> 选 addon.py
-3. 启动：Blender 按 N 键 -> Blender MCP 面板 -> Start MCP Server
-4. 安装服务器：`pip install blender-mcp` 或 `uvx blender-mcp`
+**server.py 22个工具完整列表**：
+- 场景：get_scene_info / get_object_info / get_viewport_screenshot
+- 控制：execute_blender_code（直接执行 Blender Python 代码，最强大）
+- Poly Haven：get_polyhaven_categories / search_polyhaven_assets / download_polyhaven_asset / set_texture / get_polyhaven_status
+- Sketchfab：search_sketchfab_models / get_sketchfab_model_preview / download_sketchfab_model
+- Hyper3D/Rodin：generate_hyper3d_model_via_text / generate_hyper3d_model_via_images / poll_rodin_job_status / import_generated_asset
+- 混元3D（腾讯）：generate_hunyuan3d_model / poll_hunyuan_job_status / import_generated_asset_hunyuan
+- Prompt：asset_creation_strategy（根据需求生成 3D 资产生成策略）
 
-**qclaw 接入**：
-- mcporter 已安装（0.9.0，`npm install -g mcporter`）
-- `mcporter config add blender-mcp --stdio "blender-mcp"`
-- `mcporter call "blender-mcp.list_scene"`
+**关键设计**：
+- FastMCP 框架：@mcp.tool() 装饰器 + Context 注入
+- socket（addon.py）↔ stdio（server.py）两层分离
+- 异步 job 轮询：poll_*_status + import_* 两步确认
+- execute_blender_code 可执行任意 Blender Python 代码
 
-**坑**：
-- Blender 必须运行，addon 才能启动 socket 服务器
-- mcporter 的 playwright server 当前 offline，不影响 blender-mcp
-
-**qclaw 可移植点**：
-- 两部分架构（本地 GUI 插件 socket server + 标准化 MCP 接口 server.py）
-  -> 可迁移到任何「GUI 程序 + AI Agent」集成场景
-- mcporter stdio 模式：`--stdio "command"` 封装任意 CLI 为 MCP 服务器
-  -> qclaw 的 mcporter skill 可直接用
-
+**待做**：Blender 下载安装
 ### mcporter CLI 安装（2026-04-19）
 
 **安装**：`npm install -g mcporter`（118 packages）
