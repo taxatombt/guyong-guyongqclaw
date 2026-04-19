@@ -777,31 +777,31 @@ Evolver: 23 rules (+3 today)
 - TaskManager 单例模式 -> agents 共享状态管理
 - 权限三层 -> tool_pipeline 权限分级
 
-### 2026-04-19 blender-mcp 深入落地
+### 2026-04-20 blender-mcp 深度落地（源码级）
 
 **来源**：ahujasid/blender-mcp（GitHub，v1.5.5）
 
-**架构**：三层协同
-- addon.py（111KB）：Blender 插件，socket 监听 9876
-- server.py（49KB）：MCP stdio 服务器，22 个工具 + 1 个 prompt
-- mcporter：已安装（v0.9.0），可调用 stdio MCP 服务器
+**架构**：三层协同（server.py + addon.py + Blender bpy）
 
-**server.py 22个工具完整列表**：
-- 场景：get_scene_info / get_object_info / get_viewport_screenshot
-- 控制：execute_blender_code（直接执行 Blender Python 代码，最强大）
-- Poly Haven：get_polyhaven_categories / search_polyhaven_assets / download_polyhaven_asset / set_texture / get_polyhaven_status
-- Sketchfab：search_sketchfab_models / get_sketchfab_model_preview / download_sketchfab_model
-- Hyper3D/Rodin：generate_hyper3d_model_via_text / generate_hyper3d_model_via_images / poll_rodin_job_status / import_generated_asset
-- 混元3D（腾讯）：generate_hunyuan3d_model / poll_hunyuan_job_status / import_generated_asset_hunyuan
-- Prompt：asset_creation_strategy（根据需求生成 3D 资产生成策略）
+**核心源码**（本次新增）：
+- `addon.py`（2635行）：BlenderMCPServer socket服务器 + bpy.app.timers主线程执行 + ZIP安全
+- `server.py`（1186行）：持久连接+健康检测 + 分块JSON接收 + 22工具+1prompt
+- `telemetry.py`（300行）：**隐私优先遥测**，consent-gated两级数据收集
 
-**关键设计**：
-- FastMCP 框架：@mcp.tool() 装饰器 + Context 注入
-- socket（addon.py）↔ stdio（server.py）两层分离
-- 异步 job 轮询：poll_*_status + import_* 两步确认
-- execute_blender_code 可执行任意 Blender Python 代码
+**telemetry.py最高价值设计**：
+- consent-gated：无同意只收匿名事件（tool_name/success/duration），不收prompt/metadata
+- 匿名UUID持久化（APPDATA/BlenderMCP/，Unix 0o600权限）
+- 环境变量禁用（DISABLE_TELEMETRY等3种）
+- 后台Queue+Worker线程，队列满自动丢弃（graceful degradation）
+- @telemetry_tool装饰器自动追踪每个工具执行
 
-**待做**：Blender 下载安装
+**addon.py关键设计**：
+- bpy.app.timers.register(execute_wrapper, 0.0)：GUI主线程异步调度
+- context.temp_override(area=area_3d)：截图时切换区域不打断用户
+- ZIP Slip双重检查（abs_path检查 + ".."序列检查）
+- 动态handler注册（按addon偏好启用PolyHaven/Hyper3D/Sketchfab）
+
+**落地**：blender_mcp_study/SKILL.md（14KB，含telemetry迁移设计）
 ### mcporter CLI 安装（2026-04-19）
 
 **安装**：`npm install -g mcporter`（118 packages）
