@@ -751,3 +751,91 @@ Evolver: 23 rules (+3 today)
 - notify 文件监听 → session_checkpoint 事件驱动改造
 - TaskManager 单例模式 → agents 共享状态管理
 - 权限三档 → tool_pipeline 权限分级
+
+### 2026-04-18 Nezha 学习落地
+
+**来源**：hanshuaikang/nezha（GitHub）— "An Agent-First Vibecoding Desktop"
+
+**落地文件**：nezha_study/（9.8KB，SKILL.md + 落地文档）
+
+**核心设计**：
+
+1. **PTY 虚拟终端**（Claude Code / Codex 直接跑在 PTY 里，Nezha 只做裁剪）
+   - `pty.rs`（14KB）：权限模式三层（ask/auto_edit/full_access）
+   - 有界限 Channel 压测，2× 容量，内存缓流
+   - `send_input()` 支持向 PTY 发送按键
+
+2. **Session 自动发现**（session.rs，13KB）
+   - Codex：监听 `rollout-*.jsonl` 文件变化（notify crate 事件驱动）
+   - Claude：轮询 `~/.claude/projects/*/sessions/*.jsonl`
+   - 无 API 依赖，纯文件系统操作
+
+3. **TaskManager 全局单例**（rust）：
+   - `pty_masters` / `pty_writers` / `child_handles` 三个 HashMap
+   - `codex_sessions` / `claude_sessions` 会话追踪
+   - `claimed_session_paths` 闁界喌杩?
+
+4. **前端 RAF 协作调度**（useTerminalManager.ts）：
+   - `isInputPending()` 检测用户输入，让出主线程
+   - `DRAIN_FRAME_BUDGET` 128KB/帧，防止 UI 卡顿
+   - `MAX_BUFFER_SIZE` 10MB 单任务内存上限
+
+5. **图片复制粘贴**
+   - Claude Code 不支持图片 -> 粘贴到 `.nezha/attachments/{task_id}/`
+   - 解析 `data:image/png;base64,<data>` 格式存为文件
+
+**核心技术栈**：Tauri（rust 后端）+ React + TypeScript，**安装包仅 7MB**
+
+**qclaw 可移植点**：
+- isInputPending 协作调度 -> terminal 输出流控制
+- notify 文件监听 -> session_checkpoint 事件驱动更新
+- TaskManager 单例模式 -> agents 共享状态管理
+- 权限三层 -> tool_pipeline 权限分级
+
+### 2026-04-19 blender-mcp 学习落地
+
+**来源**：ahujasid/blender-mcp（GitHub，v1.5.5）
+
+**架构**：两部分协同
+- `addon.py`（111KB）：Blender 插件，装在 Blender 里，启动 socket 监听 9876
+- `src/blender_mcp/server.py`（49KB）：标准 MCP stdio 服务器，连接 addon.py
+- 依赖：`mcp[cli]>=1.3.0`, `supabase>=2.0.0`
+
+**安装**：
+1. Blender 下载：https://www.blender.org/download/
+2. Blender 里装插件：编辑 -> 偏好设置 -> 附加组件 -> 从磁盘安装 -> 选 addon.py
+3. 启动：Blender 按 N 键 -> Blender MCP 面板 -> Start MCP Server
+4. 安装服务器：`pip install blender-mcp` 或 `uvx blender-mcp`
+
+**qclaw 接入**：
+- mcporter 已安装（0.9.0，`npm install -g mcporter`）
+- `mcporter config add blender-mcp --stdio "blender-mcp"`
+- `mcporter call "blender-mcp.list_scene"`
+
+**坑**：
+- Blender 必须运行，addon 才能启动 socket 服务器
+- mcporter 的 playwright server 当前 offline，不影响 blender-mcp
+
+**qclaw 可移植点**：
+- 两部分架构（本地 GUI 插件 socket server + 标准化 MCP 接口 server.py）
+  -> 可迁移到任何「GUI 程序 + AI Agent」集成场景
+- mcporter stdio 模式：`--stdio "command"` 封装任意 CLI 为 MCP 服务器
+  -> qclaw 的 mcporter skill 可直接用
+
+### mcporter CLI 安装（2026-04-19）
+
+**安装**：`npm install -g mcporter`（118 packages）
+**版本**：0.9.0
+**用途**：调用 MCP 服务器（stdio / HTTP / ad-hoc servers）
+**配置**：默认 `./config/mcporter.json`
+
+---
+
+## 待做
+
+- [ ] Blender 下载安装（blender-mcp 前提）
+- [ ] Blender addon 安装测试
+- [ ] mcporter 配置 blender-mcp 并测试调用
+- [ ] qclaw 集成 blender-mcp 打通
+
+
