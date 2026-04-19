@@ -712,46 +712,31 @@ Evolver: 23 rules (+3 today)
 - 依赖分组 → skillhub_install extras
 - 结果抽象 → exec_adapter Result
 
-### 2026-04-18 Nezha 学习落地
+### 2026-04-19 Nezha 深度落地（源码级）
 
-**来源**：hanshuaikang/nezha（GitHub）— "An Agent-First Vibecoding Desktop"
+**来源**：hanshuaikang/nezha（GitHub，v0.2.2，1188 stars）
 
-**落地文件**：nezha_study/（9.8KB，SKILL.md + 落地文档）
+**架构**：Tauri（Rust）+ React + TypeScript，7MB安装包
 
-**核心设计**：
+**核心模块**：
+- lib.rs（4.5KB）：TaskManager（8个HashMap线程安全管理）+ 50+ invoke handler
+- pty.rs（23KB）：PTY进程+流控+图片附件+sessions+exit监控
+- session.rs（51KB）：Claude/Codex会话JSONL解析+input_required检测
+- git.rs（23KB）：19个Git操作handler（最完整）
+- usage.rs（19KB）：双Agent用量API追踪
+- pp_settings.rs（11KB）：Agent路径/版本检测，login shell预热
+- 	ypes.ts（2.4KB）：完整接口系统（7种TaskStatus+3种PermissionMode）
 
-1. **PTY 虚拟终端**：Claude Code / Codex 直接跑在 PTY 里，Nezha 只做编排层
-   - `pty.rs`（24KB）：权限模式三档（ask/auto_edit/full_access）
-   - 有界 Channel 背压（32容量），内核级流控
-   - `send_input()` 支持向 PTY 发送按键
+**关键设计**：
+- PTY_CHANNEL_CAP=32（有界channel满时OS内核级背压）
+- SESSION_WAIT_MAX=500ms（会话等待）
+- useTerminalManager RAF协作调度（isInputPending检测用户输入）
+- build_claude_cmd三权限：ask/auto_edit/full_access
+- Git 19操作：status/diff/log/branch/stage/commit/push/pull全链路
+- notification系统：update/announcement/warning三级
+- input_required：Agent等待确认的独特TaskStatus
 
-2. **Session 自动发现**（`session.rs`，53KB）
-   - Codex：监听 `rollout-*.jsonl` 文件变化（notify crate 事件驱动）
-   - Claude：轮询 `~/.claude/projects/*/sessions/*.jsonl`
-   - 零 API 依赖，纯文件系统操作
-
-3. **TaskManager 全局单例**（Rust）
-   - `pty_masters` / `pty_writers` / `child_handles` 三个 HashMap
-   - `codex_sessions` / `claude_sessions` 会话追踪
-   - `claimed_session_paths` 防重复 claim
-
-4. **前端 RAF 协作调度**（`useTerminalManager.ts`）
-   - `isInputPending()` 检测用户输入，让出主线程
-   - `DRAIN_FRAME_BUDGET` 128KB/帧，防止 UI 卡顿
-   - `MAX_BUFFER_SIZE` 10MB 单任务内存上限
-
-5. **图片粘贴桥接**
-   - Claude Code 不支持图片 → 桥接到 `.nezha/attachments/{task_id}/`
-   - 解析 `data:image/png;base64,<data>` 格式保存为文件
-
-**核心技术栈**：Tauri（Rust后端） + React + TypeScript，**安装包仅 7MB**
-
-**qclaw 可移植点**：
-- isInputPending 协作调度 → terminal 输出流控
-- notify 文件监听 → session_checkpoint 事件驱动改造
-- TaskManager 单例模式 → agents 共享状态管理
-- 权限三档 → tool_pipeline 权限分级
-
+**落地**：nezha_study/SKILL.md（12.5KB）
 ### 2026-04-18 Nezha 学习落地
 
 **来源**：hanshuaikang/nezha（GitHub）— "An Agent-First Vibecoding Desktop"
