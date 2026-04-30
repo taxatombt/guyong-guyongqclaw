@@ -1,0 +1,3 @@
+{"session_id": "20260420_230337_a91f72", "start_time": "2026-04-20T23:03:37.169062", "prompts": ["帮我整理文件", "学习 claude-mem 项目"], "tool_calls": [{"tool": "exec", "input_summary": "dict(command...)", "output_summary": "file1.txt\nfile2.txt", "duration_ms": 150, "error": null}, {"tool": "read", "input_summary": "dict(file...)", "output_summary": "# Test content", "duration_ms": 50, "error": null}], "entities": ["work"], "drawer_id": "drawer_af3f7605"}
+{"drawer_id": "drawer_39f72757", "content": "Working on memory system", "timestamp": 1776697499.799708, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_8cbe0291", "content": "Learned from claude-mem project", "timestamp": 1776697499.801713, "session_id": "", "source": "summary", "metadata": {}}

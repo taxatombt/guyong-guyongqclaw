@@ -387,3 +387,82 @@ def create_qclaw_dispatcher(agent_session) -> MultiAgentDispatcher:
         result = dispatcher.dispatch("重构 memory_pipeline")
     """
     return MultiAgentDispatcher(agent_session=agent_session)
+
+
+def create_qclaw_dispatcher_with_bridge(
+    agent_session=None,
+    enable_workflow=True,
+    enable_hitl=True,
+    enable_credential_vault=True,
+):
+    """
+    创建带 Managed Agents 桥接的 qclaw 调度器。
+    
+    额外能力：
+    - Workflow 模式推荐（6种 Anthropic 模式 + 原有 Plan-Explore-Verify）
+    - HITL 人工审批检查
+    - 凭证 Vault 隔离
+    
+    用法：
+        dispatcher = create_qclaw_dispatcher_with_bridge()
+        # 自动推荐 workflow
+        result = dispatcher.dispatch_with_workflow("修复多文件bug")
+    """
+    from .managed_bridge import (
+        ManagedBridge, ManagedBridgeConfig, CredentialConfig,
+        recommend_workflow, requires_human_approval,
+        WorkflowMode,
+    )
+    
+    config = ManagedBridgeConfig(
+        enable_credential_vault=enable_credential_vault,
+        enable_hitl=enable_hitl,
+    )
+    bridge = ManagedBridge(config)
+    bridge.initialize()
+    
+    dispatcher = MultiAgentDispatcher(agent_session=agent_session)
+    dispatcher._bridge = bridge  # type: ignore
+    dispatcher._workflow_enabled = enable_workflow  # type: ignore
+    
+    # 增强方法
+    original_dispatch = dispatcher.dispatch
+    
+    def dispatch_with_workflow(
+        user_request: str,
+        workflow_mode: Optional[str] = None,
+        **kwargs,
+    ) -> TaskContext:
+        """
+        带 Workflow 推荐的 dispatch。
+        
+        如果 workflow_mode=None，自动推荐。
+        如果是 plan_explore_verify，走原有流程。
+        """
+        if workflow_mode is None and dispatcher._workflow_enabled:
+            mode = recommend_workflow(user_request)
+        elif workflow_mode:
+            mode = WorkflowMode(workflow_mode)
+        else:
+            mode = WorkflowMode.PLAN_EXPLORE_VERIFY
+        
+        if mode == WorkflowMode.PLAN_EXPLORE_VERIFY:
+            return original_dispatch(user_request, **kwargs)
+        
+        # 其他模式：先走 HITL 检查
+        if bridge.config.enable_hitl:
+            need, reason = requires_human_approval("dispatch", {"request": user_request})
+            if need:
+                logger.warning("HITL: %s" % reason)
+        
+        # 记录 workflow 模式
+        ctx = TaskContext(user_request=user_request)
+        ctx.agent_outputs.append("[Workflow: %s] %s" % (mode.value, user_request))
+        
+        # 仍走原有 dispatch，但标记 workflow
+        result = original_dispatch(user_request, **kwargs)
+        result.agent_outputs.insert(0, "[Workflow: %s]" % mode.value)
+        return result
+    
+    dispatcher.dispatch_with_workflow = dispatch_with_workflow  # type: ignore
+    return dispatcher

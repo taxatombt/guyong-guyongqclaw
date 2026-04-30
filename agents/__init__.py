@@ -74,6 +74,7 @@ from .multi_agent_dispatcher import (
     AgentOutput,
     create_dispatcher,
     create_qclaw_dispatcher,
+    create_qclaw_dispatcher_with_bridge,
 )
 
 # ── 工具注册表 ───────────────────────────────────────────────
@@ -113,6 +114,23 @@ from .event_bus import (
     emit,
 )
 
+# ── Managed Agents 桥接 ───────────────────────────────────
+from .managed_bridge import (
+    WorkflowMode,
+    recommend_workflow,
+    CredentialConfig,
+    create_credential_vault,
+    SessionEventLogger,
+    ContextBridge,
+    HITL_DANGEROUS_OPERATIONS,
+    requires_human_approval,
+    discover_skills_for_registry,
+    create_protocol_dispatcher,
+    ManagedBridgeConfig,
+    ManagedBridge,
+    create_bridge,
+)
+
 __all__ = [
     # agent_types
     "AgentRole", "AgentProfile", "get_profile",
@@ -130,7 +148,7 @@ __all__ = [
     "save_session_state", "load_session_state", "get_active_processes",
     # dispatcher
     "MultiAgentDispatcher", "TaskContext", "TaskStatus", "AgentOutput",
-    "create_dispatcher", "create_qclaw_dispatcher",
+    "create_dispatcher", "create_qclaw_dispatcher", "create_qclaw_dispatcher_with_bridge",
     # registry
     "Tool", "ToolCategory", "ToolRegistry",
     "get_tool_registry", "reset_tool_registry",
@@ -144,6 +162,13 @@ __all__ = [
     "ToolStartedEvent", "ToolCompletedEvent", "ToolFailedEvent",
     "HookStartedEvent", "HookCompletedEvent", "ContextCompactedEvent",
     "get_event_bus", "emit",
+    # managed_bridge
+    "WorkflowMode", "recommend_workflow",
+    "CredentialConfig", "create_credential_vault",
+    "SessionEventLogger", "ContextBridge",
+    "HITL_DANGEROUS_OPERATIONS", "requires_human_approval",
+    "discover_skills_for_registry", "create_protocol_dispatcher",
+    "ManagedBridgeConfig", "ManagedBridge", "create_bridge",
 ]
 
 __version__ = "2.0.0"

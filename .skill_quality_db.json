@@ -1,0 +1,12 @@
+[
+  {
+    "skill_id": "test_skill",
+    "success_rate": 0.6666666666666666,
+    "avg_duration_ms": 2166.6666666666665,
+    "usage_count": 3,
+    "last_used": 1777570522.701196,
+    "complexity": 1,
+    "score": 42.666666666666664,
+    "grade": "一般"
+  }
+]

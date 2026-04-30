@@ -24,6 +24,8 @@ _SUMMARY_RATIO = 0.20
 _SUMMARY_TOKENS_CEILING = 12000
 _PRUNED_PLACEHOLDER = "[Old tool output cleared]"
 _COOLDOWN_SECONDS = 600
+_MAX_CONSECUTIVE_FAILURES = 3  # 熔断器：连续失败3次后暂停压缩
+_CIRCUIT_BREAKER_RESET_S = 3600  # 熔断器1小时后自动重置
 _SUMMARY_PREFIX = (
     "[CONTEXT COMPACTION] Earlier turns were compacted. "
     "Use summary and current state to continue:"
@@ -76,6 +78,10 @@ class ContextCompressor:
         self._last_compaction_time: float = 0
         self._compaction_count: int = 0
         self._events: List[CompactionEvent] = []
+        # 熔断器（来自 context_layers.py CMA 落地）
+        self._consecutive_failures: int = 0
+        self._circuit_open: bool = False
+        self._circuit_opened_at: float = 0
     
     @property
     def name(self) -> str:
@@ -96,6 +102,16 @@ class ContextCompressor:
         判断是否需要压缩。
         Returns: (should_compress, reason)
         """
+        # 熔断器检查
+        if self._circuit_open:
+            elapsed = time.time() - self._circuit_opened_at
+            if elapsed >= _CIRCUIT_BREAKER_RESET_S:
+                self._circuit_open = False
+                self._consecutive_failures = 0
+                # 继续判断
+            else:
+                return False, f"circuit breaker open ({elapsed:.0f}s remaining)"
+        
         ratio = context_length / context_limit if context_limit > 0 else 0
         
         if ratio < 0.85:
@@ -195,6 +211,9 @@ class ContextCompressor:
         self._compaction_count += 1
         self._last_compaction_time = time.time()
         
+        # 重置失败计数（成功调用）
+        self._consecutive_failures = 0
+        
         # Step 1: Prune tool outputs
         pruned = self._prune_tool_outputs(messages)
         
@@ -257,12 +276,22 @@ class ContextCompressor:
         
         return compressed, summary_content if summary_content else summary_prompt
     
+    def mark_failure(self):
+        """标记压缩失败，触发熔断器检查"""
+        self._consecutive_failures += 1
+        if self._consecutive_failures >= _MAX_CONSECUTIVE_FAILURES:
+            self._circuit_open = True
+            self._circuit_opened_at = time.time()
+    
     def reset(self):
         """Reset state on /new or /reset"""
         self._previous_summary = None
         self._last_compaction_time = 0
         self._compaction_count = 0
         self._events = []
+        self._consecutive_failures = 0
+        self._circuit_open = False
+        self._circuit_opened_at = 0
     
     def report(self) -> str:
         """Format compaction report"""

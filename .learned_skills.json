@@ -1,0 +1,30 @@
+[
+  {
+    "id": "learned_d26bbd3eee74",
+    "name": "分析代码架构并生成报告",
+    "description": "从工作学习: 分析代码架构并生成报告...",
+    "trigger_patterns": [
+      "分析代码架构并生成报告",
+      "分析代码架构并生成报告"
+    ],
+    "intent_type": "unknown",
+    "actions": [
+      {
+        "tool": "read",
+        "params": {}
+      },
+      {
+        "tool": "write",
+        "params": {}
+      }
+    ],
+    "examples": [
+      "分析代码架构并生成报告"
+    ],
+    "usage_count": 0,
+    "success_count": 0,
+    "last_used": 0,
+    "created_at": 1777570522.752777,
+    "learned_from": "d26bbd3eee74"
+  }
+]

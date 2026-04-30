@@ -2915,6 +2915,87 @@
       "last_failure": "",
       "created_at": "2026-04-16 13:28",
       "rationalizations": []
+    },
+    {
+      "id": "rule_109_1777572254",
+      "task": "全量模块审查整合",
+      "method": "7类重复检测+记忆7合1+安全3合1+evolver增强3项",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "全量模块审查整合"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "7类重复检测+记忆7合1+安全3合1+evolver增强3项"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-05-01 02:04",
+      "last_failure": "",
+      "created_at": "2026-05-01 02:04",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_110_1777572254",
+      "task": "ZeusHammer技能落地",
+      "method": "4因素置信度+三层匹配+meditation4步",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "ZeusHammer技能落地"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "4因素置信度+三层匹配+meditation4步"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-05-01 02:04",
+      "last_failure": "",
+      "created_at": "2026-05-01 02:04",
+      "rationalizations": []
+    },
+    {
+      "id": "rule_111_1777575897",
+      "task": "workspace清理",
+      "method": "批量识别无用文件+分批删除+跳过juhuo",
+      "conditions": [
+        {
+          "field": "task",
+          "operator": "contains",
+          "value": "workspace清理"
+        },
+        {
+          "field": "method",
+          "operator": "equals",
+          "value": "批量识别无用文件+分批删除+跳过juhuo"
+        }
+      ],
+      "group_op": "OR",
+      "success_count": 1,
+      "total_count": 1,
+      "consecutive_failures": 0,
+      "is_active": true,
+      "priority": 0,
+      "last_success": "2026-05-01 03:04",
+      "last_failure": "",
+      "created_at": "2026-05-01 03:04",
+      "rationalizations": []
     }
   ]
 }

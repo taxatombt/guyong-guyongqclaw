@@ -1,0 +1,15 @@
+{"drawer_id": "drawer_06c556b6", "content": "Help me organize files", "timestamp": 1776697542.4996572, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_fb715d9d", "content": "I learned about claude-mem today", "timestamp": 1776697542.5021708, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_b4beac7e", "content": "[exec] dict(cmd...) → file1.txt\nfile2.txt", "timestamp": 1776697542.5051727, "session_id": "", "source": "tool", "metadata": {"tool": "exec", "duration_ms": 100}}
+{"drawer_id": "drawer_62d5111c", "content": "[read] dict(file...) → # Test", "timestamp": 1776697542.5082407, "session_id": "", "source": "tool", "metadata": {"tool": "read", "duration_ms": 50}}
+{"drawer_id": "drawer_52b84c5e", "content": "Session: 2 prompts, 2 tools", "timestamp": 1776697542.5122502, "session_id": "", "source": "summary", "metadata": {}}
+{"drawer_id": "drawer_06c556b6", "content": "Help me organize files", "timestamp": 1776698341.2103024, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_fb715d9d", "content": "I learned about claude-mem today", "timestamp": 1776698341.2113006, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_b4beac7e", "content": "[exec] dict(cmd...) → file1.txt\nfile2.txt", "timestamp": 1776698341.214822, "session_id": "", "source": "tool", "metadata": {"tool": "exec", "duration_ms": 100}}
+{"drawer_id": "drawer_62d5111c", "content": "[read] dict(file...) → # Test", "timestamp": 1776698341.2173448, "session_id": "", "source": "tool", "metadata": {"tool": "read", "duration_ms": 50}}
+{"drawer_id": "drawer_52b84c5e", "content": "Session: 2 prompts, 2 tools", "timestamp": 1776698341.2213545, "session_id": "", "source": "summary", "metadata": {}}
+{"drawer_id": "drawer_06c556b6", "content": "Help me organize files", "timestamp": 1776698675.8286679, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_fb715d9d", "content": "I learned about claude-mem today", "timestamp": 1776698675.8316677, "session_id": "", "source": "user", "metadata": {}}
+{"drawer_id": "drawer_b4beac7e", "content": "[exec] dict(cmd...) → file1.txt\nfile2.txt", "timestamp": 1776698675.8497663, "session_id": "", "source": "tool", "metadata": {"tool": "exec", "duration_ms": 100}}
+{"drawer_id": "drawer_62d5111c", "content": "[read] dict(file...) → # Test", "timestamp": 1776698675.8537683, "session_id": "", "source": "tool", "metadata": {"tool": "read", "duration_ms": 50}}
+{"drawer_id": "drawer_52b84c5e", "content": "Session: 2 prompts, 2 tools", "timestamp": 1776698675.859312, "session_id": "", "source": "summary", "metadata": {}}
