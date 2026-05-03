@@ -21,6 +21,8 @@ _重要的事情写在这里，不会忘。_
   - CoPaw有两层配置：`config.json`（全局）+ `agent.json`（workspace级），两层都要改
 - **火山引擎TTS**: App ID `7134186458`（2026-04-04配置，待开通服务）
 - **Codex**: 使用 `gpt-5.4` 模型
+- **mmx-cli（MiniMax官方CLI）**: API Key `sk-cp-TCcHOLBzodweQlt5CPsO1gTvvqvPUMNQa14ES9BJTMD86QClYON7ZkDIcimkUvMLDLa12yFsKmBLo30xrxuVH1rnGgMchd4qNMI_zOA7dDS7hRw0y1jbaE0`（2026-05-02配置，CN区，认证文件在 `C:\Users\yiseg\.mmx\config.json`）
+  - 已安装 v1.0.12，支持 text/image/speech/video/music/search/vision
 
 ### 2026-04-11 OpenSpace 融会贯通
 
@@ -366,6 +368,30 @@ C:\Users\yiseg\.qclaw\workspace\
 
 ### 核心发现
 
+**Claude Code TS源码深入研究（2026-05-01补充）**：
+- Fork Subagent：placeholder工具结果 + 共享前缀API缓存 + 快照同步机制
+- findRelevantMemories：LLM二阶段记忆检索，只选top 5，跳过最近用过的
+- MEMORY.md双重限制：MAX_ENTRYPORT_LINES=200 + MAX_ENTRYPOINT_BYTES=25KB
+- Agent 6种类型：General/Explore/Plan/Verification/StatusLine/Coordinator
+- Verification Agent 153行：5种验证策略 + ADVERSARIAL模式 + 80% trap检测
+- KAIROS团队记忆：append-only日志 + 夜间蒸馏到MEMORY.md
+- Fork输出格式：Scope/Result/Key files/Files changed/Issues 四段
+
+**【新】Claude Code 记忆系统深度（2026-05-01）**：
+- extractMemories服务：Fork Agent模式 + 严格工具白名单 + Trailing Run机制
+- 四类记忆类型：user/feedback/project/reference + 明确的What NOT to Save
+- 两步骤保存：单独文件 + MEMORY.md索引（<150字符/条，200行上限）
+- 记忆漂移检测：信任前验证（文件存在？grep函数？）
+- Frontmatter格式：name + description + type
+- 落地：claude_code_study/memory_system_deep.md
+- Fork Subagent：placeholder工具结果 + 共享前缀API缓存 + 快照同步机制
+- findRelevantMemories：LLM二阶段记忆检索，只选top 5，跳过最近用过的
+- MEMORY.md双重限制：MAX_ENTRYPORT_LINES=200 + MAX_ENTRYPOINT_BYTES=25KB
+- Agent 6种类型：General/Explore/Plan/Verification/StatusLine/Coordinator
+- Verification Agent 153行：5种验证策略 + ADVERSARIAL模式 + 80% trap检测
+- KAIROS团队记忆：append-only日志 + 夜间蒸馏到MEMORY.md
+- Fork输出格式：Scope/Result/Key files/Files changed/Issues 四段
+
 **Claude Code TS源码（最高价值）**：
 - 四Agent: General/Explore(READ-ONLY)/Plan(READ-ONLY)/Verification(153行反合理化prompt)
 - Explore Agent omitClaudeMd=true 省5-15 Gtok/week
@@ -375,6 +401,120 @@ C:\Users\yiseg\.qclaw\workspace\
 - 20内置skill: /skillify /simplify /batch /loop /remember /verify
 - /simplify: 三Agent并行审查（复用+质量+效率）
 - /batch: 5-30 agent + worktree隔离并行
+
+**Claude Code Hook系统（27事件，src/utils/hooks.ts）**：
+- PreToolUse: 可返回permissionDecision(allow/deny/ask)+updatedInput+additionalContext
+- PostToolUse/PostToolUseFailure: 工具执行后钩子
+- SessionStart/SessionEnd: 会话生命周期
+- PreCompact/PostCompact: 上下文压缩前后
+- SubagentStart/SubagentStop: 子代理管理
+- PermissionRequest/PermissionDenied: 权限事件
+- 两种hook: CommandHook(shell命令) + FunctionHook(TS回调，session级临时)
+- Hook匹配: pattern matcher on tool_name，plugin/skill可提供scoped hooks
+
+**Fork Subagent（src/tools/AgentTool/forkSubagent.ts）**：
+- Placeholder工具结果共享API前缀 → prompt cache优化
+- permissionMode: 'bubble' → 权限冒泡到父级终端
+- 递归fork防护: FORK_BOILERPLATE_TAG检测
+- 输出格式: Scope/Result/Key files/Files changed/Issues
+
+**Coordinator Mode（src/coordinator/coordinatorMode.ts）**：
+- 四阶段: Research(并行)→Synthesis(Coordinator)→Implementation→Verification
+- Workers异步并行启动，单消息多工具调用
+- Task Notification XML格式: task-id/status/summary/result/usage
+- Continue vs Spawn决策: 基于上下文重叠度
+
+**Permission System（src/utils/permissions/，22文件）**：
+- 7种模式: default/plan/acceptEdits/bypassPermissions/dontAsk/auto/bubble
+- Dangerous Patterns: python/node/bash等解释器 + ant-only危险命令
+- Bash Classifier: 命令安全分类
+
+**Claude Code压缩系统（src/services/compact/）**：
+- 自动压缩阈值: AUTOCOMPACT_BUFFER_TOKENS=13k, WARNING=20k, MANUAL=3k
+- 熔断器: 连续3次失败则停止自动压缩
+- 消息分组: 按API round-trip（assistant message.id边界）
+- 图片处理: 压缩前stripImages → "[image]"占位符
+- POST_COMPACT预算: 50k文件/5k per file, 25k技能/5k per skill
+- PreCompact/PostCompact hooks可介入压缩流程
+
+**Claude Code Skill系统（src/skills/loadSkillsDir.ts + frontmatterParser.ts）**：
+- Frontmatter Schema: allowed-tools/description/when_to_use/model/skills/user-invocable/hooks/effort/context/agent/paths/shell
+- context: 'inline'(默认) | 'fork'(子agent独立预算)
+- effort: 'low'|'medium'|'high'|'max'|number 控制思考深度
+- hooks: 可在skill中配置PreToolUse/PostToolUse等hook
+- paths: glob模式匹配，skill仅在相关文件时被激活
+- 4种来源: userSettings(~/.claude/skills)/projectSettings(.claude/skills)/managed/bundled
+
+**Claude Code BashTool安全架构（tools/BashTool/bashPermissions.ts）**：
+- Tree-sitter AST解析：替代regex进行安全分析
+- checkSemantics: 检测危险命令名(zsh builtins, eval等)
+- bashClassifier: **ANT-ONLY stub**，外部构建是空实现
+- TREE_SITTER_BASH_SHADOW: GrowthBook开关控制
+- 多层降级: tree-sitter → shell-quote → 简单解析
+
+**Claude Code Stop Hooks后台任务（query/stopHooks.ts）**：
+- Prompt suggestion: executePromptSuggestion (fire-and-forget)
+- Memory extraction: extractMemoriesModule (EXTRACT_MEMORIES feature)
+- Auto dream: executeAutoDream
+- Job classifier: TEMPLATES feature for dispatched jobs
+- Computer Use cleanup: CHICAGO_MCP feature
+
+**Claude Code完整记忆系统（services/extractMemories/ + services/autoDream/）**：
+- extractMemories: 每turn结束运行，fork subagent，主agent写则跳过（互斥）
+- autoDream: 后台整合，三层门控(time/sessions/lock)，minHours=24,minSessions=5
+- 4-type taxonomy: user/feedback/project/reference
+- Dream Consolidation四阶段: Orient→Gather→Consolidate→Prune
+- MEMORY.md规则: ≤200行/25KB，每条目≤150字符，索引非内容
+- 两阶段保存: 文件→MEMORY.md指针
+- findRelevantMemories: Sonnet选择最多5个相关记忆
+
+**Claude Code Verification Agent反合理化设计**：
+- 禁止修改项目文件，只能写/tmp临时脚本
+- 每个check必须包含实际命令+输出
+- 必须执行adversarial probes（并发/边界值/幂等性）
+- 识别rationalization借口并do the opposite
+- 输出格式: Command run + Output observed + PASS/FAIL
+
+**Claude Code src-claudecode全模块研究完成**（2026-05-01，全部学完）：
+
+### 功能开关完整列表（按频率）
+KAIROS(38), TEAMMEM(31), PROACTIVE(16), COORDINATOR_MODE(16), HISTORY_SNIP(15), TRANSCRIPT_CLASSIFIER(12), CONTEXT_COLLAPSE(11), EXPERIMENTAL_SKILL_SEARCH(9), SHOT_STATS(8), COMMIT_ATTRIBUTION(8), BRIDGE_MODE(8), EXTRACT_MEMORIES(7), BASH_CLASSIFIER(6), BG_SESSIONS(6), AGENT_TRIGGERS(6), WORKFLOW_SCRIPTS(5), TOKEN_BUDGET(4), VOICE_MODE(4), TEMPLATES(4), MEMORY_SHAPE_TELEMETRY(3), BREAK_CACHE_COMMAND(2), REACTIVE_COMPACT(2)
+
+### GrowthBook系统
+三层覆盖：CLAUDE_INTERNAL_FC_OVERRIDES(env) > config(/config Gates) > remote eval
+remoteEvalFeatureValues缓存、pendingExposures、loggedExposures去重、onGrowthBookRefresh监听器
+
+### 快捷键系统（defaultBindings.ts）
+- Global: ctrl+c(中断), ctrl+d(退出), ctrl+l(重绘), ctrl+t(任务), ctrl+o(转录), ctrl+r(历史)
+- Chat: escape(取消), enter(提交), up/down(历史)
+- Autocomplete: tab(accept), escape(dismiss), up/down(navigate)
+- Settings: 导航+确认
+- 平台适配: Windows alt+v, 其他ctrl+v; Windows meta+m, 其他shift+tab
+
+### 核心服务
+1. **AgentSummary**: 每30秒fork生成进度摘要，cacheSafeParams共享prompt cache
+2. **PromptSuggestion**: tengu_chump_inflection开关，抑制条件(disabled/pending_permission/elicitation_active/plan_mode/rate_limit)
+3. **SessionMemory**: tengu_session_memory + tengu_sm_config，token/tool调用阈值触发提取
+4. **TeamMemorySync**: GET/PUT /api/claude_code/team_memory，server-wins pull，MAX_FILE_SIZE=250KB，MAX_PUT_BODY=200KB
+5. **Coordinator**: COORDINATOR_MODE + CLAUDE_CODE_COORDINATOR_MODE env，INTERNAL_WORKER_TOOLS
+
+### Bash权限系统
+MAX_SUBCOMMANDS_FOR_SECURITY_CHECK=50，ANT-ONLY classifier日志，command prefix提取
+Tree-sitter AST parseForSecurityFromAst
+
+### Task系统
+TaskType: local_bash/local_agent/remote_agent/in_process_teammate/local_workflow/monitor_mcp/dream
+TaskStatus: pending/running/completed/failed/killed
+
+### QueryEngine
+query.ts主循环：autoCompact + REACTIVE_COMPACT + CONTEXT_COLLAPSE + HISTORY_SNIP + skillPrefetch + jobClassifier
+replLauncher.tsx: launchRepl导入App + REPL组件
+
+### SDK API: multi-provider、promptCacheBreakDetection
+### Remote: RemoteSessionManager、viewerOnly模式
+### Sandbox: @anthropic-ai/sandbox-runtime、路径解析（//path/~/path）
+### MCP: stdio/sse/http/ws/sdk传输、ConfigScope(XAA/SEP-990)
+### Memory Types: 4-type完整定义（user/feedback/project/reference）+ NOT_TO_SAVE + DRIFT_CAVEAT
 
 **Hermes完整仓库**：
 - MemoryManager: 内置+最多1个外部provider，`<memory-context>` fencing
@@ -589,6 +729,10 @@ Evolver: 23 rules (+3 today)
 - 仓库：taxatombt/guyong-guyong（Private）
 - 488文件已推送，git remote已配置
 - GitHub网络持续不可达（443端口），push失败暂挂
+- 仓库已改名：guyong-guyong → guyong-guyongqclaw（2026-05-01）
+- **推送规则**：每次推送必须更新VERSION.md，包含推送时间和变更内容
+- **只操作这一个仓库**，其他项目/仓库不管
+- **聚活（juhuo）只给建议不操作**（铁律，无豁免）
 
 ### Hermes深度研究（2026-04-16）
 
@@ -874,8 +1018,20 @@ Evolver: 23 rules (+3 today)
 
 ---
 
+## ⚠️ 系统状态警告（2026-05-01 21:29）
+
+| 盘符 | 总容量 | 剩余 | 剩余% | 状态 |
+|------|--------|------|-------|------|
+| C: | 150GB | 17.9GB | 12% | 偏紧 |
+| D: | 1863GB | 2.9GB | **0.2%** | **危险** |
+| E: | 327GB | 22.4GB | 6.9% | 偏紧 |
+| F: | 932GB | 1.3GB | **0.1%** | **危险** |
+
+**D盘和F盘几乎满了**，建议优先清理。
+
 ## 待做
 
+- [ ] 清理D盘/F盘空间（优先）
 - [ ] Blender 下载安装（blender-mcp 前提）
 - [ ] Blender addon 安装测试
 - [ ] mcporter 配置 blender-mcp 并测试调用

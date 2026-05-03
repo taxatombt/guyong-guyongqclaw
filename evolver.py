@@ -736,6 +736,22 @@ class EvolverEngine:
 
         self._save()
 
+        try:
+            import self_review as sr_module
+            # 检测是否有工具使用记录（从 input_fields 传递）
+            used_tools = input_fields.get("_used_tools", []) if input_fields else []
+            sr_module.run_review(
+                task=task,
+                method=method,
+                success=success,
+                used_tools=used_tools,
+                error=error,
+                notes=notes,
+            )
+        except Exception:
+            # self_review 失败不影响 evolver 核心功能
+            pass
+
     def _infer_conditions(self, task: str, method: str, fields: dict) -> list:
         conditions = []
         keywords = [w for w in re.split(r"[\s,，。、！？]", task) if len(w) >= 2]

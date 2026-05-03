@@ -72,5 +72,20 @@
     "pattern": null,
     "lesson": "'test_method' 方法对 'test_task' 有效，记录备用",
     "notes": null
+  },
+  {
+    "timestamp": "2026-05-02 00:54",
+    "task": "test-task",
+    "method": "test-method",
+    "success": true,
+    "error": null,
+    "used_tools": [
+      "exec",
+      "read"
+    ],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'test-method' 方法对 'test-task' 有效，记录备用",
+    "notes": null
   }
 ]
