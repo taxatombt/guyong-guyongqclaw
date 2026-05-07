@@ -1,0 +1,1 @@
+import sys; sys.path.insert(0,'.'); from evolver import EvolverEngine; e=EvolverEngine(); print(f'Rules: {len(e.rules)}, failing: {sum(1 for r in e.rules if r.confidence==0)}, high_conf: {sum(1 for r in e.rules if r.confidence>=0.7)}')

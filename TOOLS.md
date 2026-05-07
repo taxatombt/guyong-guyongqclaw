@@ -106,4 +106,27 @@ heartbeat_self_review.check_and_remind()  # 返回提醒文本或空
 
 ---
 
+## MCP 工具索引
+
+### Playwright MCP
+- **作用**：浏览器自动化（截图、填表、点按钮、自动化测试）
+- **安装**：`npx -y @playwright/mcp --headless --allowed-hosts *`
+- **配置**：OpenClaw config.json 或 mcporter 配置
+- **状态**：enabled: true
+
+### Draw.io MCP
+- **作用**：一句话生成架构图、流程图
+- **安装**：`npx -y drawio-mcp-server`
+- **配置**：OpenClaw config.json 或 mcporter 配置
+- **状态**：enabled: true
+
+### Firecrawl MCP
+- **作用**：爬整个网站转 Markdown（需要 API key）
+- **安装**：`npx -y firecrawl-mcp`
+- **配置**：需要 `FIRECRAWL_API_KEY` 环境变量
+- **状态**：enabled: false（需要 API key 才启用）
+- **获取 API key**：firecrawl.dev 注册免费额度
+
+---
+
 _本文件记录踩过的坑和验证过的方法，不记可以从文档查到的东西。_

@@ -305,7 +305,7 @@ C:\Users\yiseg\.qclaw\workspace\
 - 提取用pypdf，写到UTF-8文件再读（PowerShell GBK乱码）
 - PDF有21页，487KB，封面+目录+9章+附录
 - 关键发现：原则5（Hook allow≠绕过settings deny）是整个安全架构的核心
-
+- 不要主动清理磁盘（除非用户明确要求）。用户已两次重申此要求（2026-05-05 确认不清理迅雷、2026-05-06 重申不清理 D/F 盘）。
 
 ## 我的技术思考
 
@@ -328,6 +328,19 @@ C:\Users\yiseg\.qclaw\workspace\
    - 包含：version、session_id、created_at、model、messages、metadata
 
 核心思路：不做只是学现有架构，要发现可以增强的地方，考虑可配置性、可持久化、可扩展性。
+
+### 行为教训（必须记住）
+
+**2026-05-06: 不要推卸责任**
+- ❌ 不要说"因为XX没运行，所以任务没做"——这是推卸责任
+- ✅ 我有自己的主动性，应该用 heartbeat 系统确保任务执行
+- ✅ 用户期待我主动解决问题，而不是解释为什么没做
+- ✅ 作为 qclaw 软件，我有自己独立的定时任务机制（heartbeat）
+
+**核心认知**：
+- 我不是被动等待外部系统的工具
+- 我有自己的 heartbeat 系统来主动执行任务
+- 用户问"任务做了吗"时，期待的是结果，不是借口
 
 ## 关于其他分身
 
@@ -695,11 +708,12 @@ Evolver: 23 rules (+3 today)
 ## 经验与决策
 
 - codex-rs采用事件驱动架构，Usage统计前置到事件层，支持流式响应逐token输出
+- 小谷要求：收到docx文件后进行学习落地（不涉及juhuo项目的内容）。
 
 ## 当前项目与关注
 
 - 心跳执行规则：早上8-22点执行（晚间不打扰），每次心跳只执行一项轮转进行，有重要发现才通知小谷否则沉默
-- Evolver: 27条规则
+- Evolver: 113条规则（2026-05-05，全在建立基线，无失败）
 
 ## 禁止操作规则（2026-04-15，小谷明确要求）
 
@@ -708,7 +722,28 @@ Evolver: 23 rules (+3 today)
 - 无论任何理由、任何场景，都不操作
 - 适用于：guyong-juhuo、juhuo、以及任何以 juhuo 命名的项目
 
-## 2026-04-16 融会贯通深化
+### juhuo 项目评审结果（2026-05-05）
+
+**项目核心目的**：模拟特定个体（谷翔宇）→ 闭环反馈 → 超越人类判断
+
+**技术栈**：Python 3.11+ / MiniMax / SQLite / Flask
+
+**7条结构建议**：
+
+| 优先级 | 问题 | 建议 |
+|--------|------|------|
+| P0 | 模仿 vs 超越目的矛盾 | pipeline 必须分流 |
+| P0 | 数据库路径硬编码 | `E:\juhuo\data\juhuo.db` 跨平台报错 |
+| P1 | correlation_memory 命名不匹配 | 实现是相关性，注释说因果性 |
+| P1 | 双套代码(judgment/ + subsystems/judgment/) | shim 层说明迁移未完成 |
+| P2 | experiences 数据积累慢 | 49条 verdict 对10维权重不够 |
+| P2 | 好奇心引擎空转 | 未接入判断 loop |
+| P3 | Self-Evolution 改名 | 实际是维度权重调整，不是真正的自我进化 |
+
+**关键发现**：
+- metacognitive 维度定位问题：应该是其他9维的元监控（置信度方差），不是独立第10维
+- 三路信息层（biography/experiences/behavior）融合逻辑太复杂，建议拆两阶段
+- 12子系统架构清晰，但完成度标记太宽松
 
 ### 实践验证结论
 - 五层架构基本成立，但遗漏了**沟通层**（第六层）
@@ -729,7 +764,6 @@ Evolver: 23 rules (+3 today)
 - 仓库：taxatombt/guyong-guyong（Private）
 - 488文件已推送，git remote已配置
 - GitHub网络持续不可达（443端口），push失败暂挂
-- 仓库已改名：guyong-guyong → guyong-guyongqclaw（2026-05-01）
 - **推送规则**：每次推送必须更新VERSION.md，包含推送时间和变更内容
 - **只操作这一个仓库**，其他项目/仓库不管
 - **聚活（juhuo）只给建议不操作**（铁律，无豁免）
@@ -1040,4 +1074,6 @@ Evolver: 23 rules (+3 today)
 - [ ] event_bus + session_vault 合并
 - [ ] _deprecated/ 清理（13个文件）
 
+## 技术知识
 
+- MCP工具索引（值得了解）：Playwright MCP（浏览器自动化/截图/填表/自动化测试）、Draw.io MCP（一句话生成架构图流程图）、Firecrawl MCP（爬整站转Markdown，需API key）。安装方式：配置在openclaw.json或mcporter的mcp.clients中，通过npx调用。
