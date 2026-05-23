@@ -1,0 +1,119 @@
+{
+  "小谷让我": {
+    "name": "小谷让我",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.347645+00:00",
+    "updated_at": "2026-05-15T15:03:42.347703+00:00"
+  },
+  "落地到": {
+    "name": "落地到",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.350340+00:00",
+    "updated_at": "2026-05-15T15:03:42.350364+00:00"
+  },
+  "记忆层": {
+    "name": "记忆层",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.352024+00:00",
+    "updated_at": "2026-05-15T15:03:42.352045+00:00"
+  },
+  "copaw": {
+    "name": "copaw",
+    "type": "PROPER",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.355135+00:00",
+    "updated_at": "2026-05-15T15:03:42.355153+00:00"
+  },
+  "qwenpaw": {
+    "name": "qwenpaw",
+    "type": "PROPER",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.356962+00:00",
+    "updated_at": "2026-05-15T15:03:42.356979+00:00"
+  },
+  "配置在": {
+    "name": "配置在",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.358358+00:00",
+    "updated_at": "2026-05-15T15:03:42.358372+00:00"
+  },
+  "c:\\users\\yiseg\\.copaw\\": {
+    "name": "C:\\Users\\yiseg\\.copaw\\",
+    "type": "NOUN",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.359696+00:00",
+    "updated_at": "2026-05-15T15:03:42.359712+00:00"
+  },
+  "evolver": {
+    "name": "evolver",
+    "type": "PROPER",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.362009+00:00",
+    "updated_at": "2026-05-15T15:03:42.362161+00:00"
+  },
+  "要加": {
+    "name": "要加",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.364105+00:00",
+    "updated_at": "2026-05-15T15:03:42.364123+00:00"
+  },
+  "联动": {
+    "name": "联动",
+    "type": "COMPOUND",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.365825+00:00",
+    "updated_at": "2026-05-15T15:03:42.365845+00:00"
+  },
+  "evolver.py": {
+    "name": "evolver.py",
+    "type": "NOUN",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.367909+00:00",
+    "updated_at": "2026-05-15T15:03:42.368376+00:00"
+  },
+  "文件": {
+    "name": "文件",
+    "type": "PROPER",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.370838+00:00",
+    "updated_at": "2026-05-15T15:03:42.370883+00:00"
+  },
+  "mem0_hybrid_search.py": {
+    "name": "mem0_hybrid_search.py",
+    "type": "NOUN",
+    "linked_memory_ids": [],
+    "source": "conversation",
+    "count": 1,
+    "created_at": "2026-05-15T15:03:42.372962+00:00",
+    "updated_at": "2026-05-15T15:03:42.372980+00:00"
+  }
+}

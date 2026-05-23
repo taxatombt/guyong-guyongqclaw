@@ -1037,6 +1037,290 @@ def execute_tool(
     return execute_pipeline(ctx)
 
 
+# ─── Anthropic Managed Agents 接口层（v3.0）────────────────────────
+#
+# 来源：Anthropic 工程博客《Scaling Managed Agents: Decoupling the brain from the hands》(2026-04-08)
+# 核心设计：
+# - execute(name, input) → string: 大脑调用双手的统一接口
+# - Hand: 可失败、可重启、无状态的"双手"
+# - SessionVault: 会话持久化，getEvents() 按位置切片
+# - 安全边界：凭证不进沙箱，通过 Vault 代理
+
+
+class Hand:
+    """
+    "双手" — 一个可失败、可重启、无状态的执行环境。
+    
+    Anthropic 设计：
+    - "The container became cattle. If the container died, the harness caught
+       the failure as a tool-call error and passed it back to Claude."
+    - "execute(name, input) → string: a name and input go in, and a string is returned."
+    - "The harness doesn't know whether the sandbox is a container, a phone,
+       or a Pokémon emulator."
+    
+    用法：
+        hand = Hand(name="sandbox", executor=my_exec_fn)
+        result = hand.execute("git", {"command": "status"})  # → str
+        if hand.failed:
+            hand.restart()  # 牲口模式：重启而非修复
+    """
+    
+    def __init__(
+        self,
+        name: str,
+        executor: Optional[Callable[[str, dict], str]] = None,
+        provision_fn: Optional[Callable[[], bool]] = None,
+        max_retries: int = 1,
+        vault: Optional["CredentialVault"] = None,
+    ):
+        self.name = name
+        self._executor = executor
+        self._provision_fn = provision_fn
+        self.max_retries = max_retries
+        self.vault = vault
+        self.failed = False
+        self.error: Optional[str] = None
+        self._call_count = 0
+    
+    def execute(self, tool_name: str, tool_input: dict) -> str:
+        """
+        执行工具调用，返回字符串。
+        
+        Anthropic 接口：execute(name, input) → string
+        如果双手失败，捕获错误并返回错误字符串（不是异常）。
+        大脑决定是否重试。
+        """
+        self._call_count += 1
+        
+        for attempt in range(self.max_retries + 1):
+            try:
+                if self._executor:
+                    result = self._executor(tool_name, tool_input)
+                else:
+                    # 默认：走 tool_pipeline 的 execute_tool
+                    r = execute_tool(tool_name, tool_input)
+                    if r.success:
+                        result = r.output or ""
+                    else:
+                        result = f"ERROR: {r.error}"
+                        if r.justification:
+                            result += f" (justification: {r.justification})"
+                
+                self.failed = False
+                self.error = None
+                return str(result)
+                
+            except Exception as e:
+                self.failed = True
+                self.error = str(e)
+                if attempt < self.max_retries:
+                    self.restart()  # 牲口模式：重启而非修复
+                else:
+                    return f"ERROR: Hand '{self.name}' failed after {attempt+1} attempts: {e}"
+        
+        return f"ERROR: Hand '{self.name}' unrecoverable"
+    
+    def restart(self) -> bool:
+        """
+        重启双手（牲口模式：重启而非修复）。
+        
+        Anthropic 设计："a new container could be reinitialized with a standard
+        recipe: provision({resources}). We no longer had to nurse failed containers
+        back to health."
+        """
+        self.failed = False
+        self.error = None
+        if self._provision_fn:
+            return self._provision_fn()
+        return True  # 无 provision 函数则默认成功
+    
+    def provision(self, resources: dict = None) -> bool:
+        """初始化资源（provision({resources})）"""
+        if self._provision_fn:
+            return self._provision_fn()
+        return True
+
+
+class SessionVault:
+    """
+    会话持久化 — 仅追加的事件日志，活在大脑之外。
+    
+    Anthropic 设计：
+    - "The session provides this same benefit, serving as a context object that
+       lives outside Claude's context window."
+    - "getEvents() allows the brain to interrogate context by selecting positional
+       slices of the event stream."
+    - "The harness writes to the session with emitEvent(id, event) in order to keep
+       a durable record of events."
+    
+    用法：
+        vault = SessionVault(session_id="abc123")
+        vault.emit_event({"type": "tool_call", "tool": "exec", "input": {...}})
+        events = vault.get_events(start=0, limit=10)
+        last = vault.get_events_before(event_idx=5, count=3)
+    """
+    
+    def __init__(self, session_id: str, storage_dir: str = None):
+        self.session_id = session_id
+        self._events: list = []
+        self._storage_dir = storage_dir
+        if storage_dir:
+            self._load_from_disk()
+    
+    def emit_event(self, event: dict) -> int:
+        """
+        记录事件（仅追加）。
+        Anthropic: emitEvent(id, event)
+        """
+        event["_idx"] = len(self._events)
+        event["_session_id"] = self.session_id
+        if "_timestamp" not in event:
+            event["_timestamp"] = time.time()
+        self._events.append(event)
+        if self._storage_dir:
+            self._flush_to_disk()
+        return len(self._events) - 1
+    
+    def get_events(self, start: int = 0, limit: int = None) -> list:
+        """
+        按位置切片读取事件。
+        Anthropic: getEvents() — 允许大脑选择位置切片
+        """
+        if limit is None:
+            return self._events[start:]
+        return self._events[start:start + limit]
+    
+    def get_events_before(self, event_idx: int, count: int = 5) -> list:
+        """
+        回溯某事件之前的上下文。
+        Anthropic: "rewinding a few events before a specific moment to see the lead up"
+        """
+        start = max(0, event_idx - count)
+        return self._events[start:event_idx]
+    
+    def get_events_after(self, event_idx: int, count: int = 10) -> list:
+        """
+        从某事件之后继续读取。
+        Anthropic: "picking up from wherever it last stopped reading"
+        """
+        return self._events[event_idx + 1:event_idx + 1 + count]
+    
+    def wake(self) -> list:
+        """
+        唤醒/恢复：获取全部事件。
+        Anthropic: "wake(sessionId), use getSession(id) to get back the event log,
+        and resume from the last event."
+        """
+        return self._events
+    
+    @property
+    def last_event_idx(self) -> int:
+        return len(self._events) - 1 if self._events else -1
+    
+    @property
+    def event_count(self) -> int:
+        return len(self._events)
+    
+    def _flush_to_disk(self):
+        """持久化到磁盘"""
+        import os, json
+        os.makedirs(self._storage_dir, exist_ok=True)
+        path = os.path.join(self._storage_dir, f"{self.session_id}.jsonl")
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(self._events[-1], ensure_ascii=False) + "\n")
+    
+    def _load_from_disk(self):
+        """从磁盘加载"""
+        import os, json
+        path = os.path.join(self._storage_dir, f"{self.session_id}.jsonl")
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                self._events = [json.loads(line) for line in f if line.strip()]
+
+
+class CredentialVault:
+    """
+    凭证保管库 — 认证信息在沙箱外，token 绝不进沙箱。
+    
+    Anthropic 设计：
+    - "Auth can be bundled with a resource or held in a vault outside the sandbox."
+    - "The harness is never made aware of any credentials."
+    - "Claude calls MCP tools via a dedicated proxy; this proxy takes in a token
+       associated with the session."
+    
+    用法：
+        vault = CredentialVault()
+        vault.store("github_token", "ghp_xxx", session_id="abc123")
+        # 在 Hand 内部调用时，自动注入凭证
+        token = vault.get("github_token", session_id="abc123")
+    """
+    
+    def __init__(self):
+        self._credentials: dict = {}  # {key: {token: str, sessions: set}}
+    
+    def store(self, key: str, token: str, session_id: str = None):
+        """存储凭证，关联到会话"""
+        if key not in self._credentials:
+            self._credentials[key] = {"token": token, "sessions": set()}
+        else:
+            self._credentials[key]["token"] = token
+        if session_id:
+            self._credentials[key]["sessions"].add(session_id)
+    
+    def get(self, key: str, session_id: str = None) -> Optional[str]:
+        """
+        获取凭证。
+        安全边界：只有知道 session_id 才能获取。
+        """
+        if key not in self._credentials:
+            return None
+        entry = self._credentials[key]
+        if session_id and session_id not in entry["sessions"]:
+            return None  # 会话无权访问此凭证
+        return entry["token"]
+    
+    def proxy_call(self, key: str, session_id: str, call_fn: Callable, **kwargs) -> str:
+        """
+        代理调用：自动注入凭证，调用外部服务。
+        Anthropic: "this proxy takes in a token associated with the session.
+        The proxy can then fetch the corresponding credentials from the vault
+        and make the call to the external service."
+        """
+        token = self.get(key, session_id)
+        if token is None:
+            return f"ERROR: No credential '{key}' for session '{session_id}'"
+        try:
+            return str(call_fn(token=token, **kwargs))
+        except Exception as e:
+            return f"ERROR: Proxy call failed: {e}"
+    
+    def revoke(self, key: str):
+        """撤销凭证"""
+        if key in self._credentials:
+            del self._credentials[key]
+
+
+# ─── 顶层便捷函数：Anthropic execute(name, input) → string ─────
+
+def execute(name: str, input: dict) -> str:
+    """
+    Anthropic Managed Agents 风格的统一执行接口。
+    
+    execute(name, input) → string
+    
+    大脑通过这个接口调用双手。双手失败返回错误字符串，
+    大脑决定是否重试。不抛异常。
+    
+    示例：
+        result = execute("exec", {"command": "git status"})
+        if result.startswith("ERROR"):
+            # 大脑决定重试或换策略
+            result = execute("exec", {"command": "git status"})
+    """
+    hand = Hand(name=name)
+    return hand.execute(name, input)
+
+
 # ─── 测试 ─────────────────────────────────────────────────
 
 def main():

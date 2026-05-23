@@ -87,5 +87,58 @@
     "pattern": null,
     "lesson": "'test-method' 方法对 'test-task' 有效，记录备用",
     "notes": null
+  },
+  {
+    "timestamp": "2026-05-09 17:10",
+    "task": "Viki知识库系统落地",
+    "method": "读取真实源码+创建SKILL-viki.md+更新SYSTEM.md",
+    "success": false,
+    "error": "--notes",
+    "used_tools": [],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'读取真实源码+创建SKILL-viki.md+更新SYSTEM.md' 方法对 'Viki知识库系统落地' 无效，需要找替代方案",
+    "notes": null
+  },
+  {
+    "timestamp": "2026-05-09 17:11",
+    "task": "Viki知识库系统落地",
+    "method": "读取真实源码+创建SKILL-viki.md+更新SYSTEM.md",
+    "success": true,
+    "error": null,
+    "used_tools": [],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'读取真实源码+创建SKILL-viki.md+更新SYSTEM.md' 方法对 'Viki知识库系统落地' 有效，记录备用",
+    "notes": null
+  },
+  {
+    "timestamp": "2026-05-10 02:28",
+    "task": "Viki LLM后端集成",
+    "method": "创建 llm_backend.py + 修改 compile.py",
+    "success": true,
+    "error": null,
+    "used_tools": [],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'创建 llm_backend.py + 修改 compile.py' 方法对 'Viki LLM后端集成' 有效，记录备用",
+    "notes": null
+  },
+  {
+    "timestamp": "2026-05-10 02:28",
+    "task": "Viki LLM后端集成",
+    "method": "创建 llm_backend.py + 修改 compile.py",
+    "success": true,
+    "error": null,
+    "used_tools": [
+      "exec",
+      "read",
+      "write",
+      "edit"
+    ],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'创建 llm_backend.py + 修改 compile.py' 方法对 'Viki LLM后端集成' 有效，记录备用",
+    "notes": null
   }
 ]

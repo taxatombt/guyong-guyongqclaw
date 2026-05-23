@@ -14,7 +14,8 @@ Before doing anything else:
 2. Read `USER.md` — this is who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-5. **Print workspace tree** — run `render_workspace_tree(WORKSPACE, max_depth=2)` for project context
+5. **Read `ai_agent_study/SYSTEM.md`** — 六层架构参考（感知→认知→记忆→执行→安全→进化）
+6. **Print workspace tree** — run `render_workspace_tree(WORKSPACE, max_depth=2)` for project context
 
 Don't ask permission. Just do it.
 

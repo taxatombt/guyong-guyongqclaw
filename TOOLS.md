@@ -56,7 +56,7 @@
 
 | 工具 | 路径/版本 |
 |------|---------|
-| Python | `python.exe`（`where python` 查）|
+| Python | `E:\PYTON\python.exe`（3.13.2），备选 `E:\qwenpaw\python.exe`（3.10.20）|
 | Node.js | `node.exe`（`where node` 查）|
 | Git | `git.exe`（`where git` 查）|
 | npm | `npm.cmd` |

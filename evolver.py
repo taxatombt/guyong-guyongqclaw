@@ -736,6 +736,12 @@ class EvolverEngine:
 
         self._save()
 
+        # v2.3: auto-record agent facts (mem0 Agent Facts as First-Class)
+        try:
+            record_agent_fact(task=task, method=method, success=success)
+        except Exception:
+            pass
+
         try:
             import self_review as sr_module
             # 检测是否有工具使用记录（从 input_fields 传递）
@@ -925,6 +931,8 @@ def main():
         print("  evolver.py check-skill <path>")
         print("  evolver.py instinct-status")
         print("  evolver.py instinct-promote <id> [--dry-run]")
+        print("  evolver.py facts")
+        print("  evolver.py record-agent-fact <task> <method> <yes|no>")
         return
 
     engine = EvolverEngine()
@@ -1004,6 +1012,18 @@ def main():
             print("[ERROR] instinct-promote 需要 instinct_id")
             return
         instinct_promote(instinct_id, dry_run=dry_run)
+
+    elif cmd == "facts":
+        stats = agent_facts_stats()
+        print(f"Agent Facts: total={stats['total']}, success={stats['success']}, failure={stats['failure']}")
+
+    elif cmd == "record-agent-fact" and len(sys.argv) >= 5:
+        task_name = sys.argv[2]
+        method_name = sys.argv[3]
+        is_success = "yes" in sys.argv[4].lower()
+        fact_list = sys.argv[5:] if len(sys.argv) > 5 else None
+        record_agent_fact(task_name, method_name, is_success, fact_list)
+        print(f"[FACT RECORDED] {task_name[:60]}, success={is_success}")
 
     elif cmd == "suggest-skill":
         # Hermes 风格：基于evolover DB 自动判断是否应创建skill
@@ -1238,6 +1258,70 @@ def skill_create_from_suggestion(suggestion: dict, skill_content: str) -> dict:
         "skill_id": skill_id,
         "files": [str(skill_md), str(skill_dir / ".skill_id"), str(skill_dir / ".meta.json")],
     }
+
+
+# ═════════════════════════════════════════════════════
+# mem0 Agent Facts Recording (v2.3)
+# Source: mem0 v3 — Agent Facts as First-Class Citizens
+# ═════════════════════════════════════════════════════
+
+FACTS_PATH = WORKSPACE / "memory" / "agent_facts.json"
+
+
+def record_agent_fact(task: str, method: str, success: bool, facts=None):
+    """
+    Record agent facts — mem0 v3 Agent Facts as First-Class.
+    Call after task completion to persist what the agent learned.
+    
+    Args:
+        task: task description
+        method: method used
+        success: whether task succeeded
+        facts: list of fact strings (auto-generated if None)
+    """
+    if facts is None:
+        facts = [f"{task[:100]} — {'OK' if success else 'FAIL'} via {method[:50]}"]
+    if not isinstance(facts, list):
+        facts = [facts]
+    
+    entry = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M"),
+        "task": task,
+        "method": method,
+        "success": success,
+        "facts": facts,
+    }
+    
+    FACTS_PATH.parent.mkdir(exist_ok=True)
+    data = []
+    if FACTS_PATH.exists():
+        try:
+            data = json.loads(FACTS_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            data = []
+    data.append(entry)
+    if len(data) > 200:
+        data = data[-200:]
+    FACTS_PATH.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def agent_facts_stats():
+    """Get agent facts statistics."""
+    if not FACTS_PATH.exists():
+        return {"total": 0, "success": 0, "failure": 0}
+    try:
+        data = json.loads(FACTS_PATH.read_text(encoding="utf-8"))
+        return {
+            "total": len(data),
+            "success": sum(1 for d in data if d.get("success")),
+            "failure": sum(1 for d in data if not d.get("success")),
+        }
+    except Exception:
+        return {"total": 0, "success": 0, "failure": 0}
+
 
 if __name__ == "__main__":
     main()
