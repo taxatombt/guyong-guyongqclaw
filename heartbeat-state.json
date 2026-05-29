@@ -3,5 +3,42 @@
     "email": null,
     "calendar": null,
     "weather": null
-  }
+  },
+  "todos": [
+    {"priority": "medium", "status": "pending", "id": 1, "text": "Blender download and install"},
+    {"priority": "medium", "status": "pending", "id": 2, "text": "mcporter + blender-mcp test"},
+    {"priority": "medium", "status": "pending", "id": 3, "text": "qclaw integrate blender-mcp"},
+    {"priority": "low", "status": "pending", "id": 4, "text": "skill module merge"},
+    {"priority": "low", "status": "pending", "id": 5, "text": "event_bus + session_vault merge"},
+    {"priority": "low", "status": "pending", "id": 6, "text": "_deprecated/ cleanup, 2 files"}
+  ],
+  "lastTodoCheck": "2026-05-24 19:19",
+  "evolver_rule_count": 115,
+  "lastInsights": "2026-05-24 17:20",
+  "lastMemoryMaint": "2026-05-24 20:49",
+  "memory_file_exists": true,
+  "lastCleanup": "2026-05-25",
+  "lastCleanupNote": "2026-05-25 00:00 - cleaned 3 temp files: _tmp_disk.ps1, _tmp_diskcheck.ps1, _tmp_hb.ps1",
+  "rotationIndex": 14,
+  "system_notes": "D disk 0.1% (improved from 0.02% to 1.8GB). Python uninstalled. Gateway stopped.",
+  "system_status": {
+    "disk": {
+      "C": "Free=16.3GB/150GB (10.9%)",
+      "D": "Free=1.8GB/1863GB (0.1%) - CRITICAL",
+      "E": "Free=49.6GB/326.9GB (15.2%)",
+      "F": "Free=264.8GB/931.5GB (28.4%)"
+    },
+    "gateway": "Runtime stopped. Connectivity probe ok. 127.0.0.1:28789.",
+    "python": "Uninstalled - not in PATH"
+  },
+  "lastReminder": "2026-05-22 18:19",
+  "evolver_notes": "Evolver stable. 115 rules, 0 failing, 75% avg confidence. Python unavailable.",
+  "context_usage": "37k/200k (19%)",
+  "lastSelfReview_check": "2026-05-24 21:19",
+  "selfreview_check": "OK - 0 reviews today, no reminder needed",
+  "lastCheck": "2026-05-25 00:00",
+  "lastSelfReview": "2026-05-10",
+  "evolver_check_note": "SKIPPED - Python not in PATH",
+  "memoryMaint_note": "2026-05-25 00:00 - Wrote 2026-05-25.md diary, cleaned 3 temp files",
+  "selfreview_note": "0 items - no reminders needed (Python unavailable)"
 }
