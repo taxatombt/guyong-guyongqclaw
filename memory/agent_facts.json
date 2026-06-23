@@ -18,5 +18,23 @@
     "facts": [
       "测试失败案例 — FAIL via test"
     ]
+  },
+  {
+    "timestamp": "2026-06-20 00:10",
+    "task": "每日0点回顾与清理",
+    "method": "workspace扫描 + 日记更新 + heartbeat更新",
+    "success": true,
+    "facts": [
+      "每日0点回顾与清理 — OK via workspace扫描 + 日记更新 + heartbeat更新"
+    ]
+  },
+  {
+    "timestamp": "2026-06-22 00:10",
+    "task": "每日回顾与清理",
+    "method": "检查目录+清理过期文件+写入日记",
+    "success": true,
+    "facts": [
+      "每日回顾与清理 — OK via 检查目录+清理过期文件+写入日记"
+    ]
   }
 ]

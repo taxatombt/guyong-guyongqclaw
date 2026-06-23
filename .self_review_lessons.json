@@ -46,5 +46,17 @@
     "task": "Viki LLM后端集成",
     "lesson": "'创建 llm_backend.py + 修改 compile.py' 方法对 'Viki LLM后端集成' 有效，记录备用",
     "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-06-20 00:10",
+    "task": "每日0点回顾与清理",
+    "lesson": "'workspace扫描 + 日记更新 + heartbeat更新' 方法对 '每日0点回顾与清理' 有效，记录备用",
+    "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-06-22 00:10",
+    "task": "每日回顾与清理",
+    "lesson": "'检查目录+清理过期文件+写入日记' 方法对 '每日回顾与清理' 有效，记录备用",
+    "source": "auto_review"
   }
 ]

@@ -140,5 +140,62 @@
     "pattern": null,
     "lesson": "'创建 llm_backend.py + 修改 compile.py' 方法对 'Viki LLM后端集成' 有效，记录备用",
     "notes": null
+  },
+  {
+    "timestamp": "2026-06-20 00:10",
+    "task": "每日0点回顾与清理",
+    "method": "workspace扫描 + 日记更新 + heartbeat更新",
+    "success": true,
+    "error": null,
+    "used_tools": [],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'workspace扫描 + 日记更新 + heartbeat更新' 方法对 '每日0点回顾与清理' 有效，记录备用",
+    "notes": "_deprecated/_download/_tmp 均空，无清理操作"
+  },
+  {
+    "timestamp": "2026-06-20 00:10",
+    "task": "每日0点回顾与清理",
+    "method": "workspace扫描 + 日记更新 + heartbeat更新",
+    "success": true,
+    "error": null,
+    "used_tools": [
+      "read",
+      "exec",
+      "edit",
+      "write"
+    ],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'workspace扫描 + 日记更新 + heartbeat更新' 方法对 '每日0点回顾与清理' 有效，记录备用",
+    "notes": "无待清理文件，系统状态正常"
+  },
+  {
+    "timestamp": "2026-06-22 00:10",
+    "task": "每日回顾与清理",
+    "method": "检查目录+清理过期文件+写入日记",
+    "success": true,
+    "error": null,
+    "used_tools": [
+      "exec",
+      "read",
+      "write"
+    ],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'检查目录+清理过期文件+写入日记' 方法对 '每日回顾与清理' 有效，记录备用",
+    "notes": "无文件需清理，创建 memory/2026-06-22.md"
+  },
+  {
+    "timestamp": "2026-06-22 00:10",
+    "task": "每日回顾与清理",
+    "method": "检查目录+清理过期文件+写入日记",
+    "success": true,
+    "error": null,
+    "used_tools": [],
+    "tool_leaks": [],
+    "pattern": null,
+    "lesson": "'检查目录+清理过期文件+写入日记' 方法对 '每日回顾与清理' 有效，记录备用",
+    "notes": "无文件需清理，heartbeat-state.json 已更新至当天"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-18T11:43:23.854Z",
+  "updatedAt": "2026-06-23T07:08:35.918Z",
   "entries": {
     "memory:memory/2026-04-02.md:39:73": {
       "key": "memory:memory/2026-04-02.md:39:73",
@@ -1039,6 +1039,254 @@
         "管理",
         "智能",
         "舰队"
+      ]
+    },
+    "memory:memory/2026-05-10.md:215:253": {
+      "key": "memory:memory/2026-05-10.md:215:253",
+      "path": "memory/2026-05-10.md",
+      "startLine": 215,
+      "endLine": 253,
+      "source": "memory",
+      "snippet": "2. **`cmd_compile()` 也需要 `llm_func` 参数** - 只改了 `compile_article()` 和 `cmd_ask()`，忘了 `cmd_compile()` 3. **小谷的批评是对的** - \"说开始就不动手写，说运行了实际没动\" - 我需要更严格的自测 ### 任务产出文件 - `viki/llm_backend.py`（新建） - `viki/compile.py`（修改） - `task-summary_2026-05-10_0223.md`（待创建） # 2026-05-10 日记 ## 零点自动清理与回顾 **执行时间：** 00:00 ### 检查结果 1. **_deprecated/ 目录**：不存在，无需清理 2. **workspace 临时文件**：无 `_tmp*.py` / `_tmp*.txt` 3. **_download/ 目录**：无文件，无需清理 4. **heartbeat-state.json**：上次更新 2026-05-09 21:19，rotationIndex=0 5. **evolver**：114条规则（较前日+1），active，avg success rate 99.56%，无 trip/fail — 健康 6. **self_review**：无积压，正常 ### 今日系统状态 | 盘 | 空闲 | 占比 | |----|------|------| | C: | 35.1GB | 23.4% | | D: | 74.1GB | 4.0% | | E: | 58",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35630699098110197,
+      "maxScore": 0.35630699098110197,
+      "firstRecalledAt": "2026-06-20T08:19:51.584Z",
+      "lastRecalledAt": "2026-06-20T08:19:51.584Z",
+      "queryHashes": [
+        "415c2460a611"
+      ],
+      "recallDays": [
+        "2026-06-20"
+      ],
+      "conceptTags": [
+        "cmd-compile",
+        "llm-func",
+        "compile-article",
+        "cmd-ask",
+        "viki/llm-backend.py",
+        "viki/compile.py",
+        "task-summary-2026-05-10-0223.md",
+        "heartbeat-state.json"
+      ]
+    },
+    "memory:memory/2026-05-12.md:34:71": {
+      "key": "memory:memory/2026-05-12.md:34:71",
+      "path": "memory/2026-05-12.md",
+      "startLine": 34,
+      "endLine": 71,
+      "source": "memory",
+      "snippet": "3. **khazix-skills 学习**：三层知识同步+反膨胀规则+横纵分析法 4. **GBrain 学习**：双轴组织+混合搜索+自连线知识图谱+技能调度器 5. **SYSTEM.md 重构**：8子系统平铺→6层架构流程（感知→认知→记忆→执行→安全→进化） **未完成：** - AGENTS.md 启动序列加第5步（读SYSTEM.md）— 因权限问题未写入 - SYSTEM.md 贡献矩阵加 GBrain 行 — 会话中断未完成 - SKILL-gbrain.md 创建 — 未完成 ### 待办追踪 | # | 事项 | 状态 | |---|------|------| | 1 | Blender 下载安装 | pending | | 2 | mcporter + blender-mcp 测试 | pending | | 3 | qclaw 集成 blender-mcp | pending | | 4 | 技能模块9合3整合 | pending | | 5 | event_bus + session_vault 合并 | pending | | 6 | _deprecated/ 清理 | pending | | 7 | ruflo: guidance-enforcer 重跑 | pending | | 8 | ruflo: hnsw-vector 重跑 | pending | | 9 | SYSTEM.md 加 GBrain 行 | pending | | 10 | SKILL-gbrain.md 创建 | pending | ### 磁盘行为模式已确",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3541331678628921,
+      "maxScore": 0.3541331678628921,
+      "firstRecalledAt": "2026-06-20T08:19:51.584Z",
+      "lastRecalledAt": "2026-06-20T08:19:51.584Z",
+      "queryHashes": [
+        "415c2460a611"
+      ],
+      "recallDays": [
+        "2026-06-20"
+      ],
+      "conceptTags": [
+        "khazix-skills",
+        "system.md",
+        "agents.md",
+        "读system.md",
+        "skill-gbrain.md",
+        "blender-mcp",
+        "event-bus",
+        "session-vault"
+      ]
+    },
+    "memory:memory/2026-05-30.md:1:40": {
+      "key": "memory:memory/2026-05-30.md:1:40",
+      "path": "memory/2026-05-30.md",
+      "startLine": 1,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "# 2026-05-30 每日回顾 ## 完成的工作 ### 每日清理任务（00:02 执行） - 检查 memory/2026-05-30.md：不存在，创建中 - 检查 _deprecated/：无超过14天的文件 - 检查 workspace 临时文件：发现7个超过1天的临时文件 - _tmp_check2.py (2026-05-28 12:47) - _tmp_final_audit.py (2026-05-28 21:35) - _tmp_r21_check.py (2026-05-28 02:04) - _tmp_r23b.py (2026-05-29 01:57) - _tmp_r24_final.py (2026-05-29 02:13) - _tmp_r25_strict.py (2026-05-29 02:21) - _tmp_review_check.py (2026-05-28 12:46) - 清理上述7个临时文件 - 检查 _download/：无超过24小时的文件 ## 学到的经验 1. **每日清理自动化**：通过 cron 任务自动执行清理，避免临时文件堆积 2. **heartbeat-state.json 监控**：定期检查系统状态，及时发现问题 ## 待做事项 - [x] 检查 heartbeat-state.json 更新状态 ✅ - [ ] 如有重要发现，更新 MEMORY.md ## 重要发现 ### heartbeat-state.json 状态分析（2026-05-29 22:19）",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35134730637073514,
+      "maxScore": 0.35134730637073514,
+      "firstRecalledAt": "2026-06-20T08:19:51.584Z",
+      "lastRecalledAt": "2026-06-20T08:19:51.584Z",
+      "queryHashes": [
+        "415c2460a611"
+      ],
+      "recallDays": [
+        "2026-06-20"
+      ],
+      "conceptTags": [
+        "memory/2026-05-30.md",
+        "tmp-check2.py",
+        "tmp-final-audit.py",
+        "tmp-r21-check.py",
+        "tmp-r23b.py",
+        "tmp-r24-final.py",
+        "tmp-r25-strict.py",
+        "tmp-review-check.py"
+      ]
+    },
+    "memory:memory/2026-06-11.md:1:44": {
+      "key": "memory:memory/2026-06-11.md:1:44",
+      "path": "memory/2026-06-11.md",
+      "startLine": 1,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "# 2026-06-11 日记 ## 每日0点清理（2026-06-11 00:00 执行） **目录检查结果：** - ✅ `_deprecated/` 目录不存在（无需清理） - ✅ `_download/` 目录不存在（无需清理） - ✅ 无 `_tmp*.py` / `_tmp*.txt` 临时文件（无需清理） - ✅ 工作区清洁 **heartbeat-state.json 状态：** - ⚠️ lastUpdate = 2026-06-08（已过期3天） - lastChecks: email/calendar/weather 均为 null（从未执行） - todos: 1 条待办（Blender download and install，中优先级） - **操作**：已更新 lastUpdate 为 2026-06-11 **Git 工作区状态：** - 待检查（继承昨日状态） --- ## 待做事项（从昨日继承） - [ ] Blender download and install（中优先级，heartbeat-state.json 中记录） - [ ] 继续 R39 审查（昨日完成18%，L701+ 待审查） - [ ] 继续研究 Superpowers 的 TDD for Skills 落地路径 - [ ] 评估 MemPalace Pluggable Backend 对 qclaw mem0_hybrid_search 的参考价值 - [ ] 设计 Agent-Reach doctor 模式在 qclaw heartbeat 中的实现方案",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35069241821765895,
+      "maxScore": 0.35069241821765895,
+      "firstRecalledAt": "2026-06-20T08:19:51.584Z",
+      "lastRecalledAt": "2026-06-20T08:19:51.584Z",
+      "queryHashes": [
+        "415c2460a611"
+      ],
+      "recallDays": [
+        "2026-06-20"
+      ],
+      "conceptTags": [
+        "heartbeat-state.json",
+        "email/calendar/weather",
+        "mem0-hybrid-search",
+        "agent-reach",
+        "日记",
+        "每日",
+        "清理",
+        "执行"
+      ]
+    },
+    "memory:memory/2026-05-11.md:32:76": {
+      "key": "memory:memory/2026-05-11.md:32:76",
+      "path": "memory/2026-05-11.md",
+      "startLine": 32,
+      "endLine": 76,
+      "source": "memory",
+      "snippet": "2. **ruflo 项目落地** — 找到本地代码（`E:\\ai\\资源\\ruflo\\`），扫描56个文件，创建 `skills/SKILL-ruflo.md` 3. **ruflo 落地三子任务**： - hooks-registry ✅ 完成（`agents/hooks_registry.py`，49,943 bytes） - guidance-enforcer ❌ 失败（gateway timeout 1006，未落盘） - hnsw-vector ❌ 失败（gateway timeout 1006，未落盘） **待完成：** guidance-enforcer 和 hnsw-vector 需重跑（subagent 超时问题） ### 待办追踪 | # | 事项 | 状态 | |---|------|------| | 1 | Blender 下载安装 | pending | | 2 | mcporter + blender-mcp 测试 | pending | | 3 | qclaw 集成 blender-mcp | pending | | 4 | 技能模块9合3整合 | pending | | 5 | event_bus + session_vault 合并 | pending | | 6 | _deprecated/ 清理 | pending | | 7 | ruflo: guidance-enforcer 重跑 | pending | | 8 | ruflo: hnsw-vector 重跑 | pending | --- ## ⚠️ 重",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35066496431827543,
+      "maxScore": 0.35066496431827543,
+      "firstRecalledAt": "2026-06-20T08:19:51.584Z",
+      "lastRecalledAt": "2026-06-20T08:19:51.584Z",
+      "queryHashes": [
+        "415c2460a611"
+      ],
+      "recallDays": [
+        "2026-06-20"
+      ],
+      "conceptTags": [
+        "gateway",
+        "skills/skill-ruflo.md",
+        "hooks-registry",
+        "agents/hooks-registry.py",
+        "guidance-enforcer",
+        "hnsw-vector",
+        "blender-mcp",
+        "event-bus"
+      ]
+    },
+    "memory:memory/2026-05-28.md:26:63": {
+      "key": "memory:memory/2026-05-28.md:26:63",
+      "path": "memory/2026-05-28.md",
+      "startLine": 26,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "- 误报 2 个 P0（TRAILING_ATR/ATR_ADAPTIVE 未定义）+ 4 个参数偏差 - 用户纠正后逐条核实，均为误报 - 根本原因：脚本读 config.py，但 trend_trader.py L208-L254 自己定义了所有参数 2. **实盘就绪确认**（02:23） - 回测实测通过 ✅ - 交易逻辑无崩溃风险 ✅ - 止损/止盈/跟踪/平仓全部正确 ✅ - 启动前提：填 API Key + 开代理 127.0.0.1:7897 3. **每日零点任务**（02:30） - 更新 memory/2026-05-28.md ✅ - 检查 _deprecated/ - 不存在 ✅ - 检查 workspace 临时文件 - 仅 _tmp_r21_check.py（0h）✅ - 更新 heartbeat-state.json ✅ ### 待处理 - [ ] 删除失实的 R21 报告（`workspace/lianghua_review_r21_2026-05-28.md`） - [ ] gui_only.py 约20处 label 背景色统一（`bg=_BG` → `bg=\"white\"`） - [ ] rag everything 项目落地方向待确认（装 LEANN / 借鉴思路 / MCP 集成） ### 系统状态 - D盘 1.4% 严重不足（26GB/1863GB） - Python 已恢复可用（E:\\PYTON\\python.exe） - Gateway runtim",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3900340646505356,
+      "maxScore": 0.3900340646505356,
+      "firstRecalledAt": "2026-06-23T07:08:35.918Z",
+      "lastRecalledAt": "2026-06-23T07:08:35.918Z",
+      "queryHashes": [
+        "e894f1cceae1"
+      ],
+      "recallDays": [
+        "2026-06-23"
+      ],
+      "conceptTags": [
+        "gateway",
+        "trailing-atr/atr-adaptive",
+        "config.py",
+        "trend-trader.py",
+        "l208-l254",
+        "止损/止盈/跟踪/平仓全部正确",
+        "127.0.0.1",
+        "memory/2026-05-28.md"
+      ]
+    },
+    "memory:memory/2026-06-18.md:24:70": {
+      "key": "memory:memory/2026-06-18.md:24:70",
+      "path": "memory/2026-06-18.md",
+      "startLine": 24,
+      "endLine": 70,
+      "source": "memory",
+      "snippet": "- lianghua 参数覆盖问题待确认（config.py vs trend_trader.py 硬编码） - 如确认无问题，可准备上实盘 --- ## 工作日志 （待记录今日工作） --- ## 经验与教训 （待记录） --- ## 系统状态（每日更新） （待更新） # 2026-06-18 工作记忆 ## 背景 从 2026-06-17 01:40 会话延续。 ## lianghua R41/R42 审查成果 - R41：全文件 4022 行眼审，评分 8.0/10，✅ 可跑实盘 - R42：换角度审查订单执行可靠性，评分 8.0/10，✅ 设计合理 - 相同结论：无致命Bug，P1×3，P2×2 ## R43 升级建议（已交付） 小谷说\"继续升级\"，给出3级建议（见下文） ### 🔴 P1 修复（3项） 1. `compute_signal_with_ml()` 加 `if not HAS_INDICATORS: return score, regime, atr, detail` 2. PTP 分支 `return False, \"...\"` 删除 3. `deserialize_tiers` 补导入 ### 🟡 策略级问题（建议确认） 4. 参数覆盖：config.py SL=0.8/TP=3.0 vs trend_trader.py SL=1.5/TP=2.0 — 哪个是想要的 champion？ 5. 信号阈值负数：SIGNAL_THRESHOLD=-1.0 是负值，建议改回正数 ### 🟢 增强建议（可选） 6. attac",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38684555292129513,
+      "maxScore": 0.38684555292129513,
+      "firstRecalledAt": "2026-06-23T07:08:35.918Z",
+      "lastRecalledAt": "2026-06-23T07:08:35.918Z",
+      "queryHashes": [
+        "e894f1cceae1"
+      ],
+      "recallDays": [
+        "2026-06-23"
+      ],
+      "conceptTags": [
+        "config.py",
+        "trend-trader.py",
+        "r41/r42",
+        "8.0/10",
+        "compute-signal-with-ml",
+        "has-indicators",
+        "deserialize-tiers",
+        "0.8/tp"
+      ]
+    },
+    "memory:memory/2026-06-17.md:116:148": {
+      "key": "memory:memory/2026-06-17.md:116:148",
+      "path": "memory/2026-06-17.md",
+      "startLine": 116,
+      "endLine": 148,
+      "source": "memory",
+      "snippet": "## 01:40 lianghua R41 审查 ### 审查对象 - 文件：E:\\lianghua\\trend_trader.py（4022行） - 方法：直接 read file 逐段 eyeball，数值验证 - 时间：2026-06-17 01:40 会话期间完成 ### 结论 ✅ **可跑实盘，无致命Bug，综合评分 8.0/10** ### 核心逻辑验证（全部通过） 1. 多头止损止盈方向 ✅（SL=下方，TP=上方） 2. 空头止损止盈方向 ✅（SL=上方，TP=下方） 3. compute_signal 7分制 ✅（EMA/ADX/RSI/MACD/成交量/布林带/微观结构） 4. 仓位计算 ✅（Kelly+风险百分比，MAO缩放，累计上限检查） 5. 崩溃恢复 ✅（check_pending_order_on_startup + wait_for_fill 超时确认） 6. 风控链 ✅（12层防御：预检→熔断→冷却→MAO→Iron Laws→置信度→宏观→情绪） ### 发现的问题 **P1-1**：`compute_signal_with_ml()` 调用 `compute_ema` 未做 HAS_INDICATORS 检查（L1818-1820） **P1-2**：`check_stop_loss_and_profit()` PTP 分支误写 `return False, \"...\"`（L2320） **P1-3**：`deserialize_tiers` 未定义（L2310），PTP 无法工作 **P2**：config.py champion",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3864331185817718,
+      "maxScore": 0.3864331185817718,
+      "firstRecalledAt": "2026-06-23T07:08:35.918Z",
+      "lastRecalledAt": "2026-06-23T07:08:35.918Z",
+      "queryHashes": [
+        "e894f1cceae1"
+      ],
+      "recallDays": [
+        "2026-06-23"
+      ],
+      "conceptTags": [
+        "trend-trader.py",
+        "8.0/10",
+        "compute-signal",
+        "ema/adx/rsi/macd/成交量/布林带/微观结构",
+        "check-pending-order-on-startup",
+        "wait-for-fill",
+        "p1-1",
+        "compute-signal-with-ml"
       ]
     }
   }

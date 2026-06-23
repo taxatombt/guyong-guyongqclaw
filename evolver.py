@@ -825,7 +825,20 @@ def recall(task: str, **fields) -> Optional[dict]:
 
 def observe(tool: str, action: str, target: str, outcome: str = "success",
             error: str = "", duration_ms: float = 0, task_context: str = ""):
-    """记录一次工具调用观察"""
+    """记录一次工具调用观察（含 ISC 安全检查）"""
+    # ISC Defense: 执行链安全预检（来自 safety_monitor.py）
+    try:
+        from safety_monitor import check_tool_call
+        result = check_tool_call(tool, target)
+        if not result.safe:
+            import logging
+            logging.warning(f"🚨 ISC 安全检查拦截: tool={tool}, reason={result.reason}, block={result.block}")
+            if result.block:
+                print(f"🚨 ISC 安全拦截: {result.reason}")
+                # 安全规则阻断 → 不记录此次观察（因为操作被阻止了）
+                return {"blocked": True, "reason": result.reason, "risk_level": result.risk_level.name}
+    except ImportError:
+        pass  # safety_monitor.py 未安装时静默降级
     observer = ToolObserver()
     observer.record_observation(tool, action, target, outcome, error, duration_ms, task_context)
 
