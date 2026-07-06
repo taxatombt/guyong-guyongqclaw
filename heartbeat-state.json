@@ -2,15 +2,41 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null
+    "weather": null,
+    "diskSpace": "2026-06-28T00:00:00+08:00"
+  },
+  "diskStatus": {
+    "C": {"freeGB": 19.9, "pct": 13.2},
+    "D": {"freeGB": 71.3, "pct": 3.8},
+    "E": {"freeGB": 29, "pct": 8.9},
+    "F": {"freeGB": 251.5, "pct": 27}
   },
   "todos": [
     {
       "priority": "medium",
       "status": "pending",
       "id": 1,
-      "text": "Blender download and install"
+      "text": "Blender download and install",
+      "added": "2026-06-15T03:27:00+08:00"
+    },
+    {
+      "priority": "high",
+      "status": "pending",
+      "id": 2,
+      "text": "检查F盘空间下降原因（从34.1%降至27%）",
+      "added": "2026-06-28T00:00:00+08:00"
+    },
+    {
+      "priority": "low",
+      "status": "pending",
+      "id": 3,
+      "text": "评估evolver系统是否需要启用",
+      "added": "2026-06-30T00:00:00+08:00"
     }
   ],
-  "lastUpdate": "2026-06-15T03:27:00+08:00"
+  "lastUpdate": "2026-07-03T00:00:00+08:00",
+  "lastMemoryMaint": "2026-07-03T00:00:00+08:00",
+  "lastEvolverCheck": "2026-06-29T00:00:00+08:00",
+  "lastEvolverCheckError": "qclaw_insights/evolver.py not found",
+  "lastSelfReview": "2026-06-28T00:00:00+08:00"
 }

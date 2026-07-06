@@ -58,5 +58,29 @@
     "task": "每日回顾与清理",
     "lesson": "'检查目录+清理过期文件+写入日记' 方法对 '每日回顾与清理' 有效，记录备用",
     "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-06-25 18:34",
+    "task": "lianghua代码审查R46",
+    "lesson": "'逐段eyeball全文件5215行' 方法对 'lianghua代码审查R46' 有效，记录备用",
+    "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-06-25 23:21",
+    "task": "complete review trend_trader.py large file 5000+ lines",
+    "lesson": "'R34方法：Simple Stupid First + read 分7段逐段eyeball + 数值验证，每段确认再继续，不写复杂脚本' 方法对 'complete review trend_trader.py large file 5000+ lines' 有效，记录备用",
+    "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-06-25 23:21",
+    "task": "R48 完整审查 trend_trader.py 5215行",
+    "lesson": "'R34方法论：读文件逐段eyeball + 数值验证，分7段通读' 方法对 'R48 完整审查 trend_trader.py 5215行' 有效，记录备用",
+    "source": "auto_review"
+  },
+  {
+    "timestamp": "2026-07-01 12:39",
+    "task": "daily_check",
+    "lesson": "'cron_daily_review' 方法对 'daily_check' 有效，记录备用",
+    "source": "auto_review"
   }
 ]

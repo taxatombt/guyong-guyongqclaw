@@ -1,343 +1,337 @@
-# MEMORY.md - 长期记忆
+﻿# MEMORY.md - 闀挎湡璁板繂
 
-## 重要事件与问题
+## 閲嶈浜嬩欢涓庨棶棰?
 
-### 2026-05-24 lianghua 趋势交易系统 审查进展（R16→R17→R18 完成）
-- **R16（凌晨）**：发现4个P0致命Bug + 4个P1问题
-- **R17（中午）**：✅ P0-1死锁已修复、✅ P0-3 config_hot_reload已修复。🟡 P0-2部分修复、❌ P0-4未修
-- **R18（22:11）**：✅ P0-2 ADX方向感知已修复（空头最大负分-3.0=阈值）、✅ P0-4 HTF方向已接受direction参数，**4个P0全部修复**
-- **P1剩余**：price未定义、空头缺should_forbid_new_position、8处except:pass（未修）
-- **综合**：核心交易85%就绪，GUI待完善
-- **审查报告**：R16=`workspace/lianghua_review_r16_2026-05-23.md`，R17=`workspace/lianghua_review_r17_2026-05-24.md`，R18=`workspace/lianghua_review_r18_2026-05-24.md`
+### 2026-05-24 lianghua 瓒嬪娍浜ゆ槗绯荤粺 瀹℃煡杩涘睍锛圧16鈫扲17鈫扲18 瀹屾垚锛?
+- **R16锛堝噷鏅級**锛氬彂鐜?涓狿0鑷村懡Bug + 4涓狿1闂
+- **R17锛堜腑鍗堬級**锛氣渽 P0-1姝婚攣宸蹭慨澶嶃€佲渽 P0-3 config_hot_reload宸蹭慨澶嶃€傪煙?P0-2閮ㄥ垎淇銆佲潓 P0-4鏈慨
+- **R18锛?2:11锛?*锛氣渽 P0-2 ADX鏂瑰悜鎰熺煡宸蹭慨澶嶏紙绌哄ご鏈€澶ц礋鍒?3.0=闃堝€硷級銆佲渽 P0-4 HTF鏂瑰悜宸叉帴鍙梔irection鍙傛暟锛?*4涓狿0鍏ㄩ儴淇**
+- **P1鍓╀綑**锛歱rice鏈畾涔夈€佺┖澶寸己should_forbid_new_position銆?澶別xcept:pass锛堟湭淇級
+- **缁煎悎**锛氭牳蹇冧氦鏄?5%灏辩华锛孏UI寰呭畬鍠?- **瀹℃煡鎶ュ憡**锛歊16=`workspace/lianghua_review_r16_2026-05-23.md`锛孯17=`workspace/lianghua_review_r17_2026-05-24.md`锛孯18=`workspace/lianghua_review_r18_2026-05-24.md`
 
-### 2026-05-25 lianghua R19 审查 + 冒烟测试（完成）
-- **R19（00:50）**：gui_only.py 三问题全部修复✅（密钥保存、指标栏刷新、日志复制），Canvas白底+滚动条+1/3Tab已落地，唯一瑕疵Tab内label背景色
-- **回测实测（01:00）**：`run_backtest('2026-01-01','2026-01-31')` → 10000U→9955.51U，2笔交易，回撤0.23%，成功✅
-- **回测降级**：API不可用时自动用模拟数据
-- **P1遗留**：空头缺should_forbid_new_position、price未定义首轮快照失效、8处空except
-- **综合就绪度90%**：回测随时可跑，模拟盘需API Key+代理7897
-- **报告**：`workspace/lianghua_review_r19_2026-05-25.md`
+### 2026-05-25 lianghua R19 瀹℃煡 + 鍐掔儫娴嬭瘯锛堝畬鎴愶級
+- **R19锛?0:50锛?*锛歡ui_only.py 涓夐棶棰樺叏閮ㄤ慨澶嶁渽锛堝瘑閽ヤ繚瀛樸€佹寚鏍囨爮鍒锋柊銆佹棩蹇楀鍒讹級锛孋anvas鐧藉簳+婊氬姩鏉?1/3Tab宸茶惤鍦帮紝鍞竴鐟曠柕Tab鍐卨abel鑳屾櫙鑹?- **鍥炴祴瀹炴祴锛?1:00锛?*锛歚run_backtest('2026-01-01','2026-01-31')` 鈫?10000U鈫?955.51U锛?绗斾氦鏄擄紝鍥炴挙0.23%锛屾垚鍔熲渽
+- **鍥炴祴闄嶇骇**锛欰PI涓嶅彲鐢ㄦ椂鑷姩鐢ㄦā鎷熸暟鎹?- **P1閬楃暀**锛氱┖澶寸己should_forbid_new_position銆乸rice鏈畾涔夐杞揩鐓уけ鏁堛€?澶勭┖except
+- **缁煎悎灏辩华搴?0%**锛氬洖娴嬮殢鏃跺彲璺戯紝妯℃嫙鐩橀渶API Key+浠ｇ悊7897
+- **鎶ュ憡**锛歚workspace/lianghua_review_r19_2026-05-25.md`
 
-### 2026-05-24 lianghua GUI 布局调整（方案已交付，待顾庸t实施）
-- **目标**：下板块占 1/3（weight 2:1），溢出加滚动条，白底填充Canvas
-- **当前GUI状态**：weight已改为3:1（=1/4非1/3，需改2:1），Canvas+滚动条+白底均未落地
-- 状态：方案完整，待顾庸t实施
+### 2026-05-24 lianghua GUI 甯冨眬璋冩暣锛堟柟妗堝凡浜や粯锛屽緟椤惧焊t瀹炴柦锛?
+- **鐩爣**锛氫笅鏉垮潡鍗?1/3锛坵eight 2:1锛夛紝婧㈠嚭鍔犳粴鍔ㄦ潯锛岀櫧搴曞～鍏匔anvas
+- **褰撳墠GUI鐘舵€?*锛歸eight宸叉敼涓?:1锛?1/4闈?/3锛岄渶鏀?:1锛夛紝Canvas+婊氬姩鏉?鐧藉簳鍧囨湭钀藉湴
+- 鐘舵€侊細鏂规瀹屾暣锛屽緟椤惧焊t瀹炴柦
 
-### 2026-05-28 lianghua R21 审查 + 实盘就绪确认
-- **R21 审查报告严重失实**：误报2个P0 + 4个参数偏差，根本原因是脚本读 config.py 但 trend_trader.py L208-L254 自定义了所有参数
-- **用户逐条核实**：TRAILING_ATR / ATR_ADAPTIVE / ENABLE_KELLY 均已定义，参数值为用户选择非 bug
-- **结论：实盘就绪** ✅（填 API Key + 开代理即可跑）
-- **遗留**：gui_only.py ~20处 label 用 `bg=_BG`（白底暗色补丁，非致命）、失实 R21 报告待删
+### 2026-05-28 lianghua R21 瀹℃煡 + 瀹炵洏灏辩华纭
+- **R21 瀹℃煡鎶ュ憡涓ラ噸澶卞疄**锛氳鎶?涓狿0 + 4涓弬鏁板亸宸紝鏍规湰鍘熷洜鏄剼鏈 config.py 浣?trend_trader.py L208-L254 鑷畾涔変簡鎵€鏈夊弬鏁?- **鐢ㄦ埛閫愭潯鏍稿疄**锛歍RAILING_ATR / ATR_ADAPTIVE / ENABLE_KELLY 鍧囧凡瀹氫箟锛屽弬鏁板€间负鐢ㄦ埛閫夋嫨闈?bug
+- **缁撹锛氬疄鐩樺氨缁?* 鉁咃紙濉?API Key + 寮€浠ｇ悊鍗冲彲璺戯級
+- **閬楃暀**锛歡ui_only.py ~20澶?label 鐢?`bg=_BG`锛堢櫧搴曟殫鑹茶ˉ涓侊紝闈炶嚧鍛斤級銆佸け瀹?R21 鎶ュ憡寰呭垹
 
-### 2026-05-28 代码审查重新启动（12:16 会话）
-- **审查对象**：E:\lianghua\trend_trader.py（约2894行）
-- **审查进度**（offset 1-1720）
-  1. 导入模块与初始化：16个外部模块带try/except优雅降级，单实例锁端口27453
-  2. 核心功能：API客户端带线程锁，技术指标计算函数齐全
-  3. 信号评分与订单执行：compute_signal 7分制，place_order 带成交验证
-  4. 止盈止损与全局风控：跟踪止盈逻辑正确，全局止损使用函数属性存储峰值
-- **潜在问题发现**（7项）
-  1. config_hot_reload 的 start_watcher() 异常处理不完整
-  2. compute_signal 中 ADX 评分逻辑可能过于严格
-  3. check_pending_order_on_startup 未验证 pending 类型
-  4. compute_signal_with_ml 调用未定义的 compute_ema
-  5. check_global_stop_loss 中 `dir()` 检测方式不可靠
-  6. 开仓时 klines_for_ind 重新调用可能导致与主循环不一致
-  7. _state_lock 定义位置未确认
-- **系统状态更新**：Python 已恢复（E:\PYTON\python.exe），D盘 1.4% 空间（26GB/1863GB）
+### 2026-05-28 浠ｇ爜瀹℃煡閲嶆柊鍚姩锛?2:16 浼氳瘽锛?
+- **瀹℃煡瀵硅薄**锛欵:\lianghua\trend_trader.py锛堢害2894琛岋級
+- **瀹℃煡杩涘害**锛坥ffset 1-1720锛? 1. 瀵煎叆妯″潡涓庡垵濮嬪寲锛?6涓閮ㄦā鍧楀甫try/except浼橀泤闄嶇骇锛屽崟瀹炰緥閿佺鍙?7453
+  2. 鏍稿績鍔熻兘锛欰PI瀹㈡埛绔甫绾跨▼閿侊紝鎶€鏈寚鏍囪绠楀嚱鏁伴綈鍏?
+  3. 淇″彿璇勫垎涓庤鍗曟墽琛岋細compute_signal 7鍒嗗埗锛宲lace_order 甯︽垚浜ら獙璇?
+  4. 姝㈢泩姝㈡崯涓庡叏灞€椋庢帶锛氳窡韪鐩堥€昏緫姝ｇ‘锛屽叏灞€姝㈡崯浣跨敤鍑芥暟灞炴€у瓨鍌ㄥ嘲鍊?
+- **娼滃湪闂鍙戠幇**锛?椤癸級
+  1. config_hot_reload 鐨?start_watcher() 寮傚父澶勭悊涓嶅畬鏁?
+  2. compute_signal 涓?ADX 璇勫垎閫昏緫鍙兘杩囦簬涓ユ牸
+  3. check_pending_order_on_startup 鏈獙璇?pending 绫诲瀷
+  4. compute_signal_with_ml 璋冪敤鏈畾涔夌殑 compute_ema
+  5. check_global_stop_loss 涓?`dir()` 妫€娴嬫柟寮忎笉鍙潬
+  6. 寮€浠撴椂 klines_for_ind 閲嶆柊璋冪敤鍙兘瀵艰嚧涓庝富寰幆涓嶄竴鑷?
+  7. _state_lock 瀹氫箟浣嶇疆鏈‘璁?
+- **绯荤粺鐘舵€佹洿鏂?*锛歅ython 宸叉仮澶嶏紙E:\PYTON\python.exe锛夛紝D鐩?1.4% 绌洪棿锛?6GB/1863GB锛?
+### 2026-05-31 R31 浠ｇ爜瀹℃煡锛堝畬鎴愶級
+- **馃敶 楂橀闄╁彂鐜?*锛歀1663/L1773 姝㈡崯姝㈢泩鏂瑰悜鍙兘鍙嶄簡锛堥渶浜哄伐楠岃瘉锛?- **瀹℃煡鏂规硶鏀硅繘**锛氳仛鐒﹀疄鐩橀闄╋紝鍙粰寤鸿涓嶇粰鎿嶄綔姝ラ
+- **杈圭晫鎰忚瘑鎻愬崌**锛氬浼氫簡"缁欏缓璁?鈮?缁欎慨澶嶆楠?鐨勫尯鍒?
+### 2026-05-30 R29/R30 浠ｇ爜瀹℃煡
+- **R29瀹℃煡**锛氬彂鐜癱ompute_ema鍛藉悕涓嶄竴鑷撮棶棰橈紝浣嗙粰浜嗚繃浜庡叿浣撶殑淇姝ラ锛堣秺鐣岋級
+- **R30瀹℃煡**锛氭敼杩涙柟娉曪紝鍙緭鍑哄彂鐜颁笉缁?鎬庝箞鏀?
+- **鏁欒**锛歭ianghua椤圭洰 = 鍙彁寤鸿锛屼笉鎿嶄綔锛岀敋鑷充笉缁欏叿浣撲慨澶嶆楠?
+### 2026-05-28 R22 浠ｇ爜瀹℃煡锛堝畬鎴愶級
+- **2涓狿0鑷村懡Bug**锛歀2597璇硶閿欒锛堟嫭鍙锋湭闂悎鈫掔▼搴?00%鏃犳硶杩愯锛夈€丟UI Tab閲嶅鍒涘缓锛坃mt()琚皟鐢?5娆★紝搴旀湁12涓猅ab锛?- **2涓狿1 Bug**锛歝onfig_hot_reload瀵煎叆鏃跺簭闂锛坙og()鏈畾涔夛級銆乸ending['orderId']鏈鏌ョ被鍨?- **缁煎悎璇勫垎**锛?.5/10锛堟湁P0 Bug锛屼慨澶嶅悗鎵嶈兘杩愯锛?- **缁撹**锛氣渽 椤圭洰鏃犺嚧鍛介棶棰橈紝鍙窇瀹炵洏锛圧24楠岃瘉锛?- **鏂规硶璁烘暀璁?*锛氫唬鐮佸鏌ュ繀椤荤敤鑴氭湰瀹炴祴锛屼笉鑳藉嚟鑲夌溂/璁板繂鍒ゆ柇锛圧21鈫扲22鈫扲23鍏ㄨ鎶ワ紝R24鍐欏疄娴嬭剼鏈悗鎵嶇‘璁わ級
+- **绾㈢嚎**锛歭ianghua 椤圭洰 = 鍙彁寤鸿锛屼笉鎿嶄綔浠讳綍鏂囦欢
+- **娉ㄦ剰**锛歊21鎶ュ憡澶卞疄宸茬‘璁わ紝R22鏄柊瀹℃煡缁撴灉
 
-### 2026-05-31 R31 代码审查（完成）
-- **🔴 高风险发现**：L1663/L1773 止损止盈方向可能反了（需人工验证）
-- **审查方法改进**：聚焦实盘风险，只给建议不给操作步骤
-- **边界意识提升**：学会了"给建议"≠"给修复步骤"的区别
+### 2026-05-28 BN 杩炴帴涓撻」瀹℃煡锛?7:37锛?
+- **P0-1**锛歚test_net` 鍙傛暟鍚嶉敊璇紙L436锛夛紝搴斾负 `testnet`锛屽鑷存ā鎷熺洏杩炵敓浜х綉鍙兘浜忕湡閽?- **P0-2**锛歚proxies = {}` 搴旀敼涓?`proxies = None`锛圠451锛夛紝绌哄瓧鍏歌嚧 TypeError
+- **P1-1**锛歚get_client()` 鏃犻噸杩為€昏緫
+- **P1-2**锛歚get_account()` 缂烘潈闄愭彁绀?- **P2**锛氱‖缂栫爜 fallback 浠锋牸 95000.0锛屽簲鐢ㄧ紦瀛?- **寰呬慨澶嶆€绘竻鍗?*锛歅0脳4锛圠2597璇硶+Tab閲嶅+testnet+proxies锛夈€丳1脳4锛坔ot_reload鏃跺簭+pending绫诲瀷+閲嶈繛+鏉冮檺锛夈€丳2脳1
 
-### 2026-05-30 R29/R30 代码审查
-- **R29审查**：发现compute_ema命名不一致问题，但给了过于具体的修复步骤（越界）
-- **R30审查**：改进方法，只输出发现不给"怎么改"
-- **教训**：lianghua项目 = 只提建议，不操作，甚至不给具体修复步骤
+### 2026-05-28 绯荤粺鐘舵€?
+- **Python 宸叉仮澶嶅彲鐢?*锛圗:\PYTON\python.exe锛夆啋 evolver/self_review/insights 鐜板彲姝ｅ父杩愯
+- **2026-06-16 Python PATH闂**锛歅ATH涓畫鐣檖ython璺緞浣嗕簩杩涘埗缂哄け锛寃inget浠巔ython.org涓嬭浇鏋佹參锛屽崕涓?Tuna闀滃儚404锛岄渶鎵嬪姩瀹夎鎴栨壘鍏朵粬婧?- **D鐩?1.4% 涓嶈冻**锛?6GB/1863GB锛夛紝杈冧箣鍓?0.1%锛?.8GB锛夋湁鎵€鏀瑰杽
+- **Gateway runtime 宸插仠姝?*锛屼絾杩為€氭€ф甯革紙127.0.0.1:28789锛?- qclaw-text-file skill 鏈畨瑁咃紝write 宸ュ叿琚嫤鎴椂鏃犳浛浠ｆ柟妗?- **鐢ㄦ埛鍏磋叮**锛氭兂瀛︿範 rag everything 椤圭洰骞惰惤鍦板埌鑷繁鐨勭郴缁燂紙2026-05-25锛?
+### 2026-05-23 Git Token 娉勯湶浜嬩欢
+- **闂**锛歚memory/2026-05-14.md` 涓寘鍚簡 GitHub token 鏄庢枃 (`ghp_...`)锛実it push 琚?GitHub 鎷︽埅
+- **鍘熷洜**锛氫箣鍓嶅湪 memory 鏂囦欢涓褰曚簡鍖呭惈 token 鐨勫懡浠ゆ垨閰嶇疆
+- **瑙ｅ喅**锛氬皢 token 鏇挎崲涓?REDACTED锛岄噸鏂?commit push 鎴愬姛锛坄3e1c940`鈫抈origin/master`锛?- **淇**锛氣潓 "GitHub token 杩囨湡浜? 鈫?鉁?token 娌¤繃鏈燂紝鏄綉缁滈棶棰樺鑷翠箣鍓嶆帹閫佸け璐?- **杩滅▼鍒嗘敮**锛歚origin/master`锛堜笉鏄?`origin/main`锛?- **R21/R22 璇姤婢勬竻**锛氬娆¤鎶ユ牴鍥犳槸娌℃悶娓?`config.py` 鍜?`trend_trader.py` 璋佹槸鐪熷疄鏁版嵁婧?- **鐪熷疄 P0 Bug锛?涓級**锛? 1. P0-1锛歚compute_ema` NameError锛圠1232鏈鍏ワ紝澶氬ご淇″彿鏃跺穿婧冿級
+  2. P0-2锛歚config.py` L81 `PAPER_SIMULATE = False`锛堟敞閲婅妯℃嫙鐩橈紝瀹為檯璺戝疄鐩橈級
+  3. P0-3锛氫粨浣嶅弬鏁扮‖缂栫爜锛堝拷鐣?config.py 鐨?MAX_POSITION_PCT/RISK_BUDGET_PCT锛?
+- **宸查獙璇佹纭?*锛歴hould_forbid_new_position 宸插鍏ャ€乼estnet/proxies 宸蹭慨澶嶃€佹枃浠惰娉曟纭€佹鎹?璺熻釜/鍏ㄥ眬椋庢帶閫昏緫姝ｇ‘
+- **缁撹**锛氫慨澶?涓狿0鍚庡彲杩愯锛屾姤鍛婅 `workspace/lianghua_review_r23_2026-05-28.md`
+- R21 鎶ュ憡澶卞疄锛堣鎶0+鍙傛暟鍋忓樊锛夛紝R22 瀹℃煡鏃朵唬鐮佸凡閲嶅啓锛圠2597璇硶閿欒宸蹭笉瀛樺湪锛?- R23 閲囩敤瀹炴祴鑴氭湰楠岃瘉锛坕mport + ast.parse + grep锛夛紝纭鐪熷疄 Bug
+- 鏈€缁堝緟淇锛歅0脳3锛坈ompute_ema瀵煎叆銆丳APER_SIMULATE榛樿鍊笺€佷粨浣嶇‖缂栫爜锛?
+### 2026-05-29 lianghua R24 鏈€缁堝鏌ワ紙瀹炵洏灏辩华纭锛?
+- **缁撹**锛氣渽 椤圭洰鏃犺嚧鍛介棶棰橈紝鍙窇瀹炵洏
+- **瀹炴祴楠岃瘉**锛氳娉曟纭€佸鍏ユ垚鍔熴€丠AS_INDICATORS=True銆乧ompute_ema宸插鍏ャ€佸绌哄紑浠撻€昏緫姝ｇ‘銆佹鎹熸鐩堟柟鍚戞纭?- **R21/R22/R23 璇姤婢勬竻**锛歝ompute_ema NameError 鏄鎶ャ€丠AS_INDICATORS=False 鏄鎶?- **鏍瑰洜**锛氫箣鍓嶅嚟鑲夌溂/璁板繂鍒ゆ柇锛屾病瀹為檯杩愯浠ｇ爜
+- **鏂规硶璁烘敼杩?*锛氬啓瀹炴祴鑴氭湰 `_tmp_r24_final.py`锛岀敤 hasattr + unittest.mock 楠岃瘉锛屼笉鍑倝鐪?- **P2閬楃暀**锛氫粨浣嶈绠楄 MIN_POSITION 灏侀《锛堜繚瀹堣璁★級銆丼TRATEGY.md 鏂囨。杩囨椂
+- **鎶ュ憡**锛歚workspace/lianghua_review_r24_2026-05-29.md`
 
-### 2026-05-28 R22 代码审查（完成）
-- **2个P0致命Bug**：L2597语法错误（括号未闭合→程序100%无法运行）、GUI Tab重复创建（_mt()被调用25次，应有12个Tab）
-- **2个P1 Bug**：config_hot_reload导入时序问题（log()未定义）、pending['orderId']未检查类型
-- **综合评分**：5.5/10（有P0 Bug，修复后才能运行）
-- **结论**：✅ 项目无致命问题，可跑实盘（R24验证）
-- **方法论教训**：代码审查必须用脚本实测，不能凭肉眼/记忆判断（R21→R22→R23全误报，R24写实测脚本后才确认）
-- **红线**：lianghua 项目 = 只提建议，不操作任何文件
-- **注意**：R21报告失实已确认，R22是新审查结果
+### 2026-05-29 lianghua UnboundLocalError Bug锛堝凡淇锛?
+- **浜嬩欢**锛氳繍琛屾椂鍙戠幇 `compute_adx` 鐨?UnboundLocalError锛?1:49锛?- **鏍瑰洜**锛歚trading_loop()` 鍐呴儴 L1642/L1747 鏈?`from indicators import ..., compute_adx`锛孭ython 缂栬瘧鏃舵妸 `compute_adx` 鏍囪涓哄眬閮ㄥ彉閲忥紝浣?L1573 鍦?L1642 涔嬪墠灏辫皟鐢ㄤ簡瀹?鈫?UnboundLocalError
+- **淇**锛氬垹闄?L1642 鍜?L1747 涓殑 `compute_adx` 瀵煎叆锛堝凡鍦ㄦ枃浠堕《灞傚畾涔夛紝鏃犻渶鍐嶅锛?- **鍚岀被闂**锛歚compute_ema` 鍦?L734 瀹氫箟涓?`compute_emas`锛屼絾 L15 妯″潡绾у鍏?`compute_ema`锛堝崟鏁帮級鈥?杩欎笉浼氶€犳垚 UnboundLocalError锛堟ā鍧楃骇瀵煎叆锛夛紝浣嗗嚱鏁板悕涓嶅尮閰?- **R29 瀹℃煡纭**锛歝ompute_adx 宸蹭慨澶嶏紝浠ｇ爜璇硶姝ｇ‘
+- **绾㈢嚎**锛歭ianghua 椤圭洰 = 鍙彁寤鸿锛屼笉鎿嶄綔浠讳綍鏂囦欢
 
-### 2026-05-28 BN 连接专项审查（17:37）
-- **P0-1**：`test_net` 参数名错误（L436），应为 `testnet`，导致模拟盘连生产网可能亏真钱
-- **P0-2**：`proxies = {}` 应改为 `proxies = None`（L451），空字典致 TypeError
-- **P1-1**：`get_client()` 无重连逻辑
-- **P1-2**：`get_account()` 缺权限提示
-- **P2**：硬编码 fallback 价格 95000.0，应用缓存
-- **待修复总清单**：P0×4（L2597语法+Tab重复+testnet+proxies）、P1×4（hot_reload时序+pending类型+重连+权限）、P2×1
+### 閲嶈绯荤粺鍘熷垯
+- ### 2026-05-31 lianghua R34 瀹℃煡锛堟渶缁堢‘璁?鉁咃級
+- **馃敶馃敶馃敶 涔嬪墠澶氭璇姤**锛歊31-R33 鍏ㄩ儴璇姤姝㈡崯姝㈢泩鏂瑰悜閿欒
+- **R34 姝ｇ‘鏂规硶**锛氱洿鎺ヨ鏂囦欢锛坄read file offset=1790 limit=80`锛夛紝鑲夌溂纭 + 鏁板€奸獙璇?- **鉁?鏈€缁堢粨璁?*锛氬绌烘鎹熸鐩堟柟鍚?*瀹屽叏姝ｇ‘**
+- 澶氬ご锛歋L = entry - ATR锛堜笅鏂光渽锛夛紝TP = entry + ATR锛堜笂鏂光渽锛?- 绌哄ご锛歋L = entry + ATR锛堜笂鏂光渽锛夛紝TP = entry - ATR锛堜笅鏂光渽锛?- **瀹炵洏灏辩华**锛氶厤缃?API_KEY + API_SECRET + 寮€浠ｇ悊锛堢鍙?7897锛夊嵆鍙?- **寤鸿**锛氬厛妯℃嫙鐩樿窇 1-2 澶╋紝纭鏃犲紓甯稿啀涓婂疄鐩?
+### 2026-05-31 浠婃棩鍏抽敭鏁欒锛堝鏌ユ柟娉曡锛?
+- **澶辫触妯″紡**锛圧31-R33锛夛細
+  1. 鍐欏鏉傝剼鏈?鈫?鑴氭湰鏈?bug 鈫?杈撳嚭閿欒 鈫?璇姤鐢ㄦ埛
+  2. grep 鎵惧瓧绗︿覆 鈫?涓嶇悊瑙ｈ涔?鈫?鎵惧埌閿欒浣嶇疆
+  3. 涓嶉獙璇佸伐鍏疯緭鍑?鈫?鐩存帴鐩镐俊 鈫?鎶ュ憡閿欒缁撹
+- **姝ｇ‘鍋氭硶**锛圧34 鎴愬姛锛夛細
+  1. **Simple Stupid First**锛氱洿鎺ヨ鏂囦欢锛岄€愭 eyeball
+  2. **楠岃瘉姣忎釜姝ラ**锛氳涓€娈?鈫?纭 鈫?鍐嶄笅涓€娈?
+  3. **鏁板€奸獙璇?*锛氱敤鍏蜂綋鏁板瓧浠ｅ叆璁＄畻锛岀‘璁ゆ柟鍚?
+- **璁颁綇**锛?- 鉂?涓嶈鍐欏鏉傝剼鏈垎鏋愪唬鐮?- 鉁?鐩存帴 `read file offset=X limit=Y` 閫愭鐪?- 鉁?鐢ㄦ暟鍊奸獙璇侊紝涓嶇敤閫昏緫鎺ㄧ悊
 
-### 2026-05-28 系统状态
-- **Python 已恢复可用**（E:\PYTON\python.exe）→ evolver/self_review/insights 现可正常运行
-- **2026-06-16 Python PATH问题**：PATH中残留python路径但二进制缺失，winget从python.org下载极慢，华为/Tuna镜像404，需手动安装或找其他源
-- **D盘 1.4% 不足**（26GB/1863GB），较之前 0.1%（1.8GB）有所改善
-- **Gateway runtime 已停止**，但连通性正常（127.0.0.1:28789）
-- qclaw-text-file skill 未安装，write 工具被拦截时无替代方案
-- **用户兴趣**：想学习 rag everything 项目并落地到自己的系统（2026-05-25）
+### 2026-06-01 lianghua 娌欑闄愬埗 + GitHub 鎺ㄩ€佺Н鍘?
+- **娌欑闄愬埗**锛氭棤娉曠洿鎺?read `E:\lianghua\trend_trader.py`锛圥ath escapes sandbox root锛?- 瑙ｅ喅鏂规锛氱敤鎴锋墜鍔ㄥ鍒跺埌 workspace 鎴栫矘璐翠唬鐮佺墖娈?- 鐢ㄦ埛鍥炲銆屽彧鏈夊鏍告病鏈夌櫧鍚嶅崟銆嶁啋 闃诲涓?- **GitHub 鎺ㄩ€佺Н鍘?*锛氭渶鍚庢帹閫?2026-05-23锛坈ommit 3e1a940锛夛紝寰呮帹閫?R24-R34 + memory 鏇存柊
+- **qclaw-text-file skill**锛氫粛鏈畨瑁咃紝write 宸ュ叿琚嫤鎴椂鏃犳浛浠ｆ柟妗?
+### 2026-06-08/09 lianghua R38 瀹℃煡瀹屾垚锛堝疄鐩樺氨缁?鉁咃級
+- **鏃堕棿**锛?026-06-08 16:37 GMT+8
+- **鑼冨洿**锛歵rend_trader.py 鍏ㄩ噺 3812 琛?- **瀹℃煡鏂规硶**锛氱洿鎺ヨ鏂囦欢锛岄€愭 eyeball锛屾暟鍊奸獙璇侊紙鍧氭寔 R34 姝ｇ‘鏂规硶璁猴級
+- **缁撹**锛歅0/P1 鍧囨棤锛屽疄鐩樺氨缁?鉁?- **鍞竴 P2**锛歚compute_signal_with_ml` 瀹氫箟浣嗕富寰幆鏈皟鐢紙ML+SMC 澧炲己鍔熻兘鏈敓鏁堬紝涓嶅奖鍝嶅熀纭€浜ゆ槗锛?- **缁煎悎璇勫垎**锛?.5/10
+- **瀵规瘮 R37 鏂板**锛歊egime 鑷€傚簲闃堝€笺€丮AO 姣涢€夋鏋躲€佸鍛ㄦ湡鍏辨尟鐭╅樀銆佹尝娴?缂犺鏁村悎銆侀噺鍖栧寮虹郴鍒?
+### 2026-06-17 lianghua R41 瀹℃煡瀹屾垚锛堝疄鐩樺氨缁?鉁咃級
+- **鏃堕棿**锛?026-06-17 01:40 GMT+8 瀹屾垚
+- **瀹℃煡瀵硅薄**锛歵rend_trader.py锛圗:\lianghua\锛?022 琛岋級
+- **瀹℃煡鏂规硶**锛氱洿鎺ヨ鏂囦欢锛岄€愭 eyeball锛屾暟鍊奸獙璇侊紙鍧氭寔 R34 姝ｇ‘鏂规硶璁猴級
+- **缁撹**锛氣渽 8.0/10锛屽彲璺戝疄鐩橈紝鏃犺嚧鍛紹ug
+- **鏍稿績閫昏緫楠岃瘉**锛氬绌烘鎹熸鐩堟柟鍚戞纭€乧ompute_signal 7鍒嗗埗銆佷粨浣嶈绠桲elly+椋庨櫓鐧惧垎姣斻€佸穿婧冩仮澶嶉€昏緫銆?2灞傞鎺ч摼
+- **P1鍙戠幇**锛? 1. P1-1锛歚compute_signal_with_ml()` 璋冪敤 `compute_ema` 鏈仛 HAS_INDICATORS 妫€鏌ワ紙L1818-L1820锛?
+  2. P1-2锛歚check_stop_loss_and_profit()` PTP 鍒嗘敮璇啓 `return False`锛圠2320锛?
+  3. P1-3锛歚deserialize_tiers` 鏈畾涔夛紙PTP 鍔熻兘鏃犳硶宸ヤ綔锛?
+- **P2鍙戠幇**锛氬弬鏁拌鐩栭棶棰?鈥?config.py champion 鍙傛暟 `STOP_LOSS_ATR=0.8/TAKE_PROFIT_ATR=3.0` 琚?trend_trader.py L340 纭紪鐮佽鐩栦负 `1.5/2.0`锛宑hampion 鍙傛暟瀹為檯涓嶇敓鏁?- **瀹℃煡鎶ュ憡**锛歚lianghua_review_r41_2026-06-15.md`锛?864瀛楄妭锛?- **鏂规硶璁洪獙璇?*锛氬潥鎸?R34 姝ｇ‘鏂规硶璁猴紝鍒嗗娈佃瀹屽叏鏂囦欢锛屾湭鍐欏鏉傝剼鏈紝鏃犺鎶?
+### 2026-06-11 lianghua R39 瀹℃煡瀹屾垚锛堝叏鏂囦欢楠屾敹 鉁咃級
+- **鏃堕棿**锛?026-06-11 22:58 GMT+8 瀹屾垚
+- **瀹℃煡瀵硅薄**锛歵rend_trader.py锛圗:\lianghua\锛?896 琛岋級
+- **瀹℃煡杩涘害**锛氫粠 R39 涓柇澶勶紙L700, ~18%锛夌户缁埌鏂囦欢鏈熬锛圠3896, 100%锛?- **鏍稿績缁撹**锛氣渽 8.0/10锛屽彲璺戝疄鐩橈紝鏃犺嚧鍛紹ug
+- **宸茬‘璁ゆ纭?*锛? 1. 澶氱┖姝㈡崯姝㈢泩鏂瑰悜姝ｇ‘锛堟暟鍊奸獙璇侀€氳繃锛?
+  2. compute_signal 7鍒嗗埗璇勫垎閫昏緫姝ｇ‘
+  3. 浠撲綅璁＄畻鏈変繚鎶わ紙Kelly + 椋庨櫓鐧惧垎姣旓級
+  4. 宕╂簝鎭㈠閫昏緫姝ｇ‘锛坈heck_pending_order_on_startup锛?
+  5. wait_for_fill 瓒呮椂鍚庡悜甯佸畨纭鐪熷疄鐘舵€?
+- **鍘嗗彶P1宸插叏閮ㄤ慨澶?*锛歝onfig_hot_reload鍚姩椤哄簭銆丼HORT_SIGNAL_THRESHOLD鏈畾涔夈€乧ompute_ema NameError
+- **P2閬楃暀锛堜綆椋庨櫓锛?*锛歝ompute_kelly_position纭紪鐮併€乸ending鐘舵€佸啓鍏ユ椂搴忋€佹ā鎷熺洏浣欓纭紪鐮?0.0
+- **瀹℃煡鎶ュ憡**锛歚lianghua_review_r39_2026-06-10.md`锛?866瀛楄妭锛?- **鏂规硶璁洪獙璇?*锛氬潥鎸?R34 姝ｇ‘鐨勫鏌ユ柟娉曪紙Simple Stupid First銆佹暟鍊奸獙璇併€佸閲忎氦浠橈級锛屽垎4娈佃瀹屽叏鏂囦欢锛屾湭鍐欏鏉傝剼鏈紝鏈鎶?
+### 2026-06-10 lianghua R39 瀹℃煡杩涘害锛堣繘琛屼腑锛?
+- **鏃堕棿**锛?026-06-10 00:56 GMT+8 寮€濮?- **瀹℃煡瀵硅薄**锛歵rend_trader.py锛圗:\lianghua\锛?896 琛岋級
+- **瀹℃煡杩涘害**锛歀1-L700锛堢害 18%锛?- **宸插彂鐜板彉鍖?*锛?- 鏂板 `signal_quality_tracker.py` 瀵煎叆锛圠395锛?026-06-09锛?- `get_klines()` 澧炲姞浜嗘暟鎹簮 fallback锛坧ublic API 鈫?client 鈫?public REST锛?- `_safe_get_price()` 澧炲姞浜嗚秴鏃朵繚鎶?- **寰呯户缁?*锛歀701+ 鏍稿績鎶€鏈寚鏍囧嚱鏁般€乧ompute_signal銆佷富寰幆
+- **瀹℃煡鏂规硶**锛氱洿鎺ヨ鏂囦欢锛岄€愭 eyeball锛屾暟鍊奸獙璇?
+### 2026-06-01 浠婃棩鍏抽敭鏁欒锛堝鏌ユ柟娉曡 鈥?绮惧崕鐗堬級
+- **Simple Stupid First**锛氭斁寮冨鏉傝剼鏈紝鐩存帴 `read file offset=X limit=Y` 閫愭 eyeball
+- **鏁板€奸獙璇佷紭鍏?*锛氱敤鍏蜂綋鏁板瓧浠ｅ叆璁＄畻锛屼笉鐢ㄩ€昏緫鎺ㄧ悊
+- **澧為噺浜や粯**锛氱‘璁や竴娈靛啀涓嬩竴娈碉紝涓嶈拷姹備竴娆℃€с€屽畬鏁存姤鍛娿€?- **楠岃瘉宸ュ叿鏈韩**锛氳剼鏈啓瀹屽悗鍏堟祴璇曡緭鍑猴紝涓嶇洸鐩俊浠?- **澶辫触妯″紡**锛氬啓澶嶆潅鑴氭湰锛堚啋 bug 鈫?閿欒杈撳嚭 鈫?璇姤锛? grep 璇箟璇垽 > 涓嶉獙璇佺洿鎺ユ姤鍛?- **2026-06-11 鏂规硶璁洪獙璇?*锛歊39 鍏ㄦ枃浠跺鏌ュ潥鎸佽鏂规硶璁猴紝鍒?娈佃瀹屽叏鏂囦欢锛圠2201鈫扡2601鈫扡3001鈫扡3401鈫掓湯灏撅級锛屾瘡娈甸獙璇佸悗缁х画锛屾渶缁堢粨璁哄噯纭紝鏃犺嚧鍛紹ug锛岄獙璇佷簡璇ユ柟娉曡鍦ㄥぇ鍨嬩唬鐮佸鏌ヤ腑鐨勬湁鏁堟€?
+### 2026-06-02 lianghua R36 瀹℃煡锛堟渶鏂颁唬鐮佺‘璁わ級
+- **馃敶 鍏抽敭鏁欒**锛氬鏌ュ墠蹇呴』纭鏂囦欢鏉ユ簮鏄渶鏂扮増锛屼笉鑳介粯璁ょ敤缂撳瓨/涓嬭浇鐩綍鐨勫壇鏈?- **鐢ㄦ埛璐ㄧ枒**锛?浣犲鐨勬槸鏈€鏂扮殑浠ｇ爜鍚? 鈫?鏆撮湶浜嗚鍓湰鐨勯棶棰?鈫?鐢ㄦ埛鎵瑰噯鐩存帴璇?E:\lianghua\
+- **涓庝箣鍓嶅壇鏈湁宸紓**锛氫箣鍓嶈鐨勬槸 `C:\Users\yiseg\.openclaw\media\qqbot\downloads\...` 涓嬬殑鏃у壇鏈?- **R36 瀹℃煡缁撹**锛氭牳蹇冧氦鏄撻€昏緫鏃犺嚧鍛?Bug锛屽彲璺戝疄鐩?- **P1-1**锛歚SHORT_SIGNAL_THRESHOLD` 鏈畾涔夛紙L1751锛夛紝绌哄崟浼?NameError
+- **P1-2**锛歚config_hot_reload` L92 `start_watcher()` 鍦?`log()` 瀹氫箟鍓嶈皟鐢?- **P2-1**锛歚place_order()` pending 鐘舵€佸啓鍏ュ湪 `wait_for_fill()` 涔嬪墠
+- **P2-2**锛歚compute_kelly_position()` 鏈娇鐢?- **P2-3**锛氭ā鎷熺洏浣欓纭紪鐮?20.0
 
-### 2026-05-23 Git Token 泄露事件
-- **问题**：`memory/2026-05-14.md` 中包含了 GitHub token 明文 (`ghp_...`)，git push 被 GitHub 拦截
-- **原因**：之前在 memory 文件中记录了包含 token 的命令或配置
-- **解决**：将 token 替换为 REDACTED，重新 commit push 成功（`3e1c940`→`origin/master`）
-- **修正**：❌ "GitHub token 过期了" → ✅ token 没过期，是网络问题导致之前推送失败
-- **远程分支**：`origin/master`（不是 `origin/main`）
-- **R21/R22 误报澄清**：多次误报根因是没搞清 `config.py` 和 `trend_trader.py` 谁是真实数据源
-- **真实 P0 Bug（3个）**：
-  1. P0-1：`compute_ema` NameError（L1232未导入，多头信号时崩溃）
-  2. P0-2：`config.py` L81 `PAPER_SIMULATE = False`（注释说模拟盘，实际跑实盘）
-  3. P0-3：仓位参数硬编码（忽略 config.py 的 MAX_POSITION_PCT/RISK_BUDGET_PCT）
-- **已验证正确**：should_forbid_new_position 已导入、testnet/proxies 已修复、文件语法正确、止损/跟踪/全局风控逻辑正确
-- **结论**：修复3个P0后可运行，报告见 `workspace/lianghua_review_r23_2026-05-28.md`
-- R21 报告失实（误报P0+参数偏差），R22 审查时代码已重写（L2597语法错误已不存在）
-- R23 采用实测脚本验证（import + ast.parse + grep），确认真实 Bug
-- 最终待修复：P0×3（compute_ema导入、PAPER_SIMULATE默认值、仓位硬编码）
+### 2026-06-02 绯荤粺闂涓庝慨澶?
+- **heartbeat-state.json 缂栫爜闂**锛歅owerShell `ConvertTo-Json | Out-File` 榛樿鐢ㄧ郴缁熺紪鐮侊紙Windows GBK锛夛紝鍐?JSON 蹇呴』鐢?`-Encoding UTF8`
+- **2026-06-12 淇杩涘睍**锛歨eartbeat-state.json 瀛樺湪涔辩爜/缂栫爜閿欒锛屽凡澶囦唤鍘熸枃浠跺埌 `heartbeat-state.json.bak`锛屽己鍒舵洿鏂?`lastUpdate` 涓?`2026-06-12`锛屼絾 `lastChecks` 浠嶄负绌猴紝寰呭悗缁繘涓€姝ヤ慨澶嶏紙闇€澶勭悊鏂囦欢涓殑涔辩爜瀛楁锛?- **寰呮竻鐞嗘枃浠?*锛堣秴杩?澶╋級锛歚_tmp_r32_fixed.py`, `_tmp_r32_verify.py`, `_tmp_r33_find_real.py`
+- **鐢ㄦ埛鍋忓ソ**锛氬鏌ユ椂涓嶈鍙嶅纭锛岀洿鎺ユ墽琛岋紱涓嶈搴熻瘽锛岃鐩存帴缁欑粨鏋?
+### PowerShell 缂栫爜瑙勫垯锛?026-06-02 纭锛?
+- 鉂?`ConvertTo-Json | Out-File $path` 鈫?榛樿 GBK锛堜腑鏂囦贡鐮侊級
+- 鉁?`ConvertTo-Json | Out-File $path -Encoding UTF8` 鈫?姝ｇ‘
+- 鉁?鐢?Python 鑴氭湰鍐欏叆 JSON锛堣嚜鍔?UTF-8锛?- **褰卞搷**锛氭墍鏈?JSON 鍐欏叆鎿嶄綔锛坔eartbeat-state.json銆侀厤缃瓑锛?
+### 2026-06-02 绯荤粺鐘舵€?
+- **Python**锛氬彲鐢紙E:\PYTON\python.exe锛?- **纾佺洏**锛欴鐩?1.4%锛?6GB锛夛紝C鐩樹綆锛?3.3GB锛?- **GitHub 澶囦唤**锛氭渶鍚庢帹閫?2026-05-23锛坈ommit 3e1a940锛夛紝寰呮帹閫?R24-R34 + memory 鏇存柊
+- **寰呮竻鐞?*锛?涓?`_tmp_*.py` 鏂囦欢锛堣秴杩?澶╋級
 
-### 2026-05-29 lianghua R24 最终审查（实盘就绪确认）
-- **结论**：✅ 项目无致命问题，可跑实盘
-- **实测验证**：语法正确、导入成功、HAS_INDICATORS=True、compute_ema已导入、多空开仓逻辑正确、止损止盈方向正确
-- **R21/R22/R23 误报澄清**：compute_ema NameError 是误报、HAS_INDICATORS=False 是误报
-- **根因**：之前凭肉眼/记忆判断，没实际运行代码
-- **方法论改进**：写实测脚本 `_tmp_r24_final.py`，用 hasattr + unittest.mock 验证，不凭肉眼
-- **P2遗留**：仓位计算被 MIN_POSITION 封顶（保守设计）、STRATEGY.md 文档过时
-- **报告**：`workspace/lianghua_review_r24_2026-05-29.md`
+### 2026-06-03 lianghua R37 瀹℃煡锛堟矙绠辨嫤鎴級
+- **瀹℃煡鑼冨洿**锛歀1-L2050 宸茶瀹岋紝L2050-L3048 琚矙绠辨嫤鎴紙Path escapes sandbox root锛?- **娌欑闄愬埗**锛歚read` 宸ュ叿鏃犳硶璇诲彇 `E:\lianghua\trend_trader.py`锛堣秴鍑?workspace 鏍圭洰褰曪級
+- **瑙ｅ喅鏂规**锛氶渶瑕佺敤鎴锋墜鍔ㄥ鍒舵枃浠跺埌 workspace 鎴栫矘璐翠唬鐮佺墖娈?- **宸茬‘璁ゆ纭?*锛歀1-L2050 鐨勬墍鏈夋牳蹇冮€昏緫锛堟鐩堟鎹熴€丮AO棰勬銆両ron Laws銆佸绌哄紑浠擄級
+- **P0/P1 寤剁画**锛歚PAPER_SIMULATE = False`锛堝疄鐩橀粯璁ゅ紑鍚級銆乣SHORT_SIGNAL_THRESHOLD = -3`锛堢┖澶撮棬妲涜繃楂橈級
+- **鍏抽敭鏁欒**锛氭矙绠遍檺鍒舵槸纭鍨掞紝鏃犳硶缁曡繃锛涘閲忓鏌ユ槸鍚堢悊鐨勶紙鍒嗘纭鏇村畨鍏級
 
-### 2026-05-29 lianghua UnboundLocalError Bug（已修复）
-- **事件**：运行时发现 `compute_adx` 的 UnboundLocalError（21:49）
-- **根因**：`trading_loop()` 内部 L1642/L1747 有 `from indicators import ..., compute_adx`，Python 编译时把 `compute_adx` 标记为局部变量，但 L1573 在 L1642 之前就调用了它 → UnboundLocalError
-- **修复**：删除 L1642 和 L1747 中的 `compute_adx` 导入（已在文件顶层定义，无需再导）
-- **同类问题**：`compute_ema` 在 L734 定义为 `compute_emas`，但 L15 模块级导入 `compute_ema`（单数）— 这不会造成 UnboundLocalError（模块级导入），但函数名不匹配
-- **R29 审查确认**：compute_adx 已修复，代码语法正确
-- **红线**：lianghua 项目 = 只提建议，不操作任何文件
+### 2026-06-04 lianghua 椤圭洰璋冭瘯锛圓PI -2015 閿欒锛?
+- **閿欒**锛歚APIError(code=-2015): Invalid API-key,IP,or permissions for action.`
+- **鍦烘櫙**锛氶」鐩兘鍚姩銆佽兘璇诲彇琛屾儏锛屼絾涓嬪崟鏃舵姤閿?-2015
+- **鏍瑰洜锛?0% 姒傜巼锛?*锛欼P 鐧藉悕鍗曢棶棰橈紙甯佸畨瀹樼綉 鈫?API Management 鈫?鎶婃湇鍔″櫒 IP 鍔犵櫧鍚嶅崟锛?- **鍏朵粬鍙兘**锛欰PI Key 鏉冮檺涓嶈冻锛堟病寮€閫氫氦鏄撴潈闄愶級銆乀estnet/Real API Key 娣锋穯銆並ey 鏈纭姞杞?- **鎺掓煡姝ラ**锛? 1. 妫€鏌?IP 鐧藉悕鍗曪紙鏈€甯歌锛夆啋 鎶婃湇鍔″櫒 IP 鍔犺繘鍘伙紝鎴栨竻绌?IP 鐧藉悕鍗曪紙瀹夊叏鎬т綆锛?
+  2. 妫€鏌?API Key 鏉冮檺 鈫?鉁?Enable Spot & Margin Trading銆佲渽 Enable Futures锛堝鏋滃仛鍚堢害锛?
+  3. 妫€鏌?Testnet/Real 娣锋穯 鈫?Testnet Key 涓嶈兘鐢ㄥ湪瀹炵洏 API
+  4. 妫€鏌?API Key 鏄惁姝ｇ‘鍔犺浇 鈫?GUI 閲岀偣銆岃繛鎺ャ€嶇湅鏃ュ織锛屾垨妫€鏌?`api_keys.json`
+- **鍏抽敭鏁欒**锛?- API -2015 閿欒涓嶈鎱岋細90% 鏄?IP 鐧藉悕鍗曢棶棰橈紝涓嶆槸 Key 鏈韩鏃犳晥
+- 鍏堥棶瀹屾暣閿欒淇℃伅锛氬寘鎷姹傝矾寰勶紙/ping 杩樻槸 /api/v3/order锛夛紝鑳藉揩閫熷畾浣嶉棶棰?- 鐢ㄦ埛璇?鍐嶅涓€娆? = 绔嬪嵆鎵ц锛氫笉瑕佺姽璞紝鐩存帴寮€濮?
+### 鐢ㄦ埛鍋忓ソ涓庝氦浜掗鏍?
+- **纾佺洏鐩戞帶**锛?026-06-28 璧凤紝涓嶅啀涓诲姩妫€鏌ユ垨姹囨姤纾佺洏绌洪棿锛堢敤鎴锋槑纭涓嶇敤绠★級
+- **纾佺洏鐩戞帶寮哄寲**锛?026-07-06 鐢ㄦ埛鍐嶆纭锛氭案杩滀笉闇€瑕佺洃鎺х鐩樼┖闂?- **Blender**锛?026-07-06 鐢ㄦ埛鏄庣‘璇存案杩滀笉闇€瑕佸畨瑁咃紝浠庢墍鏈夊緟鍔炰腑绉婚櫎
+- **瀹℃煡浠诲姟**锛氫笉瑕佸弽澶嶇‘璁わ紝鐩存帴鎵ц锛涗笉瑕佸簾璇濓紝瑕佺洿鎺ョ粰缁撴灉
+- **浠ｇ爜瀹℃煡**锛氱敤鎴疯"鍐嶅涓€娆ianghua" 鈫?绔嬪嵆鎵ц锛屼笉闂簾璇?- **鏂囦欢鏉ユ簮**锛氬鏌ュ墠蹇呴』纭鏄渶鏂扮増锛屼笉鑳介粯璁ょ敤缂撳瓨/鍓湰
+- **娌欑闄愬埗**锛氭棤娉曡鍙?workspace 澶栫殑鏂囦欢锛屽繀椤昏鐢ㄦ埛澶嶅埗鎴栫矘璐?
+## 缁忛獙涓庡喅绛?
 
-### 重要系统原则
-- ### 2026-05-31 lianghua R34 审查（最终确认 ✅）
-- **🔴🔴🔴 之前多次误报**：R31-R33 全部误报止损止盈方向错误
-- **R34 正确方法**：直接读文件（`read file offset=1790 limit=80`），肉眼确认 + 数值验证
-- **✅ 最终结论**：多空止损止盈方向**完全正确**
-- 多头：SL = entry - ATR（下方✅），TP = entry + ATR（上方✅）
-- 空头：SL = entry + ATR（上方✅），TP = entry - ATR（下方✅）
-- **实盘就绪**：配置 API_KEY + API_SECRET + 开代理（端口 7897）即可
-- **建议**：先模拟盘跑 1-2 天，确认无异常再上实盘
+- lianghua璇勫垎绯荤粺鏈夋紡娲烇紝姘歌繙杈句笉鍒板紑鍗曟爣鍑?- **澶栭儴淇℃伅闇€瑕侀獙璇?*锛?026-06-07锛夛細鎶栭煶鏁版嵁涓嶅噯纭紝Agent-Reach 瀹為檯 2.3涓団瓙 鑰岄潪瀹ｄ紶鐨?700猸愶紝蹇呴』 GitHub 鎼滅储纭
+- **Subagent-Driven Development**锛?026-06-07锛夛細Superpowers 鐨?sessions_spawn 瀵规爣锛屽€煎緱娣卞叆瀛︿範
+- **Pluggable Backend 璁捐**锛?026-06-07锛夛細MemPalace 鐨勬娊璞℃帴鍙ｅ彲鍙傝€冿紝鐢ㄤ簬 qclaw 璁板繂绯荤粺鎶借薄鍖?- **Doctor 璇婃柇妯″紡**锛?026-06-07锛夛細Agent-Reach 鐨?health check 鍙€熼壌鍒?qclaw heartbeat
 
-### 2026-05-31 今日关键教训（审查方法论）
-- **失败模式**（R31-R33）：
-  1. 写复杂脚本 → 脚本有 bug → 输出错误 → 误报用户
-  2. grep 找字符串 → 不理解语义 → 找到错误位置
-  3. 不验证工具输出 → 直接相信 → 报告错误结论
-- **正确做法**（R34 成功）：
-  1. **Simple Stupid First**：直接读文件，逐段 eyeball
-  2. **验证每个步骤**：读一段 → 确认 → 再下一段
-  3. **数值验证**：用具体数字代入计算，确认方向
-- **记住**：
-- ❌ 不要写复杂脚本分析代码
-- ✅ 直接 `read file offset=X limit=Y` 逐段看
-- ✅ 用数值验证，不用逻辑推理
+### 2026-06-07 AI Agent 瀛︿範锛堝畬鎴愶級
+- **瀛︿範鎴愭灉**锛氭繁搴︾爺绌?3 涓?GitHub 椤圭洰锛圫uperpowers/Agent-Reach/MemPalace锛?- **SYSTEM.md 鏇存柊**锛氶」鐩础鐚煩闃?+3锛堟劅鐭ュ眰/Agent-Reach銆佽蹇嗗眰/MemPalace銆佹墽琛屽眰/Superpowers锛?- **SKILL 鏂囦欢鍒涘缓**锛歋KILL-superpowers.md锛圫ubagent-Driven Development + TDD锛夈€丼KILL-mempalace.md锛圵ing/Room/Hall 4灞傜粨鏋?+ Pluggable Backend锛?- **鍏抽敭缁忛獙**锛氬閮ㄤ俊鎭渶瑕侀獙璇侊紙鎶栭煶鏁版嵁涓嶅噯纭級銆丼ubagent-Driven Development 瀵规爣銆丳luggable Backend 璁捐鍙傝€冦€丏octor 璇婃柇妯″紡鍊熼壌
 
-### 2026-06-01 lianghua 沙箱限制 + GitHub 推送积压
-- **沙箱限制**：无法直接 read `E:\lianghua\trend_trader.py`（Path escapes sandbox root）
-- 解决方案：用户手动复制到 workspace 或粘贴代码片段
-- 用户回复「只有审核没有白名单」→ 阻塞中
-- **GitHub 推送积压**：最后推送 2026-05-23（commit 3e1a940），待推送 R24-R34 + memory 更新
-- **qclaw-text-file skill**：仍未安装，write 工具被拦截时无替代方案
+### 2026-06-05 绯荤粺鐘舵€佷笌浠诲姟鎵ц
+- **姣忔棩闆剁偣浠诲姟瀹屾垚**锛歨eartbeat_self_review.py 鉁呫€亀orkspace 娓呯悊 3 涓复鏃舵枃浠?鉁?- **绯荤粺鐘舵€?*锛欸ateway 杩愯涓紙绔彛 28789锛夈€丏鐩?1.4%锛?6GB/1863GB锛夈€丳ython 鍙敤
+- **GitHub 鎺ㄩ€佺Н鍘?*锛氭渶鍚庢帹閫?2026-05-23锛坈ommit 3e1a940锛夛紝寰呮帹閫?R24-R34 + memory 鏇存柊
+- **寰呮竻鐞?*锛?涓?`_tmp_*.py` 鏂囦欢锛堣秴杩?澶╋級
+- 鐪煎澶ф枃浠惰閫愭璇诲畬锛岃烦琛岃浠ｇ爜鏄撴紡鍏抽敭閫昏緫锛屽鑷磋鎶?
+### 2026-06-17 lianghua R41 瀹℃煡锛堝畬鏁存枃浠剁溂瀹★級
+- **瀹℃煡瀵硅薄**锛歵rend_trader.py锛?022琛岋級锛屽畬鏁撮€愭鐪煎
+- **缁煎悎璇勫垎**锛?.0/10锛屸渽 鍙窇瀹炵洏锛屾棤鑷村懡 Bug
+- **鏍稿績閫昏緫楠岃瘉**锛欵MA/ADX/RSI/MACD/鎴愪氦閲?甯冩灄甯?寰缁撴瀯 7鍒嗗埗淇″彿銆並elly+椋庨櫓鐧惧垎浣嶄粨浣嶃€?2灞傞鎺ч摼銆佸穿婧冩仮澶嶅叏閮ㄩ€氳繃
+- **P1-1**锛歚compute_signal_with_ml()` 璋冪敤 `compute_ema` 鍓嶆湭鍋?`HAS_INDICATORS` 妫€鏌ワ紝ML 璺緞鍦?indicators.py 涓嶅瓨鍦ㄦ椂浼?NameError
+- **P1-2**锛歚check_stop_loss_and_profit()` PTP 鍒嗘敮璇啓 `return False, "..."`锛堝綋鍓嶄笉宕╂簝浣嗕唬鐮佷笉骞插噣锛?- **P1-3**锛歚deserialize_tiers` 鏈畾涔夛紝PTP 鍔熻兘鏃犳硶宸ヤ綔锛堣 try/except 鍚炴帀锛屼笉浼氬穿婧冿級
+- **P2锛堝弬鏁拌鐩栵級**锛歝onfig.py 鐨?champion 鍙傛暟 `STOP_LOSS_ATR=0.8 / TAKE_PROFIT_ATR=3.0` 琚?trend_trader.py L340 纭紪鐮佽鐩栦负 1.5/2.0锛宑hampion 鍙傛暟瀹為檯涓嶇敓鏁堬紝闇€鐢ㄦ埛纭
+- **鏂规硶璁洪獙璇?*锛歊34 鏂规硶璁猴紙Simple Stupid First銆佺洿鎺ヨ鏂囦欢銆佹暟鍊奸獙璇併€佸閲忎氦浠橈級鍦ㄥぇ鍨嬩唬鐮佸鏌ヤ腑鎸佺画鏈夋晥锛屼笉鍒嗘鏄撴紡鍏抽敭閫昏緫
 
-### 2026-06-08/09 lianghua R38 审查完成（实盘就绪 ✅）
-- **时间**：2026-06-08 16:37 GMT+8
-- **范围**：trend_trader.py 全量 3812 行
-- **审查方法**：直接读文件，逐段 eyeball，数值验证（坚持 R34 正确方法论）
-- **结论**：P0/P1 均无，实盘就绪 ✅
-- **唯一 P2**：`compute_signal_with_ml` 定义但主循环未调用（ML+SMC 增强功能未生效，不影响基础交易）
-- **综合评分**：8.5/10
-- **对比 R37 新增**：Regime 自适应阈值、MAO 毛选框架、多周期共振矩阵、波浪+缠论整合、量化增强系列
+### 2026-06-18 lianghua R42 瀹℃煡锛堣鍗曟墽琛屽彲闈犳€э級
+- **瀹℃煡瑙掑害**锛氭崲瑙掑害瀹℃煡璁㈠崟鎵ц鍙潬鎬э紝浠庡彟涓€涓瑙掗獙璇佺郴缁熷仴澹€?- **缁煎悎璇勫垎**锛?.0/10锛屸渽 璁捐鍚堢悊锛屾棤鑷村懡 Bug
+- **P1-1**锛歚attach_stop_loss_profit()` 鏃犻噸璇曢€昏緫锛堢綉缁滄姈鍔?甯佸畨鐬柇鍙兘瀵艰嚧姝㈡崯澶辨晥锛?- **P1-2**锛歚place_order()` pending 鐘舵€佸啓鍏ュ湪 `wait_for_fill()` 璋冪敤鍓嶏紝瀛樺湪鐘舵€佷笉涓€鑷寸獥鍙ｏ紙鍙仮澶嶄絾闈炴渶浼橈級
 
-### 2026-06-17 lianghua R41 审查完成（实盘就绪 ✅）
-- **时间**：2026-06-17 01:40 GMT+8 完成
-- **审查对象**：trend_trader.py（E:\lianghua\，4022 行）
-- **审查方法**：直接读文件，逐段 eyeball，数值验证（坚持 R34 正确方法论）
-- **结论**：✅ 8.0/10，可跑实盘，无致命Bug
-- **核心逻辑验证**：多空止损止盈方向正确、compute_signal 7分制、仓位计算Kelly+风险百分比、崩溃恢复逻辑、12层风控链
-- **P1发现**：
-  1. P1-1：`compute_signal_with_ml()` 调用 `compute_ema` 未做 HAS_INDICATORS 检查（L1818-L1820）
-  2. P1-2：`check_stop_loss_and_profit()` PTP 分支误写 `return False`（L2320）
-  3. P1-3：`deserialize_tiers` 未定义（PTP 功能无法工作）
-- **P2发现**：参数覆盖问题 — config.py champion 参数 `STOP_LOSS_ATR=0.8/TAKE_PROFIT_ATR=3.0` 被 trend_trader.py L340 硬编码覆盖为 `1.5/2.0`，champion 参数实际不生效
-- **审查报告**：`lianghua_review_r41_2026-06-15.md`（4864字节）
-- **方法论验证**：坚持 R34 正确方法论，分多段读完全文件，未写复杂脚本，无误报
+### 2026-06-18 lianghua R43 鍗囩骇寤鸿锛堝凡浜や粯灏忚胺锛?
+- **馃敶 P1 淇**锛?椤癸紝蹇呴』淇锛夛細
+  1. `compute_signal_with_ml()` 璋冪敤鍓嶅姞 `if not HAS_INDICATORS: return score, regime, atr, detail`
+  2. PTP 鍒嗘敮 `return False, "..."` 鍒犻櫎
+  3. `deserialize_tiers` 琛ュ鍏?
+- **馃煛 绛栫暐绾ч棶棰?*锛堥渶鐢ㄦ埛纭锛夛細
+  4. 鍙傛暟瑕嗙洊锛歝onfig.py SL=0.8/TP=3.0 vs trend_trader.py L340 SL=1.5/TP=2.0 鈥?鍝釜鏄湡姝ｆ兂瑕佺殑 champion锛?
+  5. 淇″彿闃堝€艰礋鏁帮細SIGNAL_THRESHOLD=-1.0 鏄礋鍊硷紝寤鸿鏀瑰洖姝ｆ暟
+- **馃煝 澧炲己寤鸿**锛堝彲閫夛級锛? 6. attach_stop_loss_profit 鍔犻噸璇?
+  7. pending 鍐欏叆鏃跺簭绉诲埌 wait_for_fill 涔嬪悗
+  8. 鍐峰嵈鏈哄埗鏀逛负鍙厤缃椂闂?
 
-### 2026-06-11 lianghua R39 审查完成（全文件验收 ✅）
-- **时间**：2026-06-11 22:58 GMT+8 完成
-- **审查对象**：trend_trader.py（E:\lianghua\，3896 行）
-- **审查进度**：从 R39 中断处（L700, ~18%）继续到文件末尾（L3896, 100%）
-- **核心结论**：✅ 8.0/10，可跑实盘，无致命Bug
-- **已确认正确**：
-  1. 多空止损止盈方向正确（数值验证通过）
-  2. compute_signal 7分制评分逻辑正确
-  3. 仓位计算有保护（Kelly + 风险百分比）
-  4. 崩溃恢复逻辑正确（check_pending_order_on_startup）
-  5. wait_for_fill 超时后向币安确认真实状态
-- **历史P1已全部修复**：config_hot_reload启动顺序、SHORT_SIGNAL_THRESHOLD未定义、compute_ema NameError
-- **P2遗留（低风险）**：compute_kelly_position硬编码、pending状态写入时序、模拟盘余额硬编码20.0
-- **审查报告**：`lianghua_review_r39_2026-06-10.md`（6866字节）
-- **方法论验证**：坚持 R34 正确的审查方法（Simple Stupid First、数值验证、增量交付），分4段读完全文件，未写复杂脚本，未误报
-
-### 2026-06-10 lianghua R39 审查进度（进行中）
-- **时间**：2026-06-10 00:56 GMT+8 开始
-- **审查对象**：trend_trader.py（E:\lianghua\，3896 行）
-- **审查进度**：L1-L700（约 18%）
-- **已发现变化**：
-- 新增 `signal_quality_tracker.py` 导入（L395，2026-06-09）
-- `get_klines()` 增加了数据源 fallback（public API → client → public REST）
-- `_safe_get_price()` 增加了超时保护
-- **待继续**：L701+ 核心技术指标函数、compute_signal、主循环
-- **审查方法**：直接读文件，逐段 eyeball，数值验证
-
-### 2026-06-01 今日关键教训（审查方法论 — 精华版）
-- **Simple Stupid First**：放弃复杂脚本，直接 `read file offset=X limit=Y` 逐段 eyeball
-- **数值验证优先**：用具体数字代入计算，不用逻辑推理
-- **增量交付**：确认一段再下一段，不追求一次性「完整报告」
-- **验证工具本身**：脚本写完后先测试输出，不盲目信任
-- **失败模式**：写复杂脚本（→ bug → 错误输出 → 误报）> grep 语义误判 > 不验证直接报告
-- **2026-06-11 方法论验证**：R39 全文件审查坚持该方法论，分4段读完全文件（L2201→L2601→L3001→L3401→末尾），每段验证后继续，最终结论准确，无致命Bug，验证了该方法论在大型代码审查中的有效性
-
-### 2026-06-02 lianghua R36 审查（最新代码确认）
-- **🔴 关键教训**：审查前必须确认文件来源是最新版，不能默认用缓存/下载目录的副本
-- **用户质疑**："你审的是最新的代码吗" → 暴露了读副本的问题 → 用户批准直接读 E:\lianghua\
-- **与之前副本有差异**：之前读的是 `C:\Users\yiseg\.openclaw\media\qqbot\downloads\...` 下的旧副本
-- **R36 审查结论**：核心交易逻辑无致命 Bug，可跑实盘
-- **P1-1**：`SHORT_SIGNAL_THRESHOLD` 未定义（L1751），空单会 NameError
-- **P1-2**：`config_hot_reload` L92 `start_watcher()` 在 `log()` 定义前调用
-- **P2-1**：`place_order()` pending 状态写入在 `wait_for_fill()` 之前
-- **P2-2**：`compute_kelly_position()` 未使用
-- **P2-3**：模拟盘余额硬编码 20.0
-
-### 2026-06-02 系统问题与修复
-- **heartbeat-state.json 编码问题**：PowerShell `ConvertTo-Json | Out-File` 默认用系统编码（Windows GBK），写 JSON 必须用 `-Encoding UTF8`
-- **2026-06-12 修复进展**：heartbeat-state.json 存在乱码/编码错误，已备份原文件到 `heartbeat-state.json.bak`，强制更新 `lastUpdate` 为 `2026-06-12`，但 `lastChecks` 仍为空，待后续进一步修复（需处理文件中的乱码字段）
-- **待清理文件**（超过1天）：`_tmp_r32_fixed.py`, `_tmp_r32_verify.py`, `_tmp_r33_find_real.py`
-- **用户偏好**：审查时不要反复确认，直接执行；不要废话，要直接给结果
-
-### PowerShell 编码规则（2026-06-02 确认）
-- ❌ `ConvertTo-Json | Out-File $path` → 默认 GBK（中文乱码）
-- ✅ `ConvertTo-Json | Out-File $path -Encoding UTF8` → 正确
-- ✅ 用 Python 脚本写入 JSON（自动 UTF-8）
-- **影响**：所有 JSON 写入操作（heartbeat-state.json、配置等）
-
-### 2026-06-02 系统状态
-- **Python**：可用（E:\PYTON\python.exe）
-- **磁盘**：D盘 1.4%（26GB），C盘低（13.3GB）
-- **GitHub 备份**：最后推送 2026-05-23（commit 3e1a940），待推送 R24-R34 + memory 更新
-- **待清理**：3个 `_tmp_*.py` 文件（超过1天）
-
-### 2026-06-03 lianghua R37 审查（沙箱拦截）
-- **审查范围**：L1-L2050 已读完，L2050-L3048 被沙箱拦截（Path escapes sandbox root）
-- **沙箱限制**：`read` 工具无法读取 `E:\lianghua\trend_trader.py`（超出 workspace 根目录）
-- **解决方案**：需要用户手动复制文件到 workspace 或粘贴代码片段
-- **已确认正确**：L1-L2050 的所有核心逻辑（止盈止损、MAO预检、Iron Laws、多空开仓）
-- **P0/P1 延续**：`PAPER_SIMULATE = False`（实盘默认开启）、`SHORT_SIGNAL_THRESHOLD = -3`（空头门槛过高）
-- **关键教训**：沙箱限制是硬壁垒，无法绕过；增量审查是合理的（分段确认更安全）
-
-### 2026-06-04 lianghua 项目调试（API -2015 错误）
-- **错误**：`APIError(code=-2015): Invalid API-key,IP,or permissions for action.`
-- **场景**：项目能启动、能读取行情，但下单时报错 -2015
-- **根因（90% 概率）**：IP 白名单问题（币安官网 → API Management → 把服务器 IP 加白名单）
-- **其他可能**：API Key 权限不足（没开通交易权限）、Testnet/Real API Key 混淆、Key 未正确加载
-- **排查步骤**：
-  1. 检查 IP 白名单（最常见）→ 把服务器 IP 加进去，或清空 IP 白名单（安全性低）
-  2. 检查 API Key 权限 → ✅ Enable Spot & Margin Trading、✅ Enable Futures（如果做合约）
-  3. 检查 Testnet/Real 混淆 → Testnet Key 不能用在实盘 API
-  4. 检查 API Key 是否正确加载 → GUI 里点「连接」看日志，或检查 `api_keys.json`
-- **关键教训**：
-- API -2015 错误不要慌：90% 是 IP 白名单问题，不是 Key 本身无效
-- 先问完整错误信息：包括请求路径（/ping 还是 /api/v3/order），能快速定位问题
-- 用户说"再审一次" = 立即执行：不要犹豫，直接开始
-
-### 用户偏好与交互风格
-- **审查任务**：不要反复确认，直接执行；不要废话，要直接给结果
-- **代码审查**：用户说"再审一次lianghua" → 立即执行，不问废话
-- **文件来源**：审查前必须确认是最新版，不能默认用缓存/副本
-- **沙箱限制**：无法读取 workspace 外的文件，必须让用户复制或粘贴
-
-## 经验与决策
-
-- lianghua评分系统有漏洞，永远达不到开单标准
-- **外部信息需要验证**（2026-06-07）：抖音数据不准确，Agent-Reach 实际 2.3万⭐ 而非宣传的 700⭐，必须 GitHub 搜索确认
-- **Subagent-Driven Development**（2026-06-07）：Superpowers 的 sessions_spawn 对标，值得深入学习
-- **Pluggable Backend 设计**（2026-06-07）：MemPalace 的抽象接口可参考，用于 qclaw 记忆系统抽象化
-- **Doctor 诊断模式**（2026-06-07）：Agent-Reach 的 health check 可借鉴到 qclaw heartbeat
-
-### 2026-06-07 AI Agent 学习（完成）
-- **学习成果**：深度研究 3 个 GitHub 项目（Superpowers/Agent-Reach/MemPalace）
-- **SYSTEM.md 更新**：项目贡献矩阵 +3（感知层/Agent-Reach、记忆层/MemPalace、执行层/Superpowers）
-- **SKILL 文件创建**：SKILL-superpowers.md（Subagent-Driven Development + TDD）、SKILL-mempalace.md（Wing/Room/Hall 4层结构 + Pluggable Backend）
-- **关键经验**：外部信息需要验证（抖音数据不准确）、Subagent-Driven Development 对标、Pluggable Backend 设计参考、Doctor 诊断模式借鉴
-
-### 2026-06-05 系统状态与任务执行
-- **每日零点任务完成**：heartbeat_self_review.py ✅、workspace 清理 3 个临时文件 ✅
-- **系统状态**：Gateway 运行中（端口 28789）、D盘 1.4%（26GB/1863GB）、Python 可用
-- **GitHub 推送积压**：最后推送 2026-05-23（commit 3e1a940），待推送 R24-R34 + memory 更新
-- **待清理**：3个 `_tmp_*.py` 文件（超过1天）
-- 眼审大文件要逐段读完，跳行读代码易漏关键逻辑，导致误报
-
-### 2026-06-17 lianghua R41 审查（完整文件眼审）
-- **审查对象**：trend_trader.py（4022行），完整逐段眼审
-- **综合评分**：8.0/10，✅ 可跑实盘，无致命 Bug
-- **核心逻辑验证**：EMA/ADX/RSI/MACD/成交量/布林带/微观结构 7分制信号、Kelly+风险百分位仓位、12层风控链、崩溃恢复全部通过
-- **P1-1**：`compute_signal_with_ml()` 调用 `compute_ema` 前未做 `HAS_INDICATORS` 检查，ML 路径在 indicators.py 不存在时会 NameError
-- **P1-2**：`check_stop_loss_and_profit()` PTP 分支误写 `return False, "..."`（当前不崩溃但代码不干净）
-- **P1-3**：`deserialize_tiers` 未定义，PTP 功能无法工作（被 try/except 吞掉，不会崩溃）
-- **P2（参数覆盖）**：config.py 的 champion 参数 `STOP_LOSS_ATR=0.8 / TAKE_PROFIT_ATR=3.0` 被 trend_trader.py L340 硬编码覆盖为 1.5/2.0，champion 参数实际不生效，需用户确认
-- **方法论验证**：R34 方法论（Simple Stupid First、直接读文件、数值验证、增量交付）在大型代码审查中持续有效，不分段易漏关键逻辑
-
-### 2026-06-18 lianghua R42 审查（订单执行可靠性）
-- **审查角度**：换角度审查订单执行可靠性，从另一个视角验证系统健壮性
-- **综合评分**：8.0/10，✅ 设计合理，无致命 Bug
-- **P1-1**：`attach_stop_loss_profit()` 无重试逻辑（网络抖动/币安瞬断可能导致止损失效）
-- **P1-2**：`place_order()` pending 状态写入在 `wait_for_fill()` 调用前，存在状态不一致窗口（可恢复但非最优）
-
-### 2026-06-18 lianghua R43 升级建议（已交付小谷）
-- **🔴 P1 修复**（3项，必须修复）：
-  1. `compute_signal_with_ml()` 调用前加 `if not HAS_INDICATORS: return score, regime, atr, detail`
-  2. PTP 分支 `return False, "..."` 删除
-  3. `deserialize_tiers` 补导入
-- **🟡 策略级问题**（需用户确认）：
-  4. 参数覆盖：config.py SL=0.8/TP=3.0 vs trend_trader.py L340 SL=1.5/TP=2.0 — 哪个是真正想要的 champion？
-  5. 信号阈值负数：SIGNAL_THRESHOLD=-1.0 是负值，建议改回正数
-- **🟢 增强建议**（可选）：
-  6. attach_stop_loss_profit 加重试
-  7. pending 写入时序移到 wait_for_fill 之后
-  8. 冷却机制改为可配置时间
-
-### 2026-06-21 lianghua R43 审查（P0 致命 Bug 确认 ❌ 不可实盘）
-- **时间**：2026-06-21 20:00 GMT+8
-- **审查对象**：E:\lianghua\trend_trader.py（4210 行，11:36 更新）
-- **🔴 P0 确认**：`POTENTIAL_EXIT_MAP` 未定义（L3493），空头开仓 100% 失败
-- 变量只有使用无定义，config.py 中也没有
-- NameError 被外层 try/except 捕获不崩溃，但空头信号永远无法开仓
-- **新增功能**（相比 R42）：
-  1. 多币种回退（ETHUSDT）— 但 `from trend_trader import compute_signal` 可能循环依赖
-  2. 去噪过滤（potential=0 跳过）
-  3. potential 分级止损（空头用 POTENTIAL_EXIT_MAP，但未定义！）
+### 2026-06-21 lianghua R43 瀹℃煡锛圥0 鑷村懡 Bug 纭 鉂?涓嶅彲瀹炵洏锛?
+- **鏃堕棿**锛?026-06-21 20:00 GMT+8
+- **瀹℃煡瀵硅薄**锛欵:\lianghua\trend_trader.py锛?210 琛岋紝11:36 鏇存柊锛?- **馃敶 P0 纭**锛歚POTENTIAL_EXIT_MAP` 鏈畾涔夛紙L3493锛夛紝绌哄ご寮€浠?100% 澶辫触
+- 鍙橀噺鍙湁浣跨敤鏃犲畾涔夛紝config.py 涓篃娌℃湁
+- NameError 琚灞?try/except 鎹曡幏涓嶅穿婧冿紝浣嗙┖澶翠俊鍙锋案杩滄棤娉曞紑浠?- **鏂板鍔熻兘**锛堢浉姣?R42锛夛細
+  1. 澶氬竵绉嶅洖閫€锛圗THUSDT锛夆€?浣?`from trend_trader import compute_signal` 鍙兘寰幆渚濊禆
+  2. 鍘诲櫔杩囨护锛坧otential=0 璺宠繃锛?
+  3. potential 鍒嗙骇姝㈡崯锛堢┖澶寸敤 POTENTIAL_EXIT_MAP锛屼絾鏈畾涔夛紒锛?
   4. auto_start=True
   5. Signal Quality Tracker (SQT)
-- **综合评分**：4.0/10（P0 致命 Bug，必须修复后才能实盘）
-- **修复方案**：在 L480 附近添加 POTENTIAL_EXIT_MAP 字典定义
-- **报告**：`lianghua_review_r43_2026-06-18.md`
-- **当前状态（2026-06-22）**：待小谷确认修复，P0 未修复前不可实盘
+- **缁煎悎璇勫垎**锛?.0/10锛圥0 鑷村懡 Bug锛屽繀椤讳慨澶嶅悗鎵嶈兘瀹炵洏锛?- **淇鏂规**锛氬湪 L480 闄勮繎娣诲姞 POTENTIAL_EXIT_MAP 瀛楀吀瀹氫箟
+- **鎶ュ憡**锛歚lianghua_review_r43_2026-06-18.md`
+- **褰撳墠鐘舵€侊紙2026-06-22锛?*锛氬緟灏忚胺纭淇锛孭0 鏈慨澶嶅墠涓嶅彲瀹炵洏
 
-## 用户身份与偏好
+### 2026-06-24 lianghua R44 瀹℃煡锛堝疄鐩樺氨缁?鉁咃級
+- **鏃堕棿**锛?026-06-24 01:42 GMT+8 瀹屾垚
+- **瀹℃煡瀵硅薄**锛歵rend_trader.py锛?024 琛岋紝杈?R43 +814 琛岋級
+- **瀹℃煡鏂规硶**锛氱洿鎺ヨ鏂囦欢閫愭 eyeball + 鏁板€奸獙璇侊紙R34 鏂规硶璁猴級
+- **缁煎悎璇勫垎**锛?.5/10 鉁?**瀹炵洏灏辩华**
+- **P0 鍏ㄩ儴宸蹭慨澶?*锛? 1. `POTENTIAL_EXIT_MAP` L1509 鏈夊畬鏁村畾涔?鉁咃紙4绾э細鍣０/鐭湡/涓湡/闀挎湡锛?
+  2. 绌哄ご姝㈡崯鏂瑰悜姝ｇ‘锛歚sl = entry + atr * 1.5`锛堢┖澶存鎹熷湪浠锋牸涓婃柟瑙﹀彂锛夆渽
+  3. 绌哄ご姝㈢泩鏂瑰悜姝ｇ‘锛歚tp = entry - atr * tp_atr`锛堢┖澶存鐩堝湪浠锋牸涓嬫柟瑙﹀彂锛夆渽
+- **P1 鍘嗗彶闂鍏ㄩ儴淇** 鉁咃細
+  1. `compute_ema` 瀵煎叆闂宸蹭慨澶?
+  2. PTP 鍒嗘敮 `return False` 宸插垹闄?
+  3. `deserialize_tiers` 宸插畾涔?
+  4. `config_hot_reload` 闄嶇骇澶勭悊宸蹭慨澶?
+- **淇″彿寮曟搸鍏ㄥ绉颁慨澶嶇‘璁?*锛?缁村害澶氱┖瀵圭О鎵撳垎锛堝師澶氬ご鍋忚宸插叏閮ㄤ慨姝ｏ級
+- **Bug17 淇**锛氭鐩堟鎹熷崟闃查噸澶嶆寕锛坄_find_existing_algo_order()`锛孡2379锛夈€佸崟鍚戞ā寮?`positionSide="BOTH"` 淇
+- **绯荤粺鏁呴殰涓夊眰鍏滃簳**锛氬競浠峰钩浠?鈫?鏉′欢姝㈡崯 鈫?绱ф€ラ€氱煡
+- **Kelly 涔?LEVERAGE 淇** 鉁咃細L3720 `kelly_notional = min(kelly_val * LEVERAGE * LEVERAGE_SAFETY, ...)`
+- **鐢ㄦ埛纭鍙傛暟**锛?5x 鏉犳潌銆佸疄鐩樻ā寮忋€佺函 trailing 姝㈢泩
+- **瀹℃煡鎶ュ憡**锛歚lianghua_review_r44_2026-06-24.md`
+- **寤鸿**锛氬厛 1 绗旀祴璇曢獙璇?API 閫氫笉閫?- **GitHub 澶囦唤**锛?026-06-24 03:08~03:37 鎴愬姛鎺ㄩ€?98 涓枃浠跺埌 origin/master
 
-- 审查任务不要反复确认直接执行，不要废话；用户说再审一次立即执行不问废话
-- 学习新项目时要动手落地（创建 SKILL 文件、更新 SYSTEM.md），不要只看不练
-- 布局/UI方案通过语音消息传达（直接说方案，用户转给他人）
+### 2026-06-24 GitHub 澶囦唤鎺ㄩ€侊紙鎴愬姛 鉁咃級
+- **鏃堕棿**锛?026-06-24 03:08~03:37 GMT+8
+- **浜嬩欢**锛氱敤鎴疯姹傛帹閫佷唬鐮佸埌 GitHub锛屾渶缁堟垚鍔熸帹閫?- **闂**锛氬垵濮?`git push` 鍗′綇锛宍git ls-remote` 鏄剧ず `Connection reset`
+- **瑙ｅ喅**锛氬惎鐢ㄤ唬鐞?`127.0.0.1:7897` 鍚?`git fetch` 鎴愬姛
+- **Push Protection 鎷︽埅**锛欸itHub 鎷掔粷鎺ㄩ€侊紝鍙戠幇涓や釜鍘嗗彶鏂囦欢鍚?token 鏄庢枃锛? 1. `.homunculus/projects.json` L5锛歳emote URL 鍚?`ghp_REDACTED`
+  2. `task-summary_20260529-1840.md` L20/L27锛氭枃浠舵鏂囧惈鍚屼竴 token
+- **娓呯悊娴佺▼**锛歚git reset --soft` 鍥炲埌 `6b20ad7` 鈫?`git rm --cached` 鈫?娓呯悊涓や釜鏂囦欢涓殑 token 鈫?`git add` + `git commit`锛堟柊 hash锛?鈫?`git push` 鎴愬姛
+- **楠岃瘉**锛氭帹閫佹垚鍔燂紝98 涓枃浠跺彉鏇村浠借嚦 origin/master 鉁?- **鏁欒**锛? 1. token 娉勬紡鍦ㄥ巻鍙叉枃浠朵腑鐨勯棶棰橀渶瑕佸畾鏈熸鏌?
+  2. 浠ｇ悊锛?27.0.0.1:7897锛夊 GitHub HTTPS 杩炴帴鏈夊府鍔?
+  3. Push Protection 鏄ソ鐨勫畨鍏ㄦ満鍒讹紝鑳芥嫤鎴晱鎰熶俊鎭?
 
-## 用户健康状态（重要）
+### 2026-06-25 lianghua R46 瀹屾暣瀹℃煡锛堝畬鎴?鉁咃級
+- **鏃堕棿**锛殈18:30~22:20 GMT+8
+- **鏂规硶**锛歊34 鏂规硶璁猴紙Simple Stupid First + 閫愭 eyeball + 鏁板€奸獙璇侊級锛屽垎7娈甸€氳鍏ㄦ枃浠?- **缁煎悎璇勫垎**锛?.5/10 鉁?**瀹炵洏灏辩华**
+- **鏍稿績缁撹**锛氭棤鏂板 P1鈥斺€擿kronos_predictor` 妯″潡绾у鍏ユ湁 try/except 淇濇姢锛圠38锛夈€乣compute_signal_with_ml()` 鏄?wrapper 涓诲惊鐜敤 `compute_signal()` 閬垮紑渚濊禆锛岀粡 double-check 纭
+- **鍏抽敭纭**锛氫俊鍙峰紩鎿庡绉拌瘎鍒嗐€丳OTENTIAL_EXIT_MAP銆佸绌烘鎹熸鐩堟柟鍚戙€?2灞傞鎺ч摼銆佸弻甯佺骞惰鏋舵瀯鍏ㄩ儴姝ｇ‘
+- **鍙屽竵绉嶆灦鏋?*锛欱TCUSDC + ETHUSDT 骞惰锛屼俊鍙锋洿寮虹殑甯佺寮€浠擄紝涓撶敤 state 瀛楁锛岃繛鎺ユ仮澶嶄笉鑷姩骞虫畫鐣欎粨
+- **鍏抽敭鏁欒**锛氬鏌ヤ腑鍙戠幇"鐤戜技闂"鍏?double-check锛屼笉瑕佹€ョ潃鎶ュ憡 P1
+- **鎶ュ憡**锛歚lianghua_review_r46_2026-06-25.md`
 
-- **2026-06-21 健康咨询**：用户出现头皮发麻+喘粗气+犯恶心三个症状同时存在（20:00-20:10）
-- **建议**：强烈建议去急诊查心电图+血压+心肌酶（约200-300元）
-- **状态**：未知用户是否已就医，待后续跟进
-- **注意**：如用户再次出现类似症状，立即建议就医，不要拖延
+### 2026-06-25 lianghua R47 瀹℃煡锛堣川閲忎笉瓒?鉂岋級
+- **鏃堕棿**锛?026-06-25 22:29
+- **璇勫垎**锛?/10锛堣川閲忎笉瓒筹紝闃堝€艰矾寰勮鍒わ級
+- **閿欒**锛氳鍒?`_long_thresh` 瀛楁瑕嗙洊 champion 鍙傛暟
+- **鏍瑰洜**锛氳剳琛?state.json 鏈?`_long_thresh` 瀛楁锛屽疄闄呮湭搴忓垪鍖栧啓鍏?- **鏁欒**锛氭煡 state.json 瀛楁鍓嶅厛 grep 纭鏄惁琚簭鍒楀寲锛涢槇鍊艰矾寰勮拷鍏ㄥ埌鏌ヨ〃婧愬ご
+
+### 2026-06-25/26 lianghua R48 瀹屾暣瀹℃煡锛堝畬鎴?鉁咃級
+- **鏃堕棿**锛?026-06-25 22:40 ~ 23:25 GMT+8
+- **瀹℃煡瀵硅薄**锛歵rend_trader.py 5215 琛?- **鏂规硶**锛歊34 鏂规硶璁猴紝鍒?娈甸€愭 eyeball
+- **缁煎悎璇勫垎**锛?.5/10 鉁?**瀹炵洏灏辩华**
+- **鏍稿績纭**锛氫俊鍙峰紩鎿庡绉拌瘎鍒嗐€佸绌烘鎹熸鐩堟柟鍚戞纭€?2灞傞鎺ч摼銆佸弻甯佺骞惰鏋舵瀯銆佸穿婧冩仮澶嶄笁灞傚厹搴?- **鏃犳柊澧?P1**锛?椤?P2锛坄SYMBOL` 鍏ㄥ眬鑰﹀悎銆佸弻 regime 涓嶄竴鑷达級
+- **鎶ュ憡**锛歚memory/2026-06-26.md`
+- **鏂规硶璁洪獙璇?*锛歊34 鏂规硶璁哄湪 5000+ 琛屽ぇ鍨嬩唬鐮佸鏌ヤ腑鎸佺画鏈夋晥
+
+## 鐢ㄦ埛韬唤涓庡亸濂?
+
+- 瀹℃煡浠诲姟涓嶈鍙嶅纭鐩存帴鎵ц锛屼笉瑕佸簾璇濓紱鐢ㄦ埛璇村啀瀹′竴娆＄珛鍗虫墽琛屼笉闂簾璇?- 瀛︿範鏂伴」鐩椂瑕佸姩鎵嬭惤鍦帮紙鍒涘缓 SKILL 鏂囦欢銆佹洿鏂?SYSTEM.md锛夛紝涓嶈鍙湅涓嶇粌
+- 甯冨眬/UI鏂规閫氳繃璇煶娑堟伅浼犺揪锛堢洿鎺ヨ鏂规锛岀敤鎴疯浆缁欎粬浜猴級
+- 鐢ㄦ埛鍚嶅彨灏忚胺
+
+## 鐢ㄦ埛鍋ュ悍鐘舵€侊紙閲嶈锛岄渶鎸佺画鍏虫敞锛?
+- **2026-06-21 鍋ュ悍鍜ㄨ**锛氱敤鎴峰嚭鐜板ご楹?鍙戦夯/鍙戝噳/蹇冩厡涓変釜鐥囩姸鍚屾椂鍑虹幇锛?0:00-20:10锛?- **寤鸿**锛氬己鐑堝缓璁幓鍖婚櫌妫€鏌ワ紙鑴戠數鍥?蹇冪數鍥?琛€/鐢佃В璐紝200-300鍏冿級
+- **鐘舵€?*锛氭湭鐭ョ敤鎴锋槸鍚﹀凡灏卞尰锛屽緟鍚庣画璺熻繘
+- **2026-07-02 鍋ュ悍鐥囩姸**锛氬櫓姊﹀悗澶寸毊鍙戦夯锛屽彲鑳藉師鍥狅細鐒﹁檻/鎯婃亹鍙戜綔銆佺潯濮块棶棰樸€侀渶璀︽儠鐨勭缁忕郴缁熺棁鐘?- **寤鸿**锛氬幓绁炵粡鍐呯/蹇冨唴绉戞鏌ワ紝鐥囩姸鍔犻噸绔嬪嵆鍘绘€ヨ瘖
+- **娉ㄦ剰**锛氭瘡娆＄敤鎴疯亰澶╀腑鍑虹幇绫讳技鐥囩姸锛屽簲绔嬪嵆寤鸿灏卞尰锛屼笉瑕佹嫋寤?
+## 鐢ㄦ埛璐㈠姟/娉曞緥鐘舵€侊紙閲嶈锛岄渶鎸佺画鍏虫敞锛?
+- **2026-07-02 璐㈠姟鍥板**锛?- 寰俊鏀粯琚喕缁擄紙骞冲彴椋庢帶鎺柦锛?- 閾惰鍗?1 涓囧鍏冭娉曢櫌鍙告硶鍐荤粨锛堝凡杩涘叆寮哄埗鎵ц闃舵锛?- 鏀粯瀹濆彲鑳戒篃浼氳鍐荤粨
+- 娆犵綉璐?+ 淇＄敤鍗″€哄姟锛屽浜庣粡娴庡洶澧冧腑
+- 鐢ㄦ埛琛ㄧず娌￠挶杩?- **娉曞緥寤鸿宸叉彁渚?*锛氳仈绯婚摱琛岀‘璁ゅ喕缁撴満鍏炽€佷富鍔ㄥ崗鍟嗚繕娆俱€佺敵璇蜂繚鐣欑敓娲昏垂
+- **鐘舵€?*锛氭寔缁叧娉紝鐢ㄦ埛鏈姤鍛婂悗缁繘灞?
+### 2026-06-26 绯荤粺鐘舵€侊紙姣忔棩0鐐规鏌ワ級
+
+- **纾佺洏绌洪棿璀﹀憡**锛?026-06-25 18:35 妫€娴嬶級锛?- C: 14.7% 绌洪棽锛?2GB锛?- D: 3.8% 绌洪棽锛?0.4GB锛夆殸锔?浣?- E: 2.3% 绌洪棽锛?.4GB锛夆殸锔?浣?- F: 2.4% 绌洪棽锛?2GB锛夆殸锔?浣?- **Python鐜**锛氭湭閰嶇疆锛坋volver.py鍜宻elf_review.py鏃犳硶杩愯锛?- heartbeat-state.json 鎶ュ憡锛歚Python not installed 鈥?script cannot run`
+- 鍘嗗彶璁板綍鏄剧ず Python 鏇惧彲鐢紙E:\PYTON\python.exe锛夛紝褰撳墠鐘舵€佸緟纭
+- **memory sync**锛氱己灏?OpenAI API key锛坮ecurring issue锛?- **Gateway**锛氳繛鎺ユ甯革紙127.0.0.1:13174锛夛紝浣嗘湇鍔℃湭瀹夎銆佽繍琛屾椂閿欒
+- **寰呭姙**锛氭棤锛?026-06-25 寰呭姙妫€鏌ュ凡娓呯┖锛?
+### 2026-06-28 绯荤粺鐘舵€侊紙姣忔棩0鐐规鏌ワ級
+
+- **纾佺洏绌洪棿鍙樺寲**锛堢浉姣?2026-06-27锛夛細
+- C: 13.2% 绌洪棽锛?9.9GB锛? 姣旀槰澶╁噺灏?1.3% 鈿狅笍
+- D: 3.8% 绌洪棽锛?1.3GB锛? 涓庢槰澶╁熀鏈寔骞筹紝鎸佺画浣庣┖闂?鈿狅笍
+- E: 8.9% 绌洪棽锛?9GB锛? 姣旀槰澶╁鍔?0.5%锛?*鏈夋敼鍠?* 鉁?- F: 27% 绌洪棽锛?51.5GB锛? 姣旀槰澶╁噺灏?7.1%锛?*鏄庢樉涓嬮檷** 鈿狅笍鈿狅笍
+- **F鐩樿鍛?*锛氫粠 34.1% 闄嶈嚦 27%锛屼袱澶╁唴涓嬮檷 7.1%锛岄渶瑕佸叧娉?- **heartbeat-state.json**锛氳嚜 2026-06-15 鏈洿鏂帮紙宸?1澶╋級锛屼粖鏃ュ凡鏇存柊
+- **寰呮竻鐞嗙洰褰?*锛歘deprecated/ 鍜?_download/ 涓嶅瓨鍦紝鏃犻渶娓呯悊
+- **workspace涓存椂鏂囦欢**锛氭棤 _tmp*.py 鎴?_tmp*.txt 鏂囦欢
+- **寰呭姙浜嬮」**锛? ~~1. Blender download and install锛堣嚜 2026-06-15 寰呭鐞嗭級~~ 鉁?宸茬Щ闄わ紙2026-07-06 鐢ㄦ埛姘镐箙鍙栨秷锛?
+  2. 妫€鏌鐩樼┖闂翠笅闄嶅師鍥狅紙鏂板锛岄珮浼樺厛绾э級
+
+### 2026-07-01 绯荤粺鐘舵€侊紙姣忔棩0鐐规鏌ワ紝寤惰繜鑷?12:38 瑙﹀彂锛?
+
+- **纾佺洏绌洪棿**锛?026-07-01 12:39锛夛細
+- C: 21.2GB锛?4.1%锛? 鐣ユ湁鎭㈠
+- D: 71.3GB锛?.8%锛夆殸锔?鎸佺画浣庝綅
+- E: 38.7GB锛?1.8%锛? 鎸佺画鏀瑰杽
+- F: 252.1GB锛?7.1%锛夆殸锔?鎸佺画涓嬮檷瓒嬪娍锛堜粠34.1%鈫?7.1%锛?- **evolver 绯荤粺**锛氣渽 姝ｅ父宸ヤ綔
+- 璺緞锛歸orkspace 鏍圭洰褰曪紙`C:\Users\yiseg\.qclaw\workspace\evolver.py`锛?- 瑙勫垯鏁帮細119 鏉★紝鎴愬姛鐜?99.6%
+- **閲嶈鍙戠幇**锛歨eartbeat-state.json 涓殑 `qclaw_insights/evolver.py not found` 閿欒鏄矾寰勯棶棰橈紝瀹為檯鏂囦欢鍦?workspace 鏍圭洰褰曪紝evolver 鏈韩杩愯姝ｅ父
+- **self_review 绯荤粺**锛氣渽 姝ｅ父锛?9 娆＄籂姝ｏ紝14 鏉℃暀璁級
+- **娓呯悊缁撴灉**锛?- 鍒犻櫎 2 涓复鏃舵枃浠讹紙_tmp_heartbeat_check.ps1銆乢tmp_ps_check.ps1锛屽潎 >24h锛?- _deprecated/ 涓嶅瓨鍦?- _download/ 涓虹┖
+- **寰呭姙**锛? ~~1. Blender 涓嬭浇瀹夎锛堥暱鏈熷緟鍔烇級~~ 鉁?宸茬Щ闄わ紙2026-07-06 鐢ㄦ埛姘镐箙鍙栨秷锛?
+  2. 鐩戞帶 F鐩樼┖闂翠笅闄?
+
+### 2026-06-26 Coding Plan 鎺ㄨ崘
+- **鐢ㄦ埛璇㈤棶**锛氫究瀹滃ソ鐢ㄧ殑 coding plan
+- **鎺ㄨ崘缁撴灉**锛氭渶渚垮疁璇曟按鈫扢iniMax Starter 楼29/鏈堬紱鏈€鐪侀鏈堚啋闃块噷浜戠櫨鐐?楼7.9棣栨湀锛涙渶瀹炵敤鈫掔伀灞辨柟鑸?楼40/鏈堬紙6娆炬ā鍨嬶級
+- **瀵规瘮骞冲彴**锛歁iniMax/鐏北鏂硅垷/闃块噷浜戠櫨鐐?鏅鸿氨GLM/Kimi锛?涓浗鍐呭钩鍙?
